@@ -1,5 +1,11 @@
 # Interview preparation workflow
 
+## Hard rule: push only when asked
+
+- Only push when the user explicitly asks for a push. Completing a question, recording progress, committing, or resuming a session does not authorize a push.
+- This rule supersedes earlier automatic-push instructions. A previous push request does not authorize future pushes.
+- Keep changes local until a push is requested, and report their local/unpushed status accurately. Fetching and safe pull/rebase synchronization remain part of the session workflow.
+
 ## Repository layout
 
 - This checkout corresponds to the local `interviews/` directory. Keep `README.md`, `Phase 1/`, and future `Phase 2/`, `Phase 3/`, etc. directly at its root; do not nest another `interviews/` directory.
@@ -31,8 +37,9 @@ Never use `git reset --hard`, `git clean -fd`, or force-push unless the user exp
 
 1. Inspect `git status` and the changes. Fetch again and inspect incoming history before committing; if concurrent progress exists, protect local work and reconcile it using the same safe workflow above.
 2. Stage the reviewed repository changes with `git add .` and commit with an accurate message, for example `Update Kubernetes interview progress - Q06`. Use the actual topic and question number. Do not make empty commits.
-3. Run `git pull --rebase origin main` again before pushing. Resolve any conflicts by preserving both histories and recheck affected records, numbering, and aggregates.
-4. Run `git push origin main`. If rejected because the remote advanced, fetch, inspect, rebase, validate, and retry without force-pushing.
-5. Verify the final status and remote commit. Report any synchronization or push failure accurately; do not claim progress was saved remotely when it was not.
+3. Stop after local recording/committing unless the user explicitly requests a push. Report pending local changes or unpushed commits.
+4. Only when a push is requested, run `git pull --rebase origin main` again before pushing. Resolve any conflicts by preserving both histories and recheck affected records, numbering, and aggregates.
+5. For that requested push, run `git push origin main`. If rejected because the remote advanced, fetch, inspect, rebase, validate, and retry without force-pushing.
+6. Verify the final status and, if a push was requested and performed, the remote commit. Report any synchronization or push failure accurately; do not claim progress was saved remotely when it was not.
 
 Apply this workflow to future phases and topics as well as Kubernetes. Future changes require explicit commits and pushes; Git does not automatically synchronize files.
