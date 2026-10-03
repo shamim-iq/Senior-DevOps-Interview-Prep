@@ -65,3 +65,29 @@ Interview Acceptance Probability: 62% (subjective estimate for this answer).
 | Senior-level reasoning | Correct node trade-off; change safety and long-term diagnosis need detail |
 
 Emerging repeated gaps across Q01–Q02: unsupported recovery ETA, lengthy opening, narrow hypotheses, and incomplete recovery validation. Retest capacity/scheduling reasoning next; do not treat this assisted correction as proof of broad resource mastery.
+
+## Q03 — HPA / Pending / Cluster Autoscaler — 2026-10-03
+
+Score: 5/10
+Interview Acceptance Probability: 40% (subjective estimate for this answer).
+
+✅ Strong
+- Correctly identified requests rather than live usage as the central scheduling issue.
+- Distinguished requests from limits and gave a more direct, concise answer.
+
+⚠️ Improve
+- Compare requests with remaining per-node allocatable capacity, not average usage. A high request does not mean the pod can never schedule.
+- Autoscaler investigation was not answered: check logs, eligible group fit/max size, discovery/permissions, and AWS launch activity.
+- Specify evidence and the resulting mitigation rather than referring generally to previous commands.
+- Explain safe restoration and validation; do not lower requests blindly to make pods fit.
+
+| Evaluation dimension | Assessment |
+| --- | --- |
+| Technical accuracy | Scheduling principle correct; average-usage/never-schedules wording inaccurate |
+| Coverage | Scheduling covered; Autoscaler and recovery sections missing |
+| Interview representation | Direct explanation, but incomplete response to the scenario |
+| Conciseness | Improved; no lengthy administrative opening |
+| Troubleshooting approach | No concrete Autoscaler evidence or decision sequence |
+| Senior-level reasoning | Needs distinction between scheduling, scaling and cloud provisioning failures |
+
+Main deduction is missing two central parts of the question, not missing command volume. Autoscaler teaching was requested and is recorded in the answer file; it is not credited as independent knowledge. Queue autoscaling for a later retest and rotate to networking now.

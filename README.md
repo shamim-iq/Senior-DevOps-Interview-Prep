@@ -12,4 +12,19 @@ Within each topic:
 - `Feedback.md` — knowledge gaps and improvement areas.
 - `Progress.md` — interview-readiness tracking.
 
-The local `Interviews/` directory is the repository root. Commit and push future preparation updates to this repository on `main`.
+## Topic roadmap
+
+- [ ] [Kubernetes](Phase%201/kubernetes/Progress.md) — in progress.
+- [ ] Docker
+- [ ] AWS
+- [ ] Azure
+- [ ] Terraform
+- [ ] Observability
+- [ ] Linux / Networking
+- [ ] RAG
+- [ ] MCP
+- [ ] Amazon Bedrock
+
+Each topic keeps its own coverage, scores and revision checklist in `Phase N/<topic>/Progress.md`. Completed assessments show ✅; remaining aspects stay unchecked. A topic is complete only after its agreed coverage and revision work are finished. Future phases are not yet scoped, so no overall completion percentage is assigned.
+
+The local `Interviews/` directory is the repository root. Keep commits on `main`; push only when explicitly requested.
