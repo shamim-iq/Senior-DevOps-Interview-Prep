@@ -174,3 +174,30 @@ Interview Acceptance Probability: 65% (subjective estimate for this answer).
 | Senior-level reasoning | Good least-privilege instinct; explicitly separate authorization layers |
 
 Main deductions: missing trust-condition checks and a concrete fix/validation sequence. No deduction for avoiding a long command list. Revisit identity validation later; move to maintenance/PDBs next.
+
+## Q07 — Node Drain / PDB — 2026-10-04
+
+Score: 5.5/10
+Interview Acceptance Probability: 45% (subjective estimate for this answer).
+
+✅ Strong
+- Connected PDBs with voluntary disruption and rejected outright deletion.
+- Planned replacement node capacity, cordon/drain and maintenance communication.
+
+⚠️ Improve
+- Lead with the scenario: two Ready minus minAvailable two leaves zero budget for healthy-pod eviction.
+- Investigate and restore the third replica, or add genuinely Ready capacity, before weakening protection.
+- A maintenance window does not make lower availability safe; loosening a PDB can permit overload or outage.
+- New nodes alone do not guarantee application readiness or no latency; validate replacements and customer metrics between drains.
+- Use compatible tested versions and release-specific add-on prerequisites rather than an unconditional latest-version sequence.
+
+| Evaluation dimension | Assessment |
+| --- | --- |
+| Technical accuracy | Basic PDB/drain knowledge correct; mandatory relaxation/no-impact claims incorrect |
+| Coverage | Broad upgrade process discussed; actual unready replica and budget diagnosis missed |
+| Interview representation | Operational awareness, but answer needs focus on the given blocker |
+| Conciseness | Repeats upgrade/capacity points; shorter evidence-first response would improve clarity |
+| Troubleshooting approach | No concrete investigation of PDB status or failing replica |
+| Senior-level reasoning | Capacity planning is positive; availability trade-offs and stop/verify gates missing |
+
+Main deductions: unsafe default relaxation and missing investigation/validation, not missing command volume. Queue PDB availability reasoning for spaced retesting; rotate to DNS/observability.

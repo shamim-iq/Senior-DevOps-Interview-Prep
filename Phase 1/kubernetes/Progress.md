@@ -2,17 +2,17 @@
 
 | Metric | Current status |
 | --- | --- |
-| Questions Attempted | 6 / 10 in the first cycle |
-| Average Score | 5.92/10 — (6 + 6.5 + 5 + 6.5 + 4.5 + 7) / 6 |
-| Average Acceptance Probability | 52.83% — (55 + 62 + 40 + 60 + 35 + 65) / 6; subjective answer-specific estimates |
-| Topic Coverage | Q01: deployment failure, incident triage, GitOps; Q02: memory limits/OOM; Q03: request-based scheduling; autoscaling gaps identified; Q04: NetworkPolicy isolation; Q05: EBS/PVC/CSI recovery; Q06: IRSA/ServiceAccount identity |
+| Questions Attempted | 7 / 10 in the first cycle |
+| Average Score | 5.86/10 — (6 + 6.5 + 5 + 6.5 + 4.5 + 7 + 5.5) / 7 |
+| Average Acceptance Probability | 51.71% — (55 + 62 + 40 + 60 + 35 + 65 + 45) / 7; subjective answer-specific estimates |
+| Topic Coverage | Q01: deployment failure, incident triage, GitOps; Q02: memory limits/OOM; Q03: request-based scheduling; autoscaling gaps identified; Q04: NetworkPolicy isolation; Q05: EBS/PVC/CSI recovery; Q06: IRSA/ServiceAccount identity; Q07: node maintenance/PDB |
 | Current Strengths | Incident ownership, previous logs, measuring usage, distinguishing larger nodes from container limits, Helm identity-regression hypothesis and permission restraint |
 | Current Weaknesses | Alternative causes, request/limit precision, capacity-aware mitigation, IRSA distinction, storage attachment/migration safety, recovery validation and conciseness |
-| Readiness Trend | 6 → 6.5 → 5 → 6.5 → 4.5 → 7; identity reasoning improved; recovery validation remains a gap |
+| Readiness Trend | 6 → 6.5 → 5 → 6.5 → 4.5 → 7 → 5.5; safe mitigation and recovery validation remain recurring gaps |
 
 ## ☑️ Kubernetes Coverage Checklist
 
-**Initial assessment coverage: 7 / 22 aspects (31.8%). Questions completed: 6 / 10 (60%).** These measure different things: one question can assess multiple aspects, and neither percentage is a readiness score.
+**Initial assessment coverage: 8 / 22 aspects (36.4%). Questions completed: 7 / 10 (70%).** These measure different things: one question can assess multiple aspects, and neither percentage is a readiness score.
 
 `[x] ✅` = substantively attempted and evaluated at least once, with question evidence. `[ ]` = not yet assessed sufficiently, including pending questions and concepts only discussed in follow-ups. Checked aspects can still require revision. The overall topic roadmap lives in the [root README](../../README.md).
 
@@ -32,7 +32,7 @@
 - [ ] RBAC and ServiceAccounts — ServiceAccount linkage sampled in Q06; Kubernetes authorization still needs assessment.
 - [x] ✅ IRSA/OIDC — Q06; exact trust conditions and validation need revision.
 - [ ] Azure workload identity — not assessed.
-- [ ] Node maintenance, upgrades and PDBs — not assessed.
+- [x] ✅ Node maintenance, upgrades and PDBs — Q07; budget arithmetic, unhealthy replica diagnosis and safe maintenance need revision.
 - [ ] Helm and Argo CD release management — rollback mentioned in Q01; broader assessment pending.
 - [ ] Prometheus and EFK/ELK investigation — generic dashboard/log usage only; tool-specific assessment pending.
 - [ ] EKS production architecture and trade-offs — scenario setting used; platform-specific depth pending.
@@ -57,15 +57,15 @@ These boxes mean the activity has been completed with recorded evidence, not mer
 
 ## Active Question
 
-Q07 — Node maintenance and PodDisruptionBudgets; awaiting an answer.
+Q08 — CoreDNS and observability; awaiting an answer.
 
-During an EKS node-group upgrade, draining a node repeatedly fails with Cannot evict pod as it would violate the pod's disruption budget. The affected API Deployment has three desired replicas, but only two are Ready. Its PDB specifies minAvailable: 2. A teammate suggests deleting the PDB to finish the upgrade. How would you investigate and complete maintenance while protecting availability?
+In an EKS cluster, several applications intermittently fail to resolve internal Service names. Requests to the same Services by ClusterIP succeed. CoreDNS pods are Running, but monitoring shows increased DNS latency and SERVFAIL responses during traffic peaks. How would you isolate the cause and restore reliable DNS without introducing unnecessary disruption?
 
 ## Coverage Plan
 
 Across the first 10 questions, assess deployment and pod failures; Services, Ingress, DNS and networking; scheduling; resource management; autoscaling; storage; workload identity and RBAC; maintenance and PDBs; GitOps; and observability in realistic EKS/AKS scenarios. Combine related areas and adapt difficulty to demonstrated performance.
 
-Prioritize unchecked aspects when choosing new questions. Avoid more than two consecutive questions centered on the same aspect unless explicitly requested. Queue weak areas for spaced retesting instead of repeatedly revisiting them immediately. Q07 moves to node maintenance/PDBs; identity validation, storage safety, autoscaling and NetworkPolicy weaknesses are queued for later retesting. Review coverage after each answer and at each 10-question checkpoint; continue beyond 10 if aspects remain unassessed.
+Prioritize unchecked aspects when choosing new questions. Avoid more than two consecutive questions centered on the same aspect unless explicitly requested. Queue weak areas for spaced retesting instead of repeatedly revisiting them immediately. Q08 moves to DNS/observability; PDB safety, identity validation, storage safety, autoscaling and NetworkPolicy weaknesses are queued for later retesting. Review coverage after each answer and at each 10-question checkpoint; continue beyond 10 if aspects remain unassessed.
 
 ## Session Rules
 
@@ -87,11 +87,12 @@ Prioritize unchecked aspects when choosing new questions. Avoid more than two co
 | Q04 | 2026-10-03 | 6.5/10 | 60% | [Cross-Namespace NetworkPolicy](questions/Q04-networkpolicy-cross-namespace.md) |
 | Q05 | 2026-10-03 | 4.5/10 | 35% | [EBS Multi-Attach](questions/Q05-ebs-multi-attach.md) |
 | Q06 | 2026-10-04 | 7/10 | 65% | [IRSA Trust After Helm](questions/Q06-irsa-trust-after-helm.md) |
+| Q07 | 2026-10-04 | 5.5/10 | 45% | [Node Drain / PDB](questions/Q07-node-drain-pdb.md) |
 
 ## Retesting and Coverage
 
-- Next: node maintenance, upgrades and PDBs (Q07).
+- Next: CoreDNS failure investigation and observability (Q08).
 - Q02 improved the larger-node misconception; revisit requests/limits and safe capacity planning in a different scenario.
 - Later: AWS workload identity and native configuration; GitOps rollback safeguards; request-path diagnosis and recovery validation.
-- Scheduling assessed in Q03; Autoscaler diagnosis needs a later retest. HPA metrics, maintenance and CoreDNS remain unassessed. Storage was assessed in Q05; safe detachment and migration need retesting. Q04 assessed NetworkPolicy basics; AKS-specific platform depth remains unassessed.
-- No mastery percentages inferred from six answers. Current score movement is descriptive, not proof of overall senior readiness.
+- Scheduling assessed in Q03; Autoscaler diagnosis needs a later retest. HPA metrics and CoreDNS remain unassessed. Maintenance was assessed in Q07; PDB capacity and safe drain reasoning need retesting. Storage was assessed in Q05; safe detachment and migration need retesting. Q04 assessed NetworkPolicy basics; AKS-specific platform depth remains unassessed.
+- No mastery percentages inferred from seven answers. Current score movement is descriptive, not proof of overall senior readiness.
