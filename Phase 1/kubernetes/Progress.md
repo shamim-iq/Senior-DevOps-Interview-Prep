@@ -2,19 +2,19 @@
 
 | Metric | Current status |
 | --- | --- |
-| Questions Attempted | 1 / 10 in the first cycle |
-| Average Score | 6/10 |
-| Average Acceptance Probability | 55% — subjective answer-specific estimate |
-| Topic Coverage | Q01: deployment failure, incident triage, GitOps; resource and identity reasoning sampled |
-| Current Strengths | Incident ownership, logs/events awareness, mitigation priority |
-| Current Weaknesses | Command precision, evidence-based resource diagnosis, IRSA distinction, recovery validation |
-| Readiness Trend | Initial baseline only; overall readiness not yet established |
+| Questions Attempted | 2 / 10 in the first cycle |
+| Average Score | 6.25/10 — (6 + 6.5) / 2 |
+| Average Acceptance Probability | 58.5% — (55 + 62) / 2; subjective answer-specific estimates |
+| Topic Coverage | Q01: deployment failure, incident triage, GitOps; Q02: memory limits/OOM and resource diagnosis; identity sampled |
+| Current Strengths | Incident ownership, previous logs, measuring usage, distinguishing larger nodes from container limits |
+| Current Weaknesses | Alternative causes, request/limit precision, capacity-aware mitigation, IRSA distinction, recovery validation and conciseness |
+| Readiness Trend | 6 → 6.5; modest improvement after feedback, insufficient evidence for overall readiness |
 
 ## Active Question
 
-Q02 — Resource troubleshooting; awaiting an answer. Chosen to test the Q01 assumption that larger nodes solve crashing containers.
+Q03 — HPA, Pending pods and node autoscaling; awaiting an answer. Extends resource reasoning into scheduling and capacity.
 
-An EKS API container repeatedly restarts during peak traffic. Its last termination reason is OOMKilled, its memory request is 256Mi, and its memory limit is 512Mi. Historical metrics show memory rising toward 512Mi before each restart, while the node has several GiB of available memory and no MemoryPressure condition. A teammate proposes moving the workload to a larger node. How would you assess that proposal and choose, validate, and follow up on a safe production fix?
+During peak traffic, an EKS API's CPU-based HPA raises desired replicas from 4 to 10. Four pods remain Running and six stay Pending. Pending-pod events report Insufficient cpu, although node dashboards show only about 35% CPU usage. Cluster Autoscaler is installed, but no new nodes appear and latency is rising. How would you explain the discrepancy, investigate why capacity is not increasing, and restore service safely?
 
 ## Coverage Plan
 
@@ -35,10 +35,12 @@ Across the first 10 questions, assess deployment and pod failures; Services, Ing
 | Question | Date | Score | Acceptance estimate | Record |
 | --- | --- | --- | --- | --- |
 | Q01 | 2026-10-02 | 6/10 | 55% | [Deployment CrashLoopBackOff](questions/Q01-deployment-crashloop.md) |
+| Q02 | 2026-10-03 | 6.5/10 | 62% | [Memory Limit / OOMKilled](questions/Q02-memory-limit-oomkilled.md) |
 
 ## Retesting and Coverage
 
-- Next: container memory limits versus node capacity (Q02).
+- Next: scheduling requests versus measured usage, HPA and Cluster Autoscaler (Q03).
+- Q02 improved the larger-node misconception; revisit requests/limits and safe capacity planning in a different scenario.
 - Later: AWS workload identity and native configuration; GitOps rollback safeguards; request-path diagnosis and recovery validation.
-- Scheduling, autoscaling, storage, maintenance, NetworkPolicy/CoreDNS and AKS remain unassessed.
-- No topic-level percentages or readiness trend inferred from a single answer.
+- Scheduling and autoscaling are pending assessment. Storage, maintenance, NetworkPolicy/CoreDNS and AKS remain unassessed.
+- No topic-level percentages inferred from two answers. Current score movement is descriptive, not proof of overall senior readiness.
