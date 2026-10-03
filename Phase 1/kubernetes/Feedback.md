@@ -91,3 +91,31 @@ Interview Acceptance Probability: 40% (subjective estimate for this answer).
 | Senior-level reasoning | Needs distinction between scheduling, scaling and cloud provisioning failures |
 
 Main deduction is missing two central parts of the question, not missing command volume. Autoscaler teaching was requested and is recorded in the answer file; it is not credited as independent knowledge. Queue autoscaling for a later retest and rotate to networking now.
+
+## Q04 — Cross-Namespace NetworkPolicy — 2026-10-03
+
+Score: 6.5/10
+Interview Acceptance Probability: 60% (subjective answer-specific estimate).
+
+✅ Strong
+- Correct primary hypothesis linked to the recent policy change.
+- Understood that Ready endpoints do not guarantee reachability.
+- Concise response with sensible exec/connectivity and policy checks.
+
+⚠️ Improve
+- Check source egress as well as destination ingress.
+- Define the narrow fix: correct namespace/pod selectors and application port, keeping isolation intact.
+- Missing ingress permission in one policy is not conclusive: native policies are additive, and unrestricted pods need no explicit allow.
+- Test from the affected frontend; ClusterIP failure means DNS alone cannot explain the incident.
+- Validate allowed traffic succeeds and intentionally denied traffic stays blocked; confirm application recovery.
+
+| Evaluation dimension | Assessment |
+| --- | --- |
+| Technical accuracy | Main explanation sound; missing egress and policy-isolation/additive nuance |
+| Coverage | Primary cause covered; precise fix and verification incomplete |
+| Interview representation | Clear and directly relevant |
+| Conciseness | Good; no penalty for short length |
+| Troubleshooting approach | Useful starting tools; specify source, policy contents and expected evidence |
+| Senior-level reasoning | Needs least-privilege change and positive/negative validation |
+
+Main deductions: omitted source egress, underspecified safe fix, and missing validation. Queue these for a later retest; move to storage for broader coverage.
