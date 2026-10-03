@@ -119,3 +119,30 @@ Interview Acceptance Probability: 60% (subjective answer-specific estimate).
 | Senior-level reasoning | Needs least-privilege change and positive/negative validation |
 
 Main deductions: omitted source egress, underspecified safe fix, and missing validation. Queue these for a later retest; move to storage for broader coverage.
+
+## Q05 — EBS Multi-Attach — 2026-10-03
+
+Score: 4.5/10
+Interview Acceptance Probability: 35% (subjective answer-specific estimate).
+
+✅ Strong
+- Correctly identified EBS's AZ restriction.
+- Recognized the old-node attachment as relevant.
+
+⚠️ Improve
+- Multi-Attach can occur within one AZ; the question did not establish an AZ change. Distinguish attachment conflict from topology mismatch.
+- Same-AZ placement does not clear a stale attachment. Verify the old instance cannot write before detachment/recovery.
+- Switching a StorageClass provisioner does not migrate an existing EBS volume/data to EFS; EFS requires a deliberate migration and may not suit the application.
+- Do not promise zero data loss. Include fencing, normal CSI detachment, integrity validation and tested backups.
+- Gather pod/PV/VolumeAttachment and AWS attachment evidence before choosing the fix.
+
+| Evaluation dimension | Assessment |
+| --- | --- |
+| Technical accuracy | EBS locality correct; attachment/AZ causes conflated and storage migration misunderstood |
+| Coverage | Safe recovery, verification and recurrence prevention largely missing |
+| Interview representation | Clear explanation but confident unsupported assumptions |
+| Conciseness | Focused; repeated AZ explanation could be shorter |
+| Troubleshooting approach | No evidence checks to distinguish attachment state from topology |
+| Senior-level reasoning | Data-safety safeguards and migration trade-offs are central gaps |
+
+Main deductions are the incorrect proposed recovery and missing writer-safety checks, not lack of command volume. Queue storage safety for spaced retesting; rotate to identity next.

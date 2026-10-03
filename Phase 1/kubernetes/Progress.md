@@ -2,17 +2,17 @@
 
 | Metric | Current status |
 | --- | --- |
-| Questions Attempted | 4 / 10 in the first cycle |
-| Average Score | 6/10 — (6 + 6.5 + 5 + 6.5) / 4 |
-| Average Acceptance Probability | 54.25% — (55 + 62 + 40 + 60) / 4; subjective answer-specific estimates |
-| Topic Coverage | Q01: deployment failure, incident triage, GitOps; Q02: memory limits/OOM; Q03: request-based scheduling; autoscaling gaps identified; Q04: NetworkPolicy isolation; identity sampled |
+| Questions Attempted | 5 / 10 in the first cycle |
+| Average Score | 5.7/10 — (6 + 6.5 + 5 + 6.5 + 4.5) / 5 |
+| Average Acceptance Probability | 50.4% — (55 + 62 + 40 + 60 + 35) / 5; subjective answer-specific estimates |
+| Topic Coverage | Q01: deployment failure, incident triage, GitOps; Q02: memory limits/OOM; Q03: request-based scheduling; autoscaling gaps identified; Q04: NetworkPolicy isolation; Q05: EBS/PVC/CSI recovery; identity sampled |
 | Current Strengths | Incident ownership, previous logs, measuring usage, distinguishing larger nodes from container limits |
-| Current Weaknesses | Alternative causes, request/limit precision, capacity-aware mitigation, IRSA distinction, recovery validation and conciseness |
-| Readiness Trend | 6 → 6.5 → 5 → 6.5; clearer communication, but safe fixes and validation remain recurring gaps |
+| Current Weaknesses | Alternative causes, request/limit precision, capacity-aware mitigation, IRSA distinction, storage attachment/migration safety, recovery validation and conciseness |
+| Readiness Trend | 6 → 6.5 → 5 → 6.5 → 4.5; storage recovery/data-safety gaps exposed; readiness not established |
 
 ## ☑️ Kubernetes Coverage Checklist
 
-**Initial assessment coverage: 5 / 21 aspects (23.8%). Questions completed: 4 / 10 (40%).** These measure different things: one question can assess multiple aspects, and neither percentage is a readiness score.
+**Initial assessment coverage: 6 / 21 aspects (28.6%). Questions completed: 5 / 10 (50%).** These measure different things: one question can assess multiple aspects, and neither percentage is a readiness score.
 
 `[x] ✅` = substantively attempted and evaluated at least once, with question evidence. `[ ]` = not yet assessed sufficiently, including pending questions and concepts only discussed in follow-ups. Checked aspects can still require revision. The overall topic roadmap lives in the [root README](../../README.md).
 
@@ -28,7 +28,7 @@
 - [ ] CNI networking and enforcement troubleshooting — not assessed.
 - [ ] HPA behavior and metrics — Q03 touched replica changes; metrics reasoning still requires assessment.
 - [ ] Cluster Autoscaler and node capacity — Q03 investigation unanswered; explanation provided, retest pending.
-- [ ] PV/PVC and CSI storage troubleshooting — not assessed.
+- [x] ✅ PV/PVC and CSI storage troubleshooting — Q05; attachment versus AZ constraints, fencing and migration need revision.
 - [ ] RBAC and ServiceAccounts — not assessed.
 - [ ] IRSA/OIDC and Azure workload identity — misconception sampled in Q01; dedicated assessment pending.
 - [ ] Node maintenance, upgrades and PDBs — not assessed.
@@ -56,15 +56,15 @@ These boxes mean the activity has been completed with recorded evidence, not mer
 
 ## Active Question
 
-Q05 — Persistent storage and CSI; awaiting an answer. Rotate to storage after networking.
+Q06 — ServiceAccounts, RBAC and IRSA; awaiting an answer. Rotate to identity after storage.
 
-An EKS StatefulSet uses an EBS-backed PersistentVolume. After a node failure, a replacement pod is scheduled on another node but remains ContainerCreating. Its PVC is Bound, and pod events report a Multi-Attach error for the volume. The application stores customer data. How would you investigate and restore service without risking data corruption, and what would you improve to reduce recurrence?
+An EKS application uses IRSA to read an S3 bucket. After a Helm release, its pods are Running, but AWS SDK calls fail with AccessDenied on AssumeRoleWithWebIdentity. The S3 permission policy on the IAM role has not changed. A teammate proposes granting the pod's ServiceAccount cluster-admin. How would you investigate and restore access while keeping permissions minimal?
 
 ## Coverage Plan
 
 Across the first 10 questions, assess deployment and pod failures; Services, Ingress, DNS and networking; scheduling; resource management; autoscaling; storage; workload identity and RBAC; maintenance and PDBs; GitOps; and observability in realistic EKS/AKS scenarios. Combine related areas and adapt difficulty to demonstrated performance.
 
-Prioritize unchecked aspects when choosing new questions. Avoid more than two consecutive questions centered on the same aspect unless explicitly requested. Queue weak areas for spaced retesting instead of repeatedly revisiting them immediately. Q05 moves to storage; autoscaling and NetworkPolicy weaknesses are queued for later retesting. Review coverage after each answer and at each 10-question checkpoint; continue beyond 10 if aspects remain unassessed.
+Prioritize unchecked aspects when choosing new questions. Avoid more than two consecutive questions centered on the same aspect unless explicitly requested. Queue weak areas for spaced retesting instead of repeatedly revisiting them immediately. Q06 moves to identity; storage safety, autoscaling and NetworkPolicy weaknesses are queued for later retesting. Review coverage after each answer and at each 10-question checkpoint; continue beyond 10 if aspects remain unassessed.
 
 ## Session Rules
 
@@ -84,11 +84,12 @@ Prioritize unchecked aspects when choosing new questions. Avoid more than two co
 | Q02 | 2026-10-03 | 6.5/10 | 62% | [Memory Limit / OOMKilled](questions/Q02-memory-limit-oomkilled.md) |
 | Q03 | 2026-10-03 | 5/10 | 40% | [HPA / Pending / Autoscaler](questions/Q03-hpa-pending-autoscaler.md) |
 | Q04 | 2026-10-03 | 6.5/10 | 60% | [Cross-Namespace NetworkPolicy](questions/Q04-networkpolicy-cross-namespace.md) |
+| Q05 | 2026-10-03 | 4.5/10 | 35% | [EBS Multi-Attach](questions/Q05-ebs-multi-attach.md) |
 
 ## Retesting and Coverage
 
-- Next: EBS persistent storage and CSI attachment recovery (Q05).
+- Next: ServiceAccounts, Kubernetes RBAC and IRSA (Q06).
 - Q02 improved the larger-node misconception; revisit requests/limits and safe capacity planning in a different scenario.
 - Later: AWS workload identity and native configuration; GitOps rollback safeguards; request-path diagnosis and recovery validation.
-- Scheduling assessed in Q03; Autoscaler diagnosis needs a later retest. HPA metrics, storage, maintenance and CoreDNS remain unassessed. Q04 assessed NetworkPolicy basics; AKS-specific platform depth remains unassessed.
-- No mastery percentages inferred from four answers. Current score movement is descriptive, not proof of overall senior readiness.
+- Scheduling assessed in Q03; Autoscaler diagnosis needs a later retest. HPA metrics, maintenance and CoreDNS remain unassessed. Storage was assessed in Q05; safe detachment and migration need retesting. Q04 assessed NetworkPolicy basics; AKS-specific platform depth remains unassessed.
+- No mastery percentages inferred from five answers. Current score movement is descriptive, not proof of overall senior readiness.
