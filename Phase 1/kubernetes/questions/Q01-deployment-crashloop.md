@@ -6,66 +6,97 @@ An EKS production API has just received a new application release through Argo C
 
 ## ✅ Interview-Ready Answer
 
-- Confirm customer impact, error rate and rollout timing; declare severity and communicate an update cadence without promising an unverified recovery time.
-- Compare healthy and failing pods: ReplicaSet, image, configuration and node placement. Capture termination reasons, events and previous-container logs quickly.
-- Because errors followed a release, restore a known-good, compatible revision early while investigation continues. Prefer reverting the desired version in Git and syncing Argo CD. Check database/config compatibility first. Argo CD application rollback requires automated sync to be disabled; reconcile Git before restoring automation.
-- Diagnose from evidence: application exceptions, OOM kills, probe failures, configuration errors or failed dependencies. Do not assume a node upgrade fixes the crash.
-- Trace 502s through the ingress/load balancer, Service and EndpointSlices. Check readiness and surviving capacity; three Ready pods do not prove the user request path works.
-- Validate rollout health, restart counts, successful requests, error rate and latency over an observation window. Test the fix before controlled redeployment; add regression tests, meaningful probes, alerts and a rollback runbook.
-
-## 🔍 Troubleshooting / Reasoning Flow
-
-Replace placeholders with actual names; these are diagnostic examples, not commands executed against a cluster.
-
-```sh
-kubectl get pods -n <namespace> -o wide
-kubectl get deploy,rs -n <namespace>
-kubectl describe pod <pod-name> -n <namespace>
-kubectl logs <pod-name> -n <namespace> -c <container-name> --previous
-kubectl logs <pod-name> -n <namespace> -c <container-name>
-kubectl get events -n <namespace> --sort-by=.metadata.creationTimestamp
-kubectl get deployment <deployment> -n <namespace> -o yaml
-kubectl get svc,ingress -n <namespace>
-kubectl get endpointslices -n <namespace> -l kubernetes.io/service-name=<service>
-kubectl rollout status deployment/<deployment> -n <namespace>
-```
-
-1. Confirm impact and the recent change; communicate and mitigate in parallel.
-2. Compare old/new ReplicaSets rather than assuming all six pods run identical revisions.
-3. Inspect container Last State, reason, exit code, restart count and probes. Exit 137 alone does not prove a memory-limit violation.
-4. Use previous logs and historical metrics; current usage may miss a pre-crash spike. Check centralized logs if the old pod is gone.
-5. Separate container limits from node pressure. A larger node does not change a container's memory limit.
-6. Inspect configuration references without exposing secrets. Native ConfigMaps/Secrets do not require IRSA; AWS-backed secret retrieval may require IAM permissions.
-7. Investigate routing, readiness transitions, upstream resets and remaining capacity to explain the 502s.
-8. Restore service, verify with real requests and metrics, then complete RCA and prevention.
-
-## 🧠 Key Points
-
-- CrashLoopBackOff describes restart backoff for a repeatedly failing container, not a root cause or necessarily repeated creation of pods.
-- Use `kubectl logs <pod-name>` or `kubectl logs pod/<pod-name>`; `kubectl logs pod <pod-name>` is not the intended syntax.
-- `-o wide` belongs with `kubectl get pods`, not `kubectl describe pod`.
-- IRSA exchanges a projected service-account token for AWS STS credentials. A bad IAM trust policy can block that exchange; it does not generally stop Kubernetes from issuing the service-account token.
-- Readiness controls normal endpoint eligibility; startup/liveness failures can cause restarts. Inspect the actual routing implementation and health checks.
+> I would confirm customer impact and correlate failures with the release, then capture pod events and previous-container logs. If a known-good version is compatible, I would restore it through Git and Argo CD without waiting for complete RCA. I would compare healthy and failing replicas, investigate the crash and 502 request path, and verify recovery using successful requests, error rate, latency and stable pods. Finally, I would test the fix and add prevention based on the actual cause.
 
 ## 🔄 Diagram
 
 ```text
-Impact + release correlation
-            |
-Quick evidence + safe mitigation
-            |
-Compare healthy/failing pods
-            |
-Logs / termination / probes / config / metrics
-            |
-Explain 502 request path -> verify recovery -> prevent recurrence
+Confirm impact + capture quick evidence
+                  |
+       Safe known-good version?
+         /                 \
+       Yes                  No
+        |                    |
+ Revert Git + sync    Evidence-based fix
+         \                 /
+          Verify customer recovery
+                     |
+          RCA -> test -> prevent
 ```
+
+📣 Communicate severity and the next update time while mitigating; avoid an unsupported recovery ETA.
+
+## 🔍 Troubleshooting / Reasoning Flow
+
+### ① Find the failing pods and the reason
+
+Diagnostic examples: replace placeholders; add `-c <container>` to logs for a multi-container pod. These commands are study examples, not executed against a cluster.
+
+```sh
+kubectl get pods -n <ns> -o wide
+kubectl describe pod <pod> -n <ns>
+kubectl logs <pod> -n <ns> --previous
+```
+
+| Command | Why / what to inspect |
+| --- | --- |
+| `get pods` | Identify readiness, restarts and node placement. Compare healthy and failing pods. |
+| `describe pod` | Inspect Last State, exit reason, image, owning ReplicaSet, resources, probes and events. |
+| `logs --previous` | Read the crashed container's output. Omit `--previous` for the current instance. |
+
+**Use evidence to choose the fix:**
+
+| Finding | Next action |
+| --- | --- |
+| Only the new release fails | Compare image/config changes; prioritize safe rollback. |
+| `OOMKilled` | Check historical memory against the container limit and node pressure. Larger nodes do not change that limit. |
+| Probe failures | Check startup time, probe settings and application health before relaxing probes. |
+| Missing configuration / access denied | Check ConfigMap/Secret references or AWS permissions, depending on the dependency. |
+
+### ② Restore a safe version early
+
+**Preferred:** revert the faulty deployment/Helm change in Git, then sync the application. Confirm compatibility with database migrations and configuration first.
+
+```sh
+# Changes the deployed application; use after the reviewed Git revert:
+argocd app sync <app>
+```
+
+**Why:** apply the corrected desired state through GitOps, so reconciliation will not restore the faulty version.
+
+**Emergency alternative:** Argo CD history rollback requires automated sync disabled. Reconcile Git before restoring automation. Avoid a blind `kubectl rollout undo` while Argo CD can reapply the faulty desired state. If rollback is unsafe, choose a targeted fix based on the evidence above.
+
+### ③ Explain the 502s if they persist
+
+```sh
+kubectl describe service <service> -n <ns>
+kubectl get endpointslices -n <ns>
+```
+
+**Why:** check Service ports/targetPort and backend pod addresses. If needed, inspect the relevant EndpointSlice with `-o yaml` for readiness conditions. Match it to the affected Service.
+
+**Decision:** incorrect backend configuration needs a routing fix; correct backends require checking ingress/load-balancer errors, readiness changes and surviving capacity. For EKS with ALB, use ALB target health and access logs to identify where the 502 originated. Three Ready pods alone do not prove the customer request path works.
+
+### ④ Verify recovery, then prevent recurrence
+
+```sh
+kubectl rollout status deployment/<deployment> -n <ns>
+```
+
+**Why:** confirm the Deployment rollout completed. Also check stable restart counts, representative successful requests, and 5xx/latency returning to normal over an observation window.
+
+**Prevention:** reproduce and test the cause; improve probes or resource sizing where justified. Review rollout capacity (`maxSurge`/`maxUnavailable`) and use canary error/latency checks to limit future impact.
+
+## 🧠 Key Points
+
+- 🔁 **CrashLoopBackOff:** container restart backoff, not the root cause. Exit 137 alone does not prove a memory-limit violation.
+- 🚦 **Probes:** readiness affects traffic eligibility; startup/liveness failures can restart containers.
+- 🔐 **Identity:** native ConfigMaps/Secrets do not need IRSA. Broken IAM trust can block the service-account-token → AWS STS credentials exchange, not generally token issuance.
+- 🛠️ **Syntax:** `-o wide` belongs with `get pods`, not `describe pod`; use `logs <pod>`, not `logs pod <pod>`.
 
 ## 📌 Senior-Level Takeaway
 
-- Restore service without waiting for complete RCA; keep incident coordination parallel to mitigation.
-- Test hypotheses before changing infrastructure, and keep emergency recovery consistent with GitOps.
-- Recovery means successful customer requests and stable metrics, not simply Running pods.
+**Mitigate before complete RCA → change only what evidence supports → verify customer recovery, not just pod status.** Keep rollback compatible with GitOps and application dependencies.
 
 ## Attempt Record — 2026-10-02
 
