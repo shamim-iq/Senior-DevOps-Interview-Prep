@@ -146,3 +146,31 @@ Interview Acceptance Probability: 35% (subjective answer-specific estimate).
 | Senior-level reasoning | Data-safety safeguards and migration trade-offs are central gaps |
 
 Main deductions are the incorrect proposed recovery and missing writer-safety checks, not lack of command volume. Queue storage safety for spaced retesting; rotate to identity next.
+
+## Q06 — IRSA Trust After Helm — 2026-10-04
+
+Score: 7/10
+Interview Acceptance Probability: 65% (subjective estimate for this answer).
+
+✅ Strong
+- Plausible Helm/ServiceAccount regression tied to the release.
+- Correct role-annotation check and basic temporary-credentials understanding.
+- Correctly rejected excessive cluster-admin access; improvement over Q01's identity explanation.
+
+⚠️ Improve
+- Inspect the running pod's actual ServiceAccount, not only the list of accounts.
+- Compare role trust provider, subject (namespace/name) and audience; the right annotation is necessary but not sufficient.
+- State why cluster-admin cannot fix AWS STS authorization: Kubernetes RBAC and IAM are separate.
+- Kubernetes issues the token; STS exchanges it for credentials after validating preconfigured trust.
+- Describe the narrow Helm/trust correction, any required rollout and verification of role identity plus S3 read.
+
+| Evaluation dimension | Assessment |
+| --- | --- |
+| Technical accuracy | Mostly correct; token/trust lifecycle needs more precise wording |
+| Coverage | Strong likely cause; trust conditions and recovery validation missing |
+| Interview representation | Relevant hypothesis and sensible permission restraint |
+| Conciseness | Understandable; shorten setup explanation to prioritize incident evidence |
+| Troubleshooting approach | Useful annotation check; verify pod-to-role-to-trust chain |
+| Senior-level reasoning | Good least-privilege instinct; explicitly separate authorization layers |
+
+Main deductions: missing trust-condition checks and a concrete fix/validation sequence. No deduction for avoiding a long command list. Revisit identity validation later; move to maintenance/PDBs next.
