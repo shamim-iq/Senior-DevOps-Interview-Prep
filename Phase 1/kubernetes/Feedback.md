@@ -201,3 +201,30 @@ Interview Acceptance Probability: 45% (subjective estimate for this answer).
 | Senior-level reasoning | Capacity planning is positive; availability trade-offs and stop/verify gates missing |
 
 Main deductions: unsafe default relaxation and missing investigation/validation, not missing command volume. Queue PDB availability reasoning for spaced retesting; rotate to DNS/observability.
+
+## Q08 — CoreDNS SERVFAIL — 2026-10-04
+
+Score: 5/10
+Interview Acceptance Probability: 40% (subjective estimate for this answer).
+
+✅ Strong
+- Understood Service-name resolution and why direct ClusterIP requests bypass DNS.
+- Identified scaling as a plausible mitigation if CoreDNS is overloaded.
+
+⚠️ Improve
+- Running does not prove health or overload. SERVFAIL needs investigation, not an automatic scale-up conclusion.
+- Reproduce the failing query and compare logs/metrics; consider Corefile changes, API/RBAC errors and resolver-path differences.
+- CoreDNS can forward external queries; it does not redirect application HTTP requests.
+- Use precise dataplane terminology: IPv4 is an address family; Service forwarding may use kube-proxy or another implementation.
+- Explain controlled mitigation and DNS/application validation during representative traffic.
+
+| Evaluation dimension | Assessment |
+| --- | --- |
+| Technical accuracy | Basic DNS role correct; pod-phase inference and DNS/dataplane wording inaccurate |
+| Coverage | One potential fix; isolation and validation missing |
+| Interview representation | Understandable analogy; lead with the supplied evidence |
+| Conciseness | Reasonably concise; shorten generic DNS explanation |
+| Troubleshooting approach | Assumed saturation without logs, queries or resource evidence |
+| Senior-level reasoning | Needs alternative causes and controlled recovery checks |
+
+Main deductions: unsupported diagnosis and omitted isolation/validation, not missing command volume. Queue DNS evidence gathering for a later retest; rotate to image delivery/GitOps.
