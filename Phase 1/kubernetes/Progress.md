@@ -57,6 +57,8 @@ These boxes mean the activity has been completed with recorded evidence, not mer
 
 ## Current Position
 
+**Paused by user request on 2026-10-04 while Linux preparation is active. Preserve Q11 below for resumption.**
+
 First 10-question evaluation cycle complete. Further coverage and weakness-driven questioning authorized on 2026-10-04. **Q11 is pending**; do not restart numbering.
 
 See [first-cycle consolidated feedback](Feedback.md#first-cycle-consolidated-feedback--q01q10--2026-10-04). The initial assessment is complete, but topic coverage and revision are not. Prioritize an uncovered observability/SLI-SLO scenario next, then rotate with spaced retests; no future answer file has been created.

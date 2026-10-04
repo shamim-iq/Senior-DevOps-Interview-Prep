@@ -14,13 +14,13 @@ Within each topic:
 
 ## Topic roadmap
 
-- [ ] [Kubernetes](Phase%201/kubernetes/Progress.md) — in progress.
+- [ ] [Kubernetes](Phase%201/kubernetes/Progress.md) — paused; Q11 pending.
 - [ ] Docker
 - [ ] AWS
 - [ ] Azure
 - [ ] Terraform
 - [ ] Observability
-- [ ] Linux / Networking
+- [ ] [Linux / Networking](Phase%201/linux/Progress.md) — active; Linux Q01 pending.
 - [ ] RAG
 - [ ] MCP
 - [ ] Amazon Bedrock
