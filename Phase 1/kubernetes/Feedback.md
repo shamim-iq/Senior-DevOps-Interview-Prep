@@ -228,3 +228,30 @@ Interview Acceptance Probability: 40% (subjective estimate for this answer).
 | Senior-level reasoning | Needs alternative causes and controlled recovery checks |
 
 Main deductions: unsupported diagnosis and omitted isolation/validation, not missing command volume. Queue DNS evidence gathering for a later retest; rotate to image delivery/GitOps.
+
+## Q09 — ECR ImagePullBackOff / GitOps — 2026-10-04
+
+Score: 6.5/10
+Interview Acceptance Probability: 60% (subjective answer-specific estimate).
+
+✅ Strong
+- Identified wrong image references and pull authorization as plausible causes.
+- Distinguished pipeline success from successful runtime rollout.
+- Proposed correcting Git and syncing Argo CD, including a manual sync alternative.
+
+⚠️ Improve
+- Check actual pod pull events before selecting a cause; verify image publication rather than assume a successful build means it was pushed.
+- Normal EC2 EKS pulls use the node role; Fargate uses the execution role. Runtime IRSA annotation is not the default pull identity. Explicit newer per-pod pull setups use a separate mechanism.
+- Explain Synced versus Healthy explicitly; auto-sync is conditional on configuration.
+- Preserve healthy replicas, use a known-good revert when appropriate, and verify new pods plus customer requests.
+
+| Evaluation dimension | Assessment |
+| --- | --- |
+| Technical accuracy | Tag and permission hypotheses sound; default pull identity confused with runtime IRSA |
+| Coverage | Includes recovery through Git; event evidence, networking and serving-capacity validation limited |
+| Interview representation | Logical release narrative; lead with the actual error |
+| Conciseness | Some repetition of tag/permissions; focus on decisions |
+| Troubleshooting approach | Checks proposed but no exact-event branching or actual pull-principal confirmation |
+| Senior-level reasoning | GitOps repair is good; protect old replicas and verify the new rollout |
+
+Main deductions: identity assumption and incomplete safe-rollout validation. Complete resubmitted answer evaluated once; no penalty for the interrupted message. Move to scheduling constraints/AKS for Q10; consolidate feedback after its evaluation, not before.
