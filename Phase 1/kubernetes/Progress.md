@@ -57,9 +57,54 @@ These boxes mean the activity has been completed with recorded evidence, not mer
 
 ## Current Position
 
-First 10-question evaluation cycle complete. No unanswered question remains. Next question number: **Q11** when preparation continues; do not restart numbering.
+First 10-question evaluation cycle complete. Further coverage and weakness-driven questioning authorized on 2026-10-04. **Q11 is pending**; do not restart numbering.
 
 See [first-cycle consolidated feedback](Feedback.md#first-cycle-consolidated-feedback--q01q10--2026-10-04). The initial assessment is complete, but topic coverage and revision are not. Prioritize an uncovered observability/SLI-SLO scenario next, then rotate with spaced retests; no future answer file has been created.
+
+### Q11 — Observability and recovery decisions
+
+After a release, a Kubernetes API's p95 latency rises from 200 ms to 2 seconds. All pods are Ready, CPU averages 40%, and the HTTP 5xx rate is unchanged. Users report slow requests. Prometheus/Grafana and centralized application logs are available. How would you isolate the bottleneck, decide whether to roll back, and demonstrate that service performance has recovered?
+
+## Second-Stage Preparation Strategy
+
+**Objective:** close the remaining coverage gaps and demonstrate corrections in new scenarios. More questions are authorized; Q20 and Q30 are review checkpoints, not automatic graduation targets. Preserve one-question-at-a-time delivery and do not pre-create answer files.
+
+| Block | Emphasis | How questions are selected |
+| --- | --- | --- |
+| Q11–Q20 | Primarily uncovered aspects, with spaced high-risk retests | Aim for roughly six new-coverage scenarios and four retests, combining related aspects when realistic. Adapt after each answer. |
+| Q21–Q30 if needed | Remaining gaps, transfer of learning and integrated incidents | Increase ambiguity and trade-offs only as foundational accuracy improves. Include log/event snippets, small manifest reviews and architecture decisions. |
+| Beyond Q30 if needed | Specific unresolved gaps | Extend based on evidence, not a fixed question-count target. |
+
+### Coverage Queue — Not Future Question Text
+
+- Observability: Prometheus/Grafana metrics, centralized logs, latency/error SLIs, SLO reasoning and recovery gates.
+- Services/Ingress/EndpointSlices and readiness; CNI/network-path troubleshooting.
+- HPA metrics and configuration; Cluster Autoscaler diagnosis and capacity constraints.
+- Scoped Kubernetes RBAC and ServiceAccounts; Azure workload identity.
+- EKS/AKS architecture: availability, cost, upgrades, failure domains and operational trade-offs.
+
+### Priority Retest Queue
+
+- EBS attachment/fencing and migration safety (Q05).
+- PDB budget and healthy-capacity restoration (Q07).
+- Runtime identity versus image-pull identity; precise trust and validation (Q06/Q09).
+- DNS evidence before scaling; NetworkPolicy directions and narrow permissions (Q04/Q08).
+- Scheduler requests, pool labels, required affinity versus toleration and node scaling (Q03/Q10).
+
+Cover each queued weakness in a fresh scenario; revisit after several different aspects rather than immediately repeating the supplied answer. Add newly observed mistakes without dropping the existing queue. No more than two consecutive questions centered on one aspect unless requested.
+
+### Consistent Evaluation and Readiness Evidence
+
+- Keep evaluating technical accuracy, coverage, communication, conciseness, troubleshooting and senior reasoning. State the dominant deductions: wrong concept, omitted requirement or unsafe decision. Reward correct short answers; command volume earns no credit by itself.
+- For targeted retests, record the original question, new question and result. Preserve original scores; distinguish independently demonstrated improvement from an assisted correction.
+- Every incident answer should explain the relevant evidence, a safe decision and observable recovery; avoid forcing a checklist into conceptual questions.
+- Working practice target (not an employer cutoff): at least 8/10 on five varied recent scenarios, no uncorrected high-risk safety misconceptions, and two independent successful retests per critical weakness.
+- Require all agreed assessment aspects covered, plus practical interpretation of commands/logs/manifests and at least one integrated incident and one architecture discussion. Checklist completion alone is not mastery.
+- Report progress at Q20 and Q30: remaining aspects, recurring errors, retest results and score movement with its limitations. Do not convert average answer-acceptance estimates into an overall hiring probability.
+
+### Broader Role Readiness
+
+Kubernetes is only the current topic. Before claiming readiness for the overall Senior DevOps / Platform / SRE objective, assess the other agreed topics in their own directories: Docker, AWS, Azure, Terraform, observability, Linux/networking, RAG, MCP and Bedrock. Include CI/CD, security, scripting/automation, incident ownership and project/architecture explanations where relevant to target job descriptions. Topic scope and readiness standards should follow actual job requirements; no company-specific pass probability is inferred from these ten answers.
 
 ## Coverage Plan
 
