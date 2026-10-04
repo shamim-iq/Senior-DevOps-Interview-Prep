@@ -1,6 +1,6 @@
 # Linux Interview Feedback
 
-No answers evaluated yet. Assess technical accuracy, coverage, interview representation, conciseness, troubleshooting approach and senior-level reasoning.
+Evaluate against the four-year DevOps / Platform baseline in AGENTS.md. Preserve historical scores and distinguish essential corrections from optional advanced coaching.
 
 Record actual strengths and gaps after each answer, a score out of 10 and a subjective answer-specific Interview Acceptance Probability. Do not interpret this as hiring probability. Preserve history and consolidate feedback every 10 evaluated questions.
 
@@ -31,3 +31,22 @@ Interview Acceptance Probability: 35% (subjective estimate).
 | Senior reasoning | Cautious deletion is positive; targeted mitigation and validation missing |
 
 Main deductions concern the missed diagnostic clue and recovery plan, not command volume. Retest open-file lifecycle later; move to service startup/permissions for breadth.
+
+## Q02 — systemd / Permissions — 2026-10-04
+
+**Score: 7.5/10.** Subjective answer-specific acceptance estimate: 70%, not a hiring prediction. Four-year baseline; Q01 unchanged.
+
+✅ Correctly rejected unnecessary root privileges, used status/journal investigation, proposed testing the service identity and checked parent-path permissions with namei.
+
+Essential corrections: confirm User/Group from the unit, use the actual denied file path rather than assume logs, grant only required application-group access, restart appropriately after group changes and verify the API/file operation. ls lists metadata, not log contents.
+
+| Dimension | Assessment |
+| --- | --- |
+| Technical accuracy | Sound core approach; group access must be checked and scoped |
+| Coverage | Diagnosis present; recovery validation omitted |
+| Interview representation | Clear and relevant; distinguish operator from service identity |
+| Conciseness | Good; useful commands without excessive detail |
+| Troubleshooting | Strong path-level check; use the journal's exact path |
+| Operational reasoning | Least-privilege intent sound; complete mitigation and verification |
+
+Deductions: 1 for remediation scope, 1 for omitted restart/validation, 0.5 for identity/path precision. No penalty for not listing ACL, SELinux/AppArmor or systemd sandbox commands; those are conditional coaching. Retest minimal access and recovery later; rotate to CPU/load next.

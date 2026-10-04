@@ -4,19 +4,19 @@
 
 | Metric | Current status |
 | --- | --- |
-| Questions Attempted | 1 / 10 in the first cycle |
-| Average Score | 4.5/10 |
-| Average Acceptance Probability | 35% — subjective answer-specific estimate |
-| Topic Coverage | 1 / 15 aspects assessed (6.7%) |
-| Current Strengths | Inode-exhaustion awareness; cautious file deletion |
-| Current Weaknesses | df/du interpretation, open-file lifecycle, command precision and recovery validation |
-| Readiness Trend | Initial baseline only; insufficient evidence for overall readiness |
+| Questions Attempted | 2 / 10 in the first cycle |
+| Average Score | 6/10 — (4.5 + 7.5) / 2; historical Q01 unchanged |
+| Average Acceptance Probability | 52.5% — subjective answer-specific estimates, not hiring probability |
+| Topic Coverage | 3 / 15 aspects assessed (20%) |
+| Current Strengths | Inode awareness, cautious deletion, least-privilege intent and path-permission investigation |
+| Current Weaknesses | df/du interpretation, open-file lifecycle, precise access scope and recovery validation |
+| Readiness Trend | Q02 demonstrates useful diagnosis; two different scenarios and a scoring calibration do not establish a readiness trend |
 
 ## Active Question
 
-Q02 — systemd service startup and permissions; awaiting an answer.
+Q03 — CPU / load investigation; awaiting an answer.
 
-After a deployment, a Linux API fails to start under systemd. The journal reports Permission denied while opening its configured application file. Running the application manually as root succeeds, and a teammate suggests changing the unit to run as root permanently. How would you isolate the cause and restore the service while keeping permissions minimal?
+An API on an 8-vCPU Linux server becomes slow. Load averages are 18, 16 and 12, but overall CPU utilization is only about 35%. A teammate recommends adding CPUs immediately. How would you identify the bottleneck, choose a safe mitigation and verify recovery? Include the essential commands and what you would look for.
 
 ## Coverage Checklist
 
@@ -27,8 +27,8 @@ After a deployment, a Linux API fails to start under systemd. The journal report
 - [ ] CPU, load average and process/thread diagnosis.
 - [ ] Memory, swap, OOM and resource limits.
 - [ ] Disk I/O latency and storage performance.
-- [ ] systemd services, dependencies and journal investigation.
-- [ ] Permissions, ownership, ACLs and privilege boundaries.
+- [x] ✅ systemd services, dependencies and journal investigation — Q02 startup/journal assessed; dependency-specific diagnosis remains for later sampling.
+- [x] ✅ Permissions, ownership, ACLs and privilege boundaries — Q02 identity/path permissions assessed; ACL-specific diagnosis remains for later sampling.
 - [ ] Users, groups, sudo and SSH access troubleshooting.
 - [ ] DNS, routing, sockets and connection diagnosis.
 - [ ] Firewalls and network access controls.
@@ -60,7 +60,9 @@ After a deployment, a Linux API fails to start under systemd. The journal report
 | Question | Date | Score | Acceptance estimate | Record |
 | --- | --- | --- | --- | --- |
 | Q01 | 2026-10-04 | 4.5/10 | 35% | [Disk Full / df–du](questions/Q01-disk-full-df-du.md) |
+| Q02 | 2026-10-04 | 7.5/10 | 70% | [systemd / Permissions](questions/Q02-systemd-permissions.md) |
 
 ## Retest Queue
 
 - Q01: distinguish blocks/inodes and open deleted files in a fresh scenario; demonstrate evidence-preserving mitigation and validation.
+- Q02: independently scope file access and demonstrate restart/recovery validation. Evaluation uses the four-year baseline; advanced optional details are not required for full credit.
