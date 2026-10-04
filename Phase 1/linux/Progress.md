@@ -4,25 +4,25 @@
 
 | Metric | Current status |
 | --- | --- |
-| Questions Attempted | 0 / 10 in the first cycle |
-| Average Score | N/A |
-| Average Acceptance Probability | N/A |
-| Topic Coverage | 0 / 15 aspects assessed |
-| Current Strengths | Not yet assessed |
-| Current Weaknesses | Not yet assessed |
-| Readiness Trend | Insufficient evidence |
+| Questions Attempted | 1 / 10 in the first cycle |
+| Average Score | 4.5/10 |
+| Average Acceptance Probability | 35% — subjective answer-specific estimate |
+| Topic Coverage | 1 / 15 aspects assessed (6.7%) |
+| Current Strengths | Inode-exhaustion awareness; cautious file deletion |
+| Current Weaknesses | df/du interpretation, open-file lifecycle, command precision and recovery validation |
+| Readiness Trend | Initial baseline only; insufficient evidence for overall readiness |
 
 ## Active Question
 
-Q01 — Disk-full production incident; awaiting an answer.
+Q02 — systemd service startup and permissions; awaiting an answer.
 
-A production Linux server hosts an API and a background worker. The API starts returning errors and the worker cannot write files. `df -h` shows the `/var` filesystem at 100%, but `du -xsh /var` accounts for much less space than the filesystem reports as used. A teammate suggests deleting old logs and rebooting the server. How would you investigate the discrepancy and restore service safely while preserving useful diagnostic evidence?
+After a deployment, a Linux API fails to start under systemd. The journal reports Permission denied while opening its configured application file. Running the application manually as root succeeds, and a teammate suggests changing the unit to run as root permanently. How would you isolate the cause and restore the service while keeping permissions minimal?
 
 ## Coverage Checklist
 
 `[x] ✅` means substantively attempted and evaluated, not mastered. Keep pending and explanation-only aspects unchecked; link completed aspects to evaluated questions.
 
-- [ ] Filesystem capacity, inodes and open/deleted files — Q01 pending.
+- [x] ✅ Filesystem capacity, inodes and open/deleted files — Q01; df/du discrepancy and safe recovery need retesting.
 - [ ] Processes, signals and safe service recovery.
 - [ ] CPU, load average and process/thread diagnosis.
 - [ ] Memory, swap, OOM and resource limits.
@@ -57,4 +57,10 @@ A production Linux server hosts an API and a background worker. The API starts r
 
 ## Evaluation History
 
-No attempts recorded.
+| Question | Date | Score | Acceptance estimate | Record |
+| --- | --- | --- | --- | --- |
+| Q01 | 2026-10-04 | 4.5/10 | 35% | [Disk Full / df–du](questions/Q01-disk-full-df-du.md) |
+
+## Retest Queue
+
+- Q01: distinguish blocks/inodes and open deleted files in a fresh scenario; demonstrate evidence-preserving mitigation and validation.
