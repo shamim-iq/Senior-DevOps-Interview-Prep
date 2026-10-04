@@ -2,17 +2,17 @@
 
 | Metric | Current status |
 | --- | --- |
-| Questions Attempted | 9 / 10 in the first cycle |
-| Average Score | 5.83/10 — (6 + 6.5 + 5 + 6.5 + 4.5 + 7 + 5.5 + 5 + 6.5) / 9 |
-| Average Acceptance Probability | 51.33% — (55 + 62 + 40 + 60 + 35 + 65 + 45 + 40 + 60) / 9; subjective answer-specific estimates |
-| Topic Coverage | Q01: deployment failure, incident triage, GitOps; Q02: memory limits/OOM; Q03: request-based scheduling; autoscaling gaps identified; Q04: NetworkPolicy isolation; Q05: EBS/PVC/CSI recovery; Q06: IRSA/ServiceAccount identity; Q07: node maintenance/PDB; Q08: CoreDNS; Q09: ECR image pulls and GitOps |
+| Questions Attempted | 10 / 10 — first cycle complete |
+| Average Score | 5.85/10 — total 58.5 / 10 |
+| Average Acceptance Probability | 51.7% — total 517 / 10; subjective answer-specific estimates |
+| Topic Coverage | Q01: deployment failure, incident triage, GitOps; Q02: memory limits/OOM; Q03: request-based scheduling; autoscaling gaps identified; Q04: NetworkPolicy isolation; Q05: EBS/PVC/CSI recovery; Q06: IRSA/ServiceAccount identity; Q07: node maintenance/PDB; Q08: CoreDNS; Q09: ECR image pulls and GitOps; Q10: AKS placement constraints |
 | Current Strengths | Incident ownership, previous logs, measuring usage, distinguishing larger nodes from container limits, Helm identity-regression hypothesis and permission restraint |
 | Current Weaknesses | Alternative causes, request/limit precision, capacity-aware mitigation, IRSA distinction, storage attachment/migration safety, recovery validation and conciseness |
-| Readiness Trend | 6 → 6.5 → 5 → 6.5 → 4.5 → 7 → 5.5 → 5 → 6.5; GitOps recovery improves, pull identity and validation need work |
+| Readiness Trend | First five: 5.7; last five: 6.0. Slight improvement across different topics; senior readiness not yet consistent |
 
 ## ☑️ Kubernetes Coverage Checklist
 
-**Initial assessment coverage: 11 / 22 aspects (50%). Questions completed: 9 / 10 (90%).** These measure different things: one question can assess multiple aspects, and neither percentage is a readiness score.
+**Initial assessment coverage: 12 / 22 aspects (54.5%). Questions completed: 10 / 10 (100% of the first cycle).** These measure different things: one question can assess multiple aspects, and neither percentage is a readiness score.
 
 `[x] ✅` = substantively attempted and evaluated at least once, with question evidence. `[ ]` = not yet assessed sufficiently, including pending questions and concepts only discussed in follow-ups. Checked aspects can still require revision. The overall topic roadmap lives in the [root README](../../README.md).
 
@@ -21,7 +21,7 @@
 - [x] ✅ Incident triage and communication — Q01–Q02; shorten opening and avoid unsupported recovery ETAs.
 - [x] ✅ ImagePullBackOff — Q09; actual pull identity and event-driven diagnosis need revision.
 - [x] ✅ Pending pods and scheduling resources — Q03; per-node allocatable precision needs revision.
-- [ ] Taints, tolerations and affinity — not assessed.
+- [x] ✅ Taints, tolerations and affinity — Q10; required placement versus permission, label drift and isolation need revision.
 - [ ] Services, Ingress, EndpointSlices and readiness — follow-up explanations given; independent scenario assessment pending.
 - [x] ✅ CoreDNS and service discovery — Q08; confirm saturation versus configuration/API issues and validate recovery.
 - [x] ✅ NetworkPolicy isolation — Q04; egress, narrow permissions and validation need revision.
@@ -36,7 +36,7 @@
 - [x] ✅ Helm and Argo CD release management — Q01/Q09; Git correction/sync assessed, safe rollout and health validation need revision.
 - [ ] Prometheus and EFK/ELK investigation — Q08 did not demonstrate metric/log investigation; tool-specific assessment pending.
 - [ ] EKS production architecture and trade-offs — scenario setting used; platform-specific depth pending.
-- [ ] AKS production scenarios — not assessed.
+- [ ] AKS production scenarios — pool replacement sampled in Q10; AKS-specific operational depth remains to be assessed.
 - [ ] Recovery validation, prevention and SLI/SLO reasoning — gaps identified in Q01–Q02; substantive demonstration pending.
 
 Checklist granularity: CNI/NetworkPolicy were separated in Q04; IRSA/Azure workload identity are separated in Q06 (22 aspects total) so assessing one platform does not imply coverage of another. The first 10 questions may combine aspects. Extend the cycle when needed to assess uncovered areas; do not check boxes merely to meet the question target.
@@ -51,21 +51,21 @@ These boxes mean the activity has been completed with recorded evidence, not mer
 - [ ] Demonstrate safe mitigation, rollback and measurable recovery validation.
 - [ ] Correct workload-identity misconceptions in a fresh scenario.
 - [ ] Deliver concise answers with realistic stakeholder updates.
-- [ ] Complete the first 10 evaluated questions and consolidated feedback.
+- [x] ✅ Complete the first 10 evaluated questions and consolidated feedback — Q01–Q10, 2026-10-04.
 - [ ] Retest outstanding weak areas and record results.
-- [ ] Review overall Kubernetes readiness against coverage and retest evidence.
+- [x] ✅ Review overall Kubernetes readiness against coverage and retest evidence — cycle-one review completed; readiness not yet established.
 
-## Active Question
+## Current Position
 
-Q10 — AKS scheduling constraints; awaiting an answer.
+First 10-question evaluation cycle complete. No unanswered question remains. Next question number: **Q11** when preparation continues; do not restart numbering.
 
-After an AKS user node pool is replaced, payment-service pods remain Pending. The cluster has spare CPU and memory. Events report that some nodes do not match the pod's node affinity and others have an untolerated dedicated=system:NoSchedule taint. The workload is intended to run only on the payments user pool. A teammate suggests removing all affinity rules and adding a toleration for every taint. How would you investigate and restore scheduling while preserving workload isolation?
+See [first-cycle consolidated feedback](Feedback.md#first-cycle-consolidated-feedback--q01q10--2026-10-04). The initial assessment is complete, but topic coverage and revision are not. Prioritize an uncovered observability/SLI-SLO scenario next, then rotate with spaced retests; no future answer file has been created.
 
 ## Coverage Plan
 
 Across the first 10 questions, assess deployment and pod failures; Services, Ingress, DNS and networking; scheduling; resource management; autoscaling; storage; workload identity and RBAC; maintenance and PDBs; GitOps; and observability in realistic EKS/AKS scenarios. Combine related areas and adapt difficulty to demonstrated performance.
 
-Prioritize unchecked aspects when choosing new questions. Avoid more than two consecutive questions centered on the same aspect unless explicitly requested. Queue weak areas for spaced retesting instead of repeatedly revisiting them immediately. Q10 moves to AKS scheduling constraints; DNS diagnosis, PDB safety, identity validation, storage safety, autoscaling and NetworkPolicy weaknesses are queued for later retesting. Review coverage after each answer and at each 10-question checkpoint; continue beyond 10 if aspects remain unassessed.
+Prioritize unchecked aspects when choosing new questions. Avoid more than two consecutive questions centered on the same aspect unless explicitly requested. Queue weak areas for spaced retesting instead of repeatedly revisiting them immediately. After Q10, prioritize uncovered observability/SLI-SLOs; DNS diagnosis, PDB safety, identity validation, storage safety, autoscaling and NetworkPolicy weaknesses are queued for later retesting. Review coverage after each answer and at each 10-question checkpoint; continue beyond 10 if aspects remain unassessed.
 
 ## Session Rules
 
@@ -90,11 +90,12 @@ Prioritize unchecked aspects when choosing new questions. Avoid more than two co
 | Q07 | 2026-10-04 | 5.5/10 | 45% | [Node Drain / PDB](questions/Q07-node-drain-pdb.md) |
 | Q08 | 2026-10-04 | 5/10 | 40% | [CoreDNS SERVFAIL](questions/Q08-coredns-servfail.md) |
 | Q09 | 2026-10-04 | 6.5/10 | 60% | [ECR ImagePullBackOff / GitOps](questions/Q09-ecr-imagepull-gitops.md) |
+| Q10 | 2026-10-04 | 6/10 | 55% | [AKS Affinity / Taints](questions/Q10-aks-affinity-taints.md) |
 
 ## Retesting and Coverage
 
-- Next: AKS taints/tolerations and node affinity (Q10); consolidate the first cycle after evaluation.
+- Next number: Q11. Prioritize observability/SLI-SLO coverage; the first-cycle consolidation is recorded in Feedback.md.
 - Q02 improved the larger-node misconception; revisit requests/limits and safe capacity planning in a different scenario.
 - Later: AWS workload identity and native configuration; GitOps rollback safeguards; request-path diagnosis and recovery validation.
 - Scheduling assessed in Q03; Autoscaler diagnosis needs a later retest. HPA metrics remain unassessed. CoreDNS was assessed in Q08; hypothesis testing and safe recovery need revision. Maintenance was assessed in Q07; PDB capacity and safe drain reasoning need retesting. Storage was assessed in Q05; safe detachment and migration need retesting. Q04 assessed NetworkPolicy basics; AKS-specific platform depth remains unassessed.
-- No mastery percentages inferred from nine answers. Current score movement is descriptive, not proof of overall senior readiness.
+- No mastery percentages inferred from ten answers. Current score movement is descriptive, not proof of overall senior readiness.

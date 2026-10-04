@@ -255,3 +255,59 @@ Interview Acceptance Probability: 60% (subjective answer-specific estimate).
 | Senior-level reasoning | GitOps repair is good; protect old replicas and verify the new rollout |
 
 Main deductions: identity assumption and incomplete safe-rollout validation. Complete resubmitted answer evaluated once; no penalty for the interrupted message. Move to scheduling constraints/AKS for Q10; consolidate feedback after its evaluation, not before.
+
+## Q10 — AKS Affinity / Taints — 2026-10-04
+
+Score: 6/10
+Interview Acceptance Probability: 55% (subjective estimate for this answer).
+
+✅ Strong
+- Rejected removing placement restrictions and tolerating everything.
+- Identified affinity/tolerations as relevant and retained the dedicated payments-pool objective.
+
+⚠️ Improve
+- Start with the supplied affinity/taint errors, not an assumed resource shortage.
+- Compare replacement-node labels with required affinity; a changed/missing label is a key hypothesis after pool replacement.
+- Tolerations permit placement; required affinity/nodeSelector confines it. Keep intentional payments/system taints, and remove only an evidenced configuration mistake.
+- Scheduling isolation does not provide network isolation. VM size, not machine image, determines CPU/memory.
+- Persist pool/workload configuration and verify actual placement, readiness and customer recovery.
+
+| Evaluation dimension | Assessment |
+| --- | --- |
+| Technical accuracy | Relevant controls recognized; isolation layers and VM image/capacity confused |
+| Coverage | Broad fix proposed; label comparison, exact constraint and verification missing |
+| Interview representation | Good rejection of unsafe advice; focus first on scenario evidence |
+| Conciseness | Repeats capacity reasoning that is secondary to the reported errors |
+| Troubleshooting approach | Needs direct comparison of pod constraints and replacement-pool metadata |
+| Senior-level reasoning | Good isolation intent; precise enforcement and persistence need detail |
+
+Main deductions: imprecise isolation/placement explanation and missing evidence/validation, not missing command count.
+
+## First Cycle Consolidated Feedback — Q01–Q10 — 2026-10-04
+
+**Completed:** 10 evaluated questions. **Average:** 5.85/10. **Average answer-acceptance estimate:** 51.7% (subjective; not hiring probability).
+
+| Area | Evidence-based assessment |
+| --- | --- |
+| Relative strengths | Incident ownership and mitigation intent (Q01–Q02); recognizing risky permission/placement proposals (Q06/Q10); restoring desired state through Git (Q09). No domain is yet proven mastered. |
+| Moderate areas | Container-limit reasoning after feedback (Q02), request-based scheduling (Q03), NetworkPolicy hypothesis (Q04), IRSA setup (Q06), image-tag diagnosis (Q09), placement controls (Q10). Correct starting ideas need fuller investigation. |
+| Weak areas | Safe EBS recovery/migration (Q05); Autoscaler diagnosis (Q03); PDB availability trade-offs (Q07); evidence-led DNS diagnosis (Q08); runtime IAM versus image-pull identity (Q09). |
+| Recurring mistakes | Jumping from a symptom to a single assumed cause; blurring control layers; underspecified safe changes; rarely demonstrating customer-facing validation. Unsupported no-impact/zero-loss claims occurred in Q05/Q07. |
+| Communication quality | Understandable operational narrative; Q03/Q04 were more direct. Several answers spend too long on generic setup or repeat the same point. Lead with the provided evidence, then action and verification. |
+| Technical depth | Familiar with many components, but exact enforcement boundaries and failure-stage reasoning remain uneven. Essential commands should show what evidence changes the decision, not pad the answer. |
+| Overall Kubernetes readiness | Developing foundation; not yet consistently ready for senior production-troubleshooting interviews based on these attempts. Coverage and retest gaps remain, so completing 10 questions is not topic completion. |
+
+### Priority Revision Topics
+
+1. Safe mitigation and explicit recovery checks in every scenario: fix -> observe -> verify customer outcome.
+2. EBS writer fencing, stale attachment versus AZ mismatch, migration/restore realities (Q05).
+3. Identity boundaries: Kubernetes RBAC, IRSA trust, image-pull credentials (Q06/Q09).
+4. Scheduling/Autoscaler/PDB: requested capacity, eligible node groups, healthy-replica budget (Q03/Q07/Q10).
+5. Network diagnosis: ingress plus egress, DNS logs/metrics, readiness versus connectivity (Q04/Q08).
+
+### Trend and Next Coverage
+
+- Scores: 6, 6.5, 5, 6.5, 4.5, 7, 5.5, 5, 6.5, 6. First five average 5.7; last five average 6.0. Small descriptive improvement across different topics, not proof of mastery.
+- Strongest answer: Q06 (7). Lowest: Q05 (4.5). No old scores changed.
+- Continue broad coverage before concentrated repetition: observability/SLI-SLOs, HPA metrics, CNI, scoped RBAC, Azure workload identity, deeper Service/Ingress and platform architecture.
+- Interleave fresh coverage with spaced retests of the priorities above. Follow-up explanations count as learning, not new scored attempts.
