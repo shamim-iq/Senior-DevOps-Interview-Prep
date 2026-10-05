@@ -4,19 +4,19 @@
 
 | Metric | Current status |
 | --- | --- |
-| Questions Attempted | 4 / 10 in the first cycle |
-| Average Score | 6.375/10 — 25.5 / 4; historical scores unchanged |
-| Average Acceptance Probability | 57.5% — subjective answer-specific estimates, not hiring probability |
-| Topic Coverage | 6 / 15 aspects assessed (40%) |
+| Questions Attempted | 5 / 10 in the first cycle |
+| Average Score | 6.4/10 — 32 / 5; historical scores unchanged |
+| Average Acceptance Probability | 58% — subjective answer-specific estimates, not hiring probability |
+| Topic Coverage | 8 / 15 aspects assessed (53.3%) |
 | Current Strengths | Inode awareness, cautious deletion, least-privilege intent and path-permission investigation |
 | Current Weaknesses | df/du and load-state interpretation, latency versus capacity, precise access scope and recovery validation |
-| Readiness Trend | Useful diagnostic starting points; termination proof, evidence-based mitigation and recovery validation need practice. Four scenarios do not establish overall readiness |
+| Readiness Trend | Useful diagnostic starting points; narrow mitigation, precise evidence interpretation and recovery validation remain recurring gaps. Overall readiness not established |
 
 ## Active Question
 
-Q05 — API connectivity / listener and network path; awaiting an answer.
+Q06 — Scheduled job / execution environment; awaiting an answer.
 
-After a deployment, an API responds to curl http://localhost:8080/health on its Linux host, but requests from another server to the host's private IP on port 8080 fail. SSH to the API host still works. A teammate suggests disabling the host firewall. How would you locate the failure, restore access with minimal exposure and verify recovery? Include essential commands and the evidence you would look for.
+A backup script succeeds when an engineer runs it manually, but its nightly cron job produces no backup. The server is running at the scheduled time. A teammate suggests moving the job into root's crontab. How would you diagnose the difference, fix it safely and verify that scheduled backups actually succeed? Include essential commands and evidence you would inspect.
 
 ## Coverage Checklist
 
@@ -30,8 +30,8 @@ After a deployment, an API responds to curl http://localhost:8080/health on its 
 - [x] ✅ systemd services, dependencies and journal investigation — Q02 startup/journal assessed; dependency-specific diagnosis remains for later sampling.
 - [x] ✅ Permissions, ownership, ACLs and privilege boundaries — Q02 identity/path permissions assessed; ACL-specific diagnosis remains for later sampling.
 - [ ] Users, groups, sudo and SSH access troubleshooting.
-- [ ] DNS, routing, sockets and connection diagnosis.
-- [ ] Firewalls and network access controls.
+- [x] ✅ DNS, routing, sockets and connection diagnosis — Q05 sockets/private routing assessed; DNS-specific diagnosis remains for later sampling.
+- [x] ✅ Firewalls and network access controls — Q05; source-scoped rules and private routing need retesting.
 - [ ] Mounts, filesystem recovery and persistent configuration.
 - [ ] Shell scripting, pipelines, exit status and safe automation.
 - [ ] Scheduled jobs, cron/systemd timers and execution environments.
@@ -63,8 +63,11 @@ After a deployment, an API responds to curl http://localhost:8080/health on its 
 | Q02 | 2026-10-04 | 7.5/10 | 70% | [systemd / Permissions](questions/Q02-systemd-permissions.md) |
 | Q03 | 2026-10-05 | 6.5/10 | 60% | [High Load / Moderate CPU](questions/Q03-high-load-low-cpu.md) |
 | Q04 | 2026-10-05 | 7/10 | 65% | [Memory / Process Termination](questions/Q04-memory-process-termination.md) |
+| Q05 | 2026-10-06 | 6.5/10 | 60% | [API Private Connectivity](questions/Q05-api-private-connectivity.md) |
 
 ## Retest Queue
+
+- Q05: interpret loopback/private binding, scope firewall rules to approved clients, preserve private routing and verify client access/isolation.
 
 - Q04: prove termination cause, distinguish host pressure from service limits, and validate mitigation through a representative traffic spike.
 

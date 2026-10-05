@@ -1,5 +1,22 @@
 # Linux Interview Feedback
 
+## Q05 — API Private Connectivity — 2026-10-06
+
+**Score: 6.5/10.** Subjective answer-specific acceptance estimate: 60%, not hiring probability. Four-year baseline; previous scores unchanged.
+
+✅ Preserved firewall intent and selected useful policy/listener checks. Recognized that the listening IP matters in general.
+
+| Dimension | Assessment |
+| --- | --- |
+| Technical accuracy | Correct listener tools; private connectivity does not require the same VPC or public exposure |
+| Coverage | Missing explicit loopback interpretation, route checks and client validation |
+| Interview representation | Clear structure; explain evidence before changing rules |
+| Conciseness | Reasonably compact; ss makes several alternative process/listener commands unnecessary |
+| Troubleshooting | Check bound address as well as port; localhost success is the key clue |
+| Operational reasoning | Rejects disabling firewall, but allow rule is broader than the internal-client requirement |
+
+Deductions: 1 broad allow, 1 private-routing misconception, 0.75 listener interpretation/evidence before mutation, 0.75 validation. No advanced-tool penalty. Retest narrow network access later; move to scheduled-job environments for breadth.
+
 ## Q04 — Memory / Process Termination — 2026-10-05
 
 **Score: 7/10.** Subjective answer-specific acceptance estimate: 65%, not a hiring prediction. Four-year baseline; prior scores unchanged.
