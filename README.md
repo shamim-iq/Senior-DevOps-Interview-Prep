@@ -21,13 +21,13 @@ Within each topic:
 - [ ] Terraform
 - [ ] Observability
 - [ ] [Linux / Networking](Phase%201/linux/Progress.md) — active; Linux Q06 pending.
-- [ ] Python — assessment pending; DevOps automation aligned with the résumé and four-year experience baseline.
+- [ ] Python
 - [ ] RAG
 - [ ] MCP
 - [ ] Amazon Bedrock
 
 Each topic keeps its own coverage, scores and revision checklist in `Phase N/<topic>/Progress.md`. Completed assessments show ✅; remaining aspects stay unchecked. A topic is complete only after its agreed coverage and revision work are finished. Future phases are not yet scoped, so no overall completion percentage is assigned.
 
-Python follows the same evaluation workflow as every other topic: one question at a time, scored attempts, saved answers, topic-specific feedback and progress, coverage checkboxes and weakness retests. Include practical coding exercises alongside scenarios covering scripting fundamentals, files and JSON/YAML, API/cloud automation, subprocesses, error handling, logging, testing and safe, repeatable operations. Create its topic workspace when Python practice begins; it is currently unassessed.
+All topics use scored questions, saved answers, feedback, coverage tracking and weakness retests. Python also includes coding exercises covering scripting, files, JSON/YAML, APIs, subprocesses, error handling, logging and testing.
 
 The local `Interviews/` directory is the repository root. Keep commits on `main`; push only when explicitly requested.
