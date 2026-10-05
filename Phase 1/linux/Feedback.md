@@ -1,5 +1,22 @@
 # Linux Interview Feedback
 
+## Q04 — Memory / Process Termination — 2026-10-05
+
+**Score: 7/10.** Subjective answer-specific acceptance estimate: 65%, not a hiring prediction. Four-year baseline; prior scores unchanged.
+
+✅ Sound log-first investigation, useful common memory tools, rejection of routine cache drops and developer collaboration. Swappiness was proposed conditionally, not as an automatic fix.
+
+| Dimension | Assessment |
+| --- | --- |
+| Technical accuracy | Good direction; distinguish kernel/application cache, available/free memory and vertical/horizontal scaling |
+| Coverage | Kernel termination evidence, service limits and recovery checks missing |
+| Interview representation | Clear diagnostic sequence |
+| Conciseness | Relevant and reasonably compact |
+| Troubleshooting | Current memory readings cannot prove the earlier cause; correlate historical evidence |
+| Operational reasoning | Capacity/optimization sensible; bound swap tuning and validate under representative load |
+
+Deductions: 1 termination proof, 0.75 mitigation safeguards, 0.75 validation, 0.5 combined terminology/metric precision. No advanced-command penalty. Retest host versus service-limit OOM later; rotate to network connectivity next.
+
 ## Q03 — High Load / Moderate CPU — 2026-10-05
 
 **Score: 6.5/10.** Subjective answer-specific acceptance estimate: 60%, not a hiring prediction. Four-year baseline.
