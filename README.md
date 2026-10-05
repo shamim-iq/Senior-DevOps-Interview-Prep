@@ -4,7 +4,7 @@ Structured preparation for Senior DevOps, Platform Engineer, and SRE interviews,
 
 `Phase 1/` contains the current preparation work. Future phases will be added as sibling directories: `Phase 2/`, `Phase 3/`, and so on.
 
-Each phase may cover Kubernetes, Docker, AWS, Azure, Terraform, Observability, Linux / Networking, RAG, MCP, and Amazon Bedrock.
+Each phase may cover Kubernetes, Docker, AWS, Azure, Terraform, Observability, Linux / Networking, Python automation, RAG, MCP, and Amazon Bedrock.
 
 Within each topic:
 
@@ -20,7 +20,8 @@ Within each topic:
 - [ ] Azure
 - [ ] Terraform
 - [ ] Observability
-- [ ] [Linux / Networking](Phase%201/linux/Progress.md) — active; Linux Q01 pending.
+- [ ] [Linux / Networking](Phase%201/linux/Progress.md) — active; Linux Q06 pending.
+- [ ] Python — revision pending; aligned with résumé skill "Python (for automation)" and four-year DevOps / Platform roles. Cover core scripting, files and JSON/YAML, API/cloud automation, subprocesses, error handling, logging, testing and safe, repeatable operations through practical questions and coding exercises. Scope is planned, not assessed.
 - [ ] RAG
 - [ ] MCP
 - [ ] Amazon Bedrock
