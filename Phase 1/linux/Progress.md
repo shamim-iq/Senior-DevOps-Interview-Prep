@@ -4,19 +4,19 @@
 
 | Metric | Current status |
 | --- | --- |
-| Questions Attempted | 2 / 10 in the first cycle |
-| Average Score | 6/10 — (4.5 + 7.5) / 2; historical Q01 unchanged |
-| Average Acceptance Probability | 52.5% — subjective answer-specific estimates, not hiring probability |
-| Topic Coverage | 3 / 15 aspects assessed (20%) |
+| Questions Attempted | 3 / 10 in the first cycle |
+| Average Score | 6.17/10 — 18.5 / 3; historical scores unchanged |
+| Average Acceptance Probability | 55% — subjective answer-specific estimates, not hiring probability |
+| Topic Coverage | 5 / 15 aspects assessed (33.3%) |
 | Current Strengths | Inode awareness, cautious deletion, least-privilege intent and path-permission investigation |
-| Current Weaknesses | df/du interpretation, open-file lifecycle, precise access scope and recovery validation |
-| Readiness Trend | Q02 demonstrates useful diagnosis; two different scenarios and a scoring calibration do not establish a readiness trend |
+| Current Weaknesses | df/du and load-state interpretation, latency versus capacity, precise access scope and recovery validation |
+| Readiness Trend | Useful diagnostic starting points; evidence-to-mitigation and validation need practice. Three scenarios do not establish overall readiness |
 
 ## Active Question
 
-Q03 — CPU / load investigation; awaiting an answer.
+Q04 — Memory / unexpected process termination; awaiting an answer.
 
-An API on an 8-vCPU Linux server becomes slow. Load averages are 18, 16 and 12, but overall CPU utilization is only about 35%. A teammate recommends adding CPUs immediately. How would you identify the bottleneck, choose a safe mitigation and verify recovery? Include the essential commands and what you would look for.
+A Linux API managed by systemd disappears during traffic spikes and is restarted automatically. Monitoring just before failure shows little free memory, while memory appears normal after restart. A teammate suggests dropping caches every minute. How would you establish why the process was terminated, choose a safe mitigation and verify recovery? Include the essential commands and evidence you would look for.
 
 ## Coverage Checklist
 
@@ -24,9 +24,9 @@ An API on an 8-vCPU Linux server becomes slow. Load averages are 18, 16 and 12, 
 
 - [x] ✅ Filesystem capacity, inodes and open/deleted files — Q01; df/du discrepancy and safe recovery need retesting.
 - [ ] Processes, signals and safe service recovery.
-- [ ] CPU, load average and process/thread diagnosis.
+- [x] ✅ CPU, load average and process/thread diagnosis — Q03; task-state interpretation needs retesting, thread-level depth remains.
 - [ ] Memory, swap, OOM and resource limits.
-- [ ] Disk I/O latency and storage performance.
+- [x] ✅ Disk I/O latency and storage performance — Q03; latency versus capacity and metric interpretation need retesting.
 - [x] ✅ systemd services, dependencies and journal investigation — Q02 startup/journal assessed; dependency-specific diagnosis remains for later sampling.
 - [x] ✅ Permissions, ownership, ACLs and privilege boundaries — Q02 identity/path permissions assessed; ACL-specific diagnosis remains for later sampling.
 - [ ] Users, groups, sudo and SSH access troubleshooting.
@@ -61,8 +61,11 @@ An API on an 8-vCPU Linux server becomes slow. Load averages are 18, 16 and 12, 
 | --- | --- | --- | --- | --- |
 | Q01 | 2026-10-04 | 4.5/10 | 35% | [Disk Full / df–du](questions/Q01-disk-full-df-du.md) |
 | Q02 | 2026-10-04 | 7.5/10 | 70% | [systemd / Permissions](questions/Q02-systemd-permissions.md) |
+| Q03 | 2026-10-05 | 6.5/10 | 60% | [High Load / Moderate CPU](questions/Q03-high-load-low-cpu.md) |
 
 ## Retest Queue
+
+- Q03: interpret runnable/D-state evidence and I/O measurements; distinguish capacity from latency, choose a targeted mitigation and verify service recovery.
 
 - Q01: distinguish blocks/inodes and open deleted files in a fresh scenario; demonstrate evidence-preserving mitigation and validation.
 - Q02: independently scope file access and demonstrate restart/recovery validation. Evaluation uses the four-year baseline; advanced optional details are not required for full credit.

@@ -1,5 +1,22 @@
 # Linux Interview Feedback
 
+## Q03 — High Load / Moderate CPU — 2026-10-05
+
+**Score: 6.5/10.** Subjective answer-specific acceptance estimate: 60%, not a hiring prediction. Four-year baseline.
+
+✅ Correctly avoided assuming CPU saturation; chose vmstat r/b/wa and iostat, considered dependencies and sought approval before deletion.
+
+| Dimension | Assessment |
+| --- | --- |
+| Technical accuracy | Good initial hypothesis; distinguish runnable/D-state load from ordinary socket sleep |
+| Coverage | Useful host investigation; concrete recovery criteria missing |
+| Interview representation | Explain observed metrics before choosing a fix |
+| Conciseness | Filesystem-choice discussion distracts from current evidence |
+| Troubleshooting | Separate I/O latency from free blocks/inodes; ping does not test DB queries |
+| Operational reasoning | Cautious cleanup is positive; target demonstrated bottleneck and validate |
+
+Deductions: 1 load/task-state distinction, 1 latency/capacity conflation, 1 mitigation/validation gap, 0.5 DB verification limits. No deduction for omitted advanced tools. Retest with measured output later; rotate to memory for breadth. Q01 and Q02 scores unchanged.
+
 Evaluate against the four-year DevOps / Platform baseline in AGENTS.md. Preserve historical scores and distinguish essential corrections from optional advanced coaching.
 
 Record actual strengths and gaps after each answer, a score out of 10 and a subjective answer-specific Interview Acceptance Probability. Do not interpret this as hiring probability. Preserve history and consolidate feedback every 10 evaluated questions.
