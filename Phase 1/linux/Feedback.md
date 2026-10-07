@@ -1,5 +1,22 @@
 # Linux Interview Feedback
 
+## Q06 — Cron Backup / Environment — 2026-10-07
+
+**Score: 6/10.** Subjective answer-specific acceptance estimate: 55%, not hiring probability. Four-year baseline; earlier scores unchanged.
+
+✅ Valid user-permission hypothesis, correct crontab inspection approach and useful attempt to reproduce as the job user. Opening interpreted as rejecting moving the job to root; no wording-slip penalty.
+
+| Dimension | Assessment |
+| --- | --- |
+| Technical accuracy | Permissions plausible; Python invocation needs script read access, not necessarily execute bit; syslog is not guaranteed to contain script errors |
+| Coverage | Missed environment/PATH/interpreter/working-directory differences and backup verification |
+| Interview representation | Clear hypothesis, but verify alternatives before modifying groups |
+| Conciseness | Relevant commands; avoid categorical root/group claims |
+| Troubleshooting | Same-user test helpful but not a full cron-environment reproduction |
+| Operational reasoning | Root restraint good; broad developer access is not a minimal backup permission |
+
+Deductions: 1.5 environment/scheduling investigation, 1 broad remediation, 1 missing validation, 0.5 permission/logging precision. Retest cron evidence later; move to mounts for breadth.
+
 ## Q05 — API Private Connectivity — 2026-10-06
 
 **Score: 6.5/10.** Subjective answer-specific acceptance estimate: 60%, not hiring probability. Four-year baseline; previous scores unchanged.
