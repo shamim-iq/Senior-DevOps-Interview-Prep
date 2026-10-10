@@ -14,9 +14,11 @@
 
 ## Active Question
 
-Q08 — Shell pipeline failure handling; awaiting an answer.
+Q08 — Process termination and safe service recovery; awaiting an answer.
 
-A Bash deployment script runs `deploy-command 2>&1 | tee deploy.log`, then checks `$?` and reports success. The deployment command fails, but the pipeline still reports success and starts the next release step. Why can this happen, and how would you make failure detection and subsequent actions reliable? Include the essential shell changes and how you would test them.
+A Linux background worker managed by systemd stops processing jobs. Its process still exists, and a teammate suggests using kill -9 immediately. Some jobs may be partially processed. How would you investigate the process, stop or recover it safely, and verify that work resumes without losing or duplicating jobs? Include the essential Linux commands and what you would look for.
+
+The unanswered shell-pipeline Q08 was replaced at the user's request on 2026-10-10. No attempt or score was recorded for it. Keep current questions focused on Linux administration and troubleshooting; defer shell scripting until the user asks to resume it. Diagnostic Linux commands remain in scope.
 
 ## Coverage Checklist
 
