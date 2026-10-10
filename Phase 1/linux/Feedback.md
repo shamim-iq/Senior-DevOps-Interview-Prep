@@ -1,5 +1,22 @@
 # Linux Interview Feedback
 
+## Q09 — SSH Public-Key Access — 2026-10-10
+
+**Score: 6.5/10.** Subjective answer-specific acceptance estimate: 60%, not hiring probability. Four-year baseline; previous scores unchanged.
+
+✅ Rejects root password workaround, preserves administrator access and uses client debug/server logs.
+
+| Dimension | Assessment |
+| --- | --- |
+| Technical accuracy | Useful initial commands; authorized_keys is a file, and OpenSSH needs a compatible key format |
+| Coverage | Missing explicit account/key/permission checks and fresh-login verification |
+| Interview representation | Clear separation of hypotheses; prioritize authentication evidence |
+| Conciseness | Reasonable; resource tools only when evidence supports them |
+| Troubleshooting | Client debug and server rejection logs should identify the narrow correction |
+| Operational reasoning | Strong session-preservation instinct; generate replacement private keys on the user's client |
+
+Deductions: 1.5 key custody/recovery, 1 missing permissions/account checks, 0.75 validation, 0.25 precision/focus. Typo journalcrl has no separate penalty. Retest key recovery later; next is log rotation, followed by the ten-question consolidation.
+
 ## Q08 — Stalled Worker / Signals — 2026-10-10
 
 **Score: 7/10.** Subjective answer-specific acceptance estimate: 65%, not hiring probability. Four-year baseline; historical scores unchanged.

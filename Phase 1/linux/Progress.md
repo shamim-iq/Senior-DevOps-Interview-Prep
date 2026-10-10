@@ -4,19 +4,19 @@
 
 | Metric | Current status |
 | --- | --- |
-| Questions Attempted | 8 / 10 in the first cycle |
-| Average Score | 6.375/10 — 51 / 8; historical scores unchanged |
-| Average Acceptance Probability | 58.125% — subjective answer-specific estimates, not hiring probability |
-| Topic Coverage | 11 / 15 aspects assessed (73.3%); scripting remains deferred |
+| Questions Attempted | 9 / 10 in the first cycle |
+| Average Score | 6.39/10 — 57.5 / 9; historical scores unchanged |
+| Average Acceptance Probability | 58.33% — subjective answer-specific estimates, not hiring probability |
+| Topic Coverage | 12 / 15 aspects assessed (80%); scripting remains deferred |
 | Current Strengths | Inode awareness, cautious deletion, least-privilege intent and path-permission investigation |
 | Current Weaknesses | df/du and load-state interpretation, latency versus capacity, precise access scope and recovery validation |
 | Readiness Trend | Useful diagnostic starting points; narrow mitigation, precise evidence interpretation and recovery validation remain recurring gaps. Overall readiness not established |
 
 ## Active Question
 
-Q09 — SSH public-key authentication; awaiting an answer.
+Q10 — Log rotation and evidence preservation; awaiting an answer.
 
-A deployment engineer can reach TCP port 22 on a Linux server, but SSH login now fails with Permission denied (publickey). Another administrator still has a working session. A teammate suggests enabling root password login. How would you identify the cause and restore the engineer's access without weakening SSH security or locking out the administrator? Include essential commands and verification.
+A Linux API's application log keeps growing to several gigabytes despite a daily logrotate configuration. After rotation, the new log stays empty while the renamed old file continues growing. A teammate suggests truncating all logs every hour. How would you diagnose and fix rotation while preserving useful incident evidence, and verify that the fix works? Include essential Linux commands; no scripting required.
 
 The unanswered shell-pipeline Q08 was replaced at the user's request on 2026-10-10. No attempt or score was recorded for it. Keep current questions focused on Linux administration and troubleshooting; defer shell scripting until the user asks to resume it. Diagnostic Linux commands remain in scope.
 
@@ -31,7 +31,7 @@ The unanswered shell-pipeline Q08 was replaced at the user's request on 2026-10-
 - [x] ✅ Disk I/O latency and storage performance — Q03; latency versus capacity and metric interpretation need retesting.
 - [x] ✅ systemd services, dependencies and journal investigation — Q02 startup/journal assessed; dependency-specific diagnosis remains for later sampling.
 - [x] ✅ Permissions, ownership, ACLs and privilege boundaries — Q02 identity/path permissions assessed; ACL-specific diagnosis remains for later sampling.
-- [ ] Users, groups, sudo and SSH access troubleshooting.
+- [x] ✅ Users, groups, sudo and SSH access troubleshooting — Q09 SSH assessed; key custody and permission checks need retesting, sudo depth remains.
 - [x] ✅ DNS, routing, sockets and connection diagnosis — Q05 sockets/private routing assessed; DNS-specific diagnosis remains for later sampling.
 - [x] ✅ Firewalls and network access controls — Q05; source-scoped rules and private routing need retesting.
 - [x] ✅ Mounts, filesystem recovery and persistent configuration — Q07; preservation, recovery and persistent mount safeguards need retesting.
@@ -69,8 +69,11 @@ The unanswered shell-pipeline Q08 was replaced at the user's request on 2026-10-
 | Q06 | 2026-10-07 | 6/10 | 55% | [Cron Backup / Environment](questions/Q06-cron-backup-environment.md) |
 | Q07 | 2026-10-10 | 6/10 | 55% | [Missing /data Mount](questions/Q07-missing-data-mount.md) |
 | Q08 | 2026-10-10 | 7/10 | 65% | [Stalled Worker / Signals](questions/Q08-stalled-worker-signals.md) |
+| Q09 | 2026-10-10 | 6.5/10 | 60% | [SSH Public-Key Access](questions/Q09-ssh-publickey-access.md) |
 
 ## Retest Queue
+
+- Q09: demonstrate client-owned key recovery, account/key permissions, safe configuration validation and fresh-session verification.
 
 - Q08: demonstrate managed-worker stop/restart safeguards, evidence-based resource changes and verification of partially processed jobs.
 
