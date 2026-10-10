@@ -1,5 +1,22 @@
 # Linux Interview Feedback
 
+## Q07 — Missing /data Mount — 2026-10-10
+
+**Score: 6/10.** Subjective answer-specific acceptance estimate: 55%, not hiring probability. Four-year baseline; prior scores unchanged.
+
+✅ Correct missing-mount hypothesis, rejected destructive formatting, selected lsblk and proposed preserving files with rsync.
+
+| Dimension | Assessment |
+| --- | --- |
+| Technical accuracy | Core diagnosis correct; rsync copies files rather than mapping/mounting storage |
+| Coverage | Missing quiescing, mount confirmation, restoration/reconciliation, prevention and verification |
+| Interview representation | Clear and concise hypothesis |
+| Conciseness | Good; no length-related deduction |
+| Troubleshooting | Need filesystem identity and actual mount state beyond disk visibility |
+| Operational reasoning | Backup intent sound; protect both datasets before restoring mount |
+
+Deductions: 1.5 preservation/recovery sequence, 1 mount confirmation/rsync semantics, 0.75 prevention, 0.75 validation. Retest data-preserving mount recovery later; rotate to shell exit-status handling next.
+
 ## Q06 — Cron Backup / Environment — 2026-10-07
 
 **Score: 6/10.** Subjective answer-specific acceptance estimate: 55%, not hiring probability. Four-year baseline; earlier scores unchanged.

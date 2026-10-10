@@ -4,19 +4,19 @@
 
 | Metric | Current status |
 | --- | --- |
-| Questions Attempted | 6 / 10 in the first cycle |
-| Average Score | 6.33/10 — 38 / 6; historical scores unchanged |
-| Average Acceptance Probability | 57.5% — subjective answer-specific estimates, not hiring probability |
-| Topic Coverage | 9 / 15 aspects assessed (60%) |
+| Questions Attempted | 7 / 10 in the first cycle |
+| Average Score | 6.29/10 — 44 / 7; historical scores unchanged |
+| Average Acceptance Probability | 57.14% — subjective answer-specific estimates, not hiring probability |
+| Topic Coverage | 10 / 15 aspects assessed (66.7%) |
 | Current Strengths | Inode awareness, cautious deletion, least-privilege intent and path-permission investigation |
 | Current Weaknesses | df/du and load-state interpretation, latency versus capacity, precise access scope and recovery validation |
 | Readiness Trend | Useful diagnostic starting points; narrow mitigation, precise evidence interpretation and recovery validation remain recurring gaps. Overall readiness not established |
 
 ## Active Question
 
-Q07 — Missing mount after reboot; awaiting an answer.
+Q08 — Shell pipeline failure handling; awaiting an answer.
 
-After a Linux server reboot, an application's /data directory appears empty. The application has started writing new files there, while the expected attached data disk is still visible to the operating system. A teammate suggests formatting the disk and restoring a backup. How would you investigate, recover without losing old or new data, and prevent recurrence? Include essential commands and recovery checks.
+A Bash deployment script runs `deploy-command 2>&1 | tee deploy.log`, then checks `$?` and reports success. The deployment command fails, but the pipeline still reports success and starts the next release step. Why can this happen, and how would you make failure detection and subsequent actions reliable? Include the essential shell changes and how you would test them.
 
 ## Coverage Checklist
 
@@ -32,7 +32,7 @@ After a Linux server reboot, an application's /data directory appears empty. The
 - [ ] Users, groups, sudo and SSH access troubleshooting.
 - [x] ✅ DNS, routing, sockets and connection diagnosis — Q05 sockets/private routing assessed; DNS-specific diagnosis remains for later sampling.
 - [x] ✅ Firewalls and network access controls — Q05; source-scoped rules and private routing need retesting.
-- [ ] Mounts, filesystem recovery and persistent configuration.
+- [x] ✅ Mounts, filesystem recovery and persistent configuration — Q07; preservation, recovery and persistent mount safeguards need retesting.
 - [ ] Shell scripting, pipelines, exit status and safe automation.
 - [x] ✅ Scheduled jobs, cron/systemd timers and execution environments — Q06 cron assessed; environment differences need retesting, timers remain for later sampling.
 - [ ] Log management, rotation and evidence preservation.
@@ -65,8 +65,11 @@ After a Linux server reboot, an application's /data directory appears empty. The
 | Q04 | 2026-10-05 | 7/10 | 65% | [Memory / Process Termination](questions/Q04-memory-process-termination.md) |
 | Q05 | 2026-10-06 | 6.5/10 | 60% | [API Private Connectivity](questions/Q05-api-private-connectivity.md) |
 | Q06 | 2026-10-07 | 6/10 | 55% | [Cron Backup / Environment](questions/Q06-cron-backup-environment.md) |
+| Q07 | 2026-10-10 | 6/10 | 55% | [Missing /data Mount](questions/Q07-missing-data-mount.md) |
 
 ## Retest Queue
+
+- Q07: stop writers, confirm filesystem identity/mount state, preserve and reconcile both datasets, configure startup safeguards and verify recovery.
 
 - Q06: reproduce cron environment, distinguish scheduler logs from script output, scope backup permissions and demonstrate scheduled backup/restore validation.
 
