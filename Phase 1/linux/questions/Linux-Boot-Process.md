@@ -7,9 +7,9 @@ Typical flow for a modern server using systemd; details vary by setup.
 
 - 🔌 **Power on:** The machine starts and runs its built-in startup software — BIOS or UEFI.
 - 🧭 **BIOS / UEFI:** It checks essential hardware, selects a boot device and starts the boot loader.
-- 🚀 **Boot loader:** Usually GRUB, it loads the Linux kernel and temporary startup files into RAM, then starts the kernel.
-- 🧠 **Kernel:** Linux's core sets up CPU, memory and device support, then runs the temporary startup tools.
-- 🧰 **initramfs:** These tools prepare access to the main disk — for example, by loading a storage driver or unlocking it — so Linux can reach its installed files.
+- 🚀 **Boot loader:** Usually GRUB, it loads the Linux kernel and **initramfs** into RAM, then starts the kernel.
+- 🧠 **Kernel:** Linux's core sets up CPU, memory and device support, then unpacks initramfs and runs its startup tools.
+- 🧰 **initramfs (initial RAM filesystem):** A temporary filesystem in memory containing tools and drivers needed to find and access the main Linux filesystem. It can load storage drivers or unlock an encrypted disk so the main filesystem can be mounted next.
 - 💾 **Main filesystem:** The startup tools mount it at `/`, the top of the directory tree, and switch from the temporary environment to the installed system.
 - ⚙️ **systemd:** The installed system's service manager takes charge of starting required mounts and services in the right dependency order.
 - 🌐 **Server mode:** Networking, SSH and configured applications start as their requirements become ready, making the server usable.
