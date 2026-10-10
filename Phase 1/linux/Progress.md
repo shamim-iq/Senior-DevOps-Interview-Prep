@@ -4,19 +4,19 @@
 
 | Metric | Current status |
 | --- | --- |
-| Questions Attempted | 7 / 10 in the first cycle |
-| Average Score | 6.29/10 — 44 / 7; historical scores unchanged |
-| Average Acceptance Probability | 57.14% — subjective answer-specific estimates, not hiring probability |
-| Topic Coverage | 10 / 15 aspects assessed (66.7%) |
+| Questions Attempted | 8 / 10 in the first cycle |
+| Average Score | 6.375/10 — 51 / 8; historical scores unchanged |
+| Average Acceptance Probability | 58.125% — subjective answer-specific estimates, not hiring probability |
+| Topic Coverage | 11 / 15 aspects assessed (73.3%); scripting remains deferred |
 | Current Strengths | Inode awareness, cautious deletion, least-privilege intent and path-permission investigation |
 | Current Weaknesses | df/du and load-state interpretation, latency versus capacity, precise access scope and recovery validation |
 | Readiness Trend | Useful diagnostic starting points; narrow mitigation, precise evidence interpretation and recovery validation remain recurring gaps. Overall readiness not established |
 
 ## Active Question
 
-Q08 — Process termination and safe service recovery; awaiting an answer.
+Q09 — SSH public-key authentication; awaiting an answer.
 
-A Linux background worker managed by systemd stops processing jobs. Its process still exists, and a teammate suggests using kill -9 immediately. Some jobs may be partially processed. How would you investigate the process, stop or recover it safely, and verify that work resumes without losing or duplicating jobs? Include the essential Linux commands and what you would look for.
+A deployment engineer can reach TCP port 22 on a Linux server, but SSH login now fails with Permission denied (publickey). Another administrator still has a working session. A teammate suggests enabling root password login. How would you identify the cause and restore the engineer's access without weakening SSH security or locking out the administrator? Include essential commands and verification.
 
 The unanswered shell-pipeline Q08 was replaced at the user's request on 2026-10-10. No attempt or score was recorded for it. Keep current questions focused on Linux administration and troubleshooting; defer shell scripting until the user asks to resume it. Diagnostic Linux commands remain in scope.
 
@@ -25,7 +25,7 @@ The unanswered shell-pipeline Q08 was replaced at the user's request on 2026-10-
 `[x] ✅` means substantively attempted and evaluated, not mastered. Keep pending and explanation-only aspects unchecked; link completed aspects to evaluated questions.
 
 - [x] ✅ Filesystem capacity, inodes and open/deleted files — Q01; df/du discrepancy and safe recovery need retesting.
-- [ ] Processes, signals and safe service recovery.
+- [x] ✅ Processes, signals and safe service recovery — Q08; managed shutdown and partial-job recovery need retesting.
 - [x] ✅ CPU, load average and process/thread diagnosis — Q03; task-state interpretation needs retesting, thread-level depth remains.
 - [x] ✅ Memory, swap, OOM and resource limits — Q04; termination evidence and host-versus-service limits need retesting.
 - [x] ✅ Disk I/O latency and storage performance — Q03; latency versus capacity and metric interpretation need retesting.
@@ -68,8 +68,11 @@ The unanswered shell-pipeline Q08 was replaced at the user's request on 2026-10-
 | Q05 | 2026-10-06 | 6.5/10 | 60% | [API Private Connectivity](questions/Q05-api-private-connectivity.md) |
 | Q06 | 2026-10-07 | 6/10 | 55% | [Cron Backup / Environment](questions/Q06-cron-backup-environment.md) |
 | Q07 | 2026-10-10 | 6/10 | 55% | [Missing /data Mount](questions/Q07-missing-data-mount.md) |
+| Q08 | 2026-10-10 | 7/10 | 65% | [Stalled Worker / Signals](questions/Q08-stalled-worker-signals.md) |
 
 ## Retest Queue
+
+- Q08: demonstrate managed-worker stop/restart safeguards, evidence-based resource changes and verification of partially processed jobs.
 
 - Q07: stop writers, confirm filesystem identity/mount state, preserve and reconcile both datasets, configure startup safeguards and verify recovery.
 

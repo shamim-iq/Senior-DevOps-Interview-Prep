@@ -1,5 +1,22 @@
 # Linux Interview Feedback
 
+## Q08 — Stalled Worker / Signals — 2026-10-10
+
+**Score: 7/10.** Subjective answer-specific acceptance estimate: 65%, not hiring probability. Four-year baseline; historical scores unchanged.
+
+✅ Rejected immediate SIGKILL, started with status/logs, selected useful resource tools and correctly explained nice-value direction.
+
+| Dimension | Assessment |
+| --- | --- |
+| Technical accuracy | Signal and priority basics sound; renice is CPU preference, not general resource allocation |
+| Coverage | Partial-job recovery and completion verification missing |
+| Interview representation | Clear sequence, but resource shortage remains a hypothesis |
+| Conciseness | Relevant; select resource tools according to evidence |
+| Troubleshooting | Add process state and dependency checks; active/log output do not guarantee diagnosis |
+| Operational reasoning | Prefer managed service lifecycle; SIGTERM alone cannot prevent lost/duplicate work |
+
+Deductions: 1.5 job recovery/verification, 0.75 managed stop/restart, 0.75 evidence before resource/priority changes. vmstat 1 correction has no separate deduction. No requirement for detailed application implementation; recognize acknowledgements/checkpoints/retry safety and coordinate with its owner. Next: SSH access for breadth; scripting remains deferred.
+
 ## Q07 — Missing /data Mount — 2026-10-10
 
 **Score: 6/10.** Subjective answer-specific acceptance estimate: 55%, not hiring probability. Four-year baseline; prior scores unchanged.
