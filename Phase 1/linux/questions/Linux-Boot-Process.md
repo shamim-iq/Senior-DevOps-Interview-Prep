@@ -3,7 +3,19 @@
 **Booting = starting the machine, loading Linux and bringing up services.**
 Typical flow for a modern server using systemd; details vary by setup.
 
-## 🌈 From power-on to a running server
+## 👣 Read the stages first
+
+- 🔌 **Power on:** The machine starts and runs its built-in startup software — BIOS or UEFI.
+- 🧭 **BIOS / UEFI:** It checks essential hardware, selects a boot device and starts the boot loader.
+- 🚀 **Boot loader:** Usually GRUB, it loads the Linux kernel and temporary startup files into RAM, then starts the kernel.
+- 🧠 **Kernel:** Linux's core sets up CPU, memory and device support, then runs the temporary startup tools.
+- 🧰 **initramfs:** These tools prepare access to the main disk — for example, by loading a storage driver or unlocking it — so Linux can reach its installed files.
+- 💾 **Main filesystem:** The startup tools mount it at `/`, the top of the directory tree, and switch from the temporary environment to the installed system.
+- ⚙️ **systemd:** The installed system's service manager takes charge of starting required mounts and services in the right dependency order.
+- 🌐 **Server mode:** Networking, SSH and configured applications start as their requirements become ready, making the server usable.
+- ✅ **Verify readiness:** Finally, check login access, expected mounts and a real application request to confirm the server works as intended.
+
+## 🌈 Visualize the same flow
 
 ```mermaid
 flowchart TD
