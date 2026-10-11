@@ -10,12 +10,23 @@ After deployment, an API fails under systemd with Permission denied opening its 
 
 ## 🔄 Investigation Flow
 
-```text
-Journal: exact file + operation
-             ↓
-Unit identity → path permissions → narrowly scoped correction
-             ↓
-Controlled restart → clean journal + successful API/file operation
+```mermaid
+flowchart TD
+    N0["Journal: exact file and operation"]:::start
+    N1["Confirm unit identity and path permissions"]:::inspect
+    N2["Apply narrowly scoped correction"]:::action
+    N3["Controlled restart"]:::action
+    N4["✅ Clean journal; successful API and file operation"]:::success
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🔍 Essential Commands

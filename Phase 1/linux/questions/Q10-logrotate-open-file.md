@@ -10,10 +10,23 @@ An API has daily log rotation, but the new file stays empty and the renamed old 
 
 ## 🔄 Flow
 
-```text
-Old log still growing → confirm open file → inspect rotation + permissions
-                              ↓
-Preserve evidence → supported reopen → verify new log + next rotation
+```mermaid
+flowchart TD
+    N0["Old log still growing"]:::start
+    N1["Confirm open file; inspect rotation and permissions"]:::inspect
+    N2["Preserve evidence"]:::action
+    N3["Use supported log-reopen action"]:::action
+    N4["✅ Verify new log and next rotation"]:::success
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🛠️ Essential Commands

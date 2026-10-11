@@ -10,16 +10,29 @@ After a Helm image-tag change is synced by Argo CD to EKS, new API pods enter Im
 
 ## 🔄 Diagram
 
-```text
-Pod pull error -> inspect exact event
-     |
-     +-- Not found -> image URI / tag / digest / platform
-     +-- Denied    -> actual pull identity + repository policy
-     +-- Timeout   -> registry DNS / network / endpoints
-                          |
-                Correct or revert through Git
-                          |
-             New pods Ready + customer checks pass
+```mermaid
+flowchart TD
+    A["Pod image-pull error"]:::start
+    B{"Inspect exact event"}:::decision
+    C["Check image URI, tag,<br/>digest and platform"]:::inspect
+    D["Check actual pull identity<br/>and repository policy"]:::inspect
+    E["Check registry DNS,<br/>network and endpoints"]:::inspect
+    F["Correct or revert through Git"]:::action
+    G["✅ New pods Ready; customer checks pass"]:::success
+    A --> B
+    B -->|"Not found"| C
+    B -->|"Denied"| D
+    B -->|"Timeout"| E
+    C --> F
+    D --> F
+    E --> F
+    F --> G
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🔍 Troubleshooting / Reasoning Flow

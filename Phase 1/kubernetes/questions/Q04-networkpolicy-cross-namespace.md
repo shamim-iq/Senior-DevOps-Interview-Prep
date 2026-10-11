@@ -10,16 +10,21 @@ In AKS, frontend pods in `web` cannot call the `orders` API in `backend` after a
 
 ## 🔄 Diagram
 
-```text
-Frontend pod (web)
-       |
-       +-- Egress allows destination + port?
-                         |
-       +-- Orders ingress allows source + port?
-                         |
-                  Orders pod (backend)
-
-Both directions must allow the connection when isolated.
+```mermaid
+flowchart TD
+    N0["Frontend pod in web namespace"]:::start
+    N1["Check egress: destination and port"]:::inspect
+    N2["Check Orders ingress: source and port"]:::action
+    N3["✅ Orders pod reachable<br/>Both directions must allow traffic when isolated"]:::success
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🔍 Troubleshooting / Reasoning Flow

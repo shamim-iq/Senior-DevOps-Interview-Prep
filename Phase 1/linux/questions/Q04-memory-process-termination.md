@@ -10,12 +10,23 @@ A systemd-managed API disappears under traffic spikes and restarts automatically
 
 ## 🔄 Flow
 
-```text
-Process disappeared → service exit evidence + kernel logs
-                               ↓
-            Host OOM / service limit / other termination?
-                               ↓
-              Target confirmed cause → verify under load
+```mermaid
+flowchart TD
+    N0["Process disappeared"]:::start
+    N1["Correlate service exit evidence and kernel logs"]:::inspect
+    N2["Distinguish host OOM, service limit<br/>or another termination cause"]:::action
+    N3["Target the confirmed cause"]:::action
+    N4["✅ Verify under load"]:::success
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🔍 Essential Commands

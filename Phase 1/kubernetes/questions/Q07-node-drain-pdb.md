@@ -10,16 +10,25 @@ During an EKS node-group upgrade, drain fails with: Cannot evict pod as it would
 
 ## 🔄 Diagram
 
-```text
-2 Ready - minimum 2 = 0 healthy-pod evictions allowed
-                         |
-          Investigate third replica + blocked pod
-                         |
-       Restore health / add capacity and Ready replica
-                         |
-             PDB reports disruptionsAllowed > 0
-                         |
-            Drain incrementally -> verify recovery
+```mermaid
+flowchart TD
+    N0["2 Ready minus minimum 2<br/>No healthy-pod evictions allowed"]:::start
+    N1["Investigate third replica and blocked pod"]:::inspect
+    N2["Restore health or add capacity<br/>and a Ready replica"]:::action
+    N3["Confirm PDB disruptionsAllowed is positive"]:::action
+    N4["Drain incrementally"]:::action
+    N5["✅ Verify recovery"]:::success
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
+    N4 --> N5
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🔍 Troubleshooting / Reasoning Flow

@@ -10,19 +10,31 @@ A Linux API and worker fail to write files. `df -h` shows `/var` at 100%, but `d
 
 ## 🔄 Diagram
 
-```text
-Writes fail -> check blocks AND inodes
-                         |
-            df usage much larger than du?
-                         |
-             Check deleted-but-open files
-                 /                  \
-               Found               Not found
-                 |                    |
-       Identify owner; preserve    Verify scan permissions,
-       evidence; close safely      mount scope and hidden data
-                 \                  /
-           Verify space + application recovery
+```mermaid
+flowchart TD
+    A["Writes fail: check blocks and inodes"]:::start
+    B{"df usage much larger than du?"}:::decision
+    C["Check deleted-but-open files"]:::inspect
+    D{"Large retained file found?"}:::decision
+    E["Identify owner; preserve evidence<br/>Close safely"]:::action
+    F["Verify scan permissions,<br/>mount scope and hidden data"]:::inspect
+    G["Investigate measured block/inode shortage"]:::inspect
+    H["✅ Verify space and application recovery"]:::success
+    A --> B
+    B -->|"Yes"| C
+    B -->|"No"| G
+    C --> D
+    D -->|"Yes"| E
+    D -->|"No"| F
+    E --> H
+    F --> H
+    G --> H
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🔍 Troubleshooting / Reasoning Flow

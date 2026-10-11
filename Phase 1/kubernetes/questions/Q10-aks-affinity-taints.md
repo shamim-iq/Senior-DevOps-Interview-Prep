@@ -10,16 +10,27 @@ After replacing an AKS user pool, payments pods stay Pending despite spare resou
 
 ## 🔄 Diagram
 
-```text
-Pending pod -> read scheduler events
-                    |
-     Payments pool labels match required affinity?
-              No -> restore labels / correct stale rule
-                    |
-     Payments pool has an intended taint?
-              Yes -> matching narrow toleration
-                    |
-     Verify placement + readiness + isolation
+```mermaid
+flowchart TD
+    A["Pending pod: read scheduler events"]:::start
+    B{"Payments pool labels match<br/>required affinity?"}:::decision
+    C["Restore labels or correct stale rule"]:::action
+    D{"Intended taint on payments pool?"}:::decision
+    E["Add matching narrow toleration"]:::action
+    F["✅ Verify placement, readiness and isolation"]:::success
+    A --> B
+    B -->|"No"| C
+    C --> D
+    B -->|"Yes"| D
+    D -->|"Yes"| E
+    D -->|"No"| F
+    E --> F
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🔍 Troubleshooting / Reasoning Flow

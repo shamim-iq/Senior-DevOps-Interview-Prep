@@ -14,17 +14,38 @@ Explain the résumé chatbot from S3 document upload to user answer. Identify Kn
 
 ## 🔄 Two Connected Flows
 
-```text
-Documents → S3 → sync → parse/chunk → Titan embeddings → OpenSearch
-                                                           ↑
-Question → compatible query embedding → retrieve top-K ─────┘
-                                            ↓
-                                optional rerank → context
-                                            ↓
-                          Claude Haiku → grounded answer + sources
-
-Agent route: client → Agent orchestration → Knowledge Base retrieval
-                                      → response generation
+```mermaid
+flowchart TD
+    A["📥 Documents in S3"]:::start
+    B["Sync, parse and chunk"]:::action
+    C["Titan embeddings"]:::inspect
+    D["OpenSearch: vectors and source text"]:::inspect
+    E["💬 User question"]:::start
+    F["Compatible query embedding"]:::inspect
+    G["Retrieve relevant top-K chunks"]:::action
+    H["Optional rerank; assemble context"]:::action
+    I["Claude Haiku generates answer"]:::action
+    J["✅ Grounded response and sources"]:::success
+    K["Client invokes Agent"]:::start
+    L["Agent orchestrates KB retrieval"]:::action
+    M["Agent response generation"]:::success
+    A --> B
+    B --> C
+    C --> D
+    E --> F
+    F --> G
+    D -->|"Search stored content"| G
+    G --> H
+    H --> I
+    I --> J
+    K --> L
+    L --> M
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 Ingestion runs when data is processed/updated; it is not repeated for every user query. The diagram describes the architecture, not verified details of the user's live account.

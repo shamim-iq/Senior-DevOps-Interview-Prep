@@ -10,20 +10,30 @@ An EKS StatefulSet uses an EBS-backed PV. After a node failure, its replacement 
 
 ## 🔄 Diagram
 
-```text
-Multi-Attach -> Identify old attachment + verify old instance
-                                  |
-                      Can the old node still write?
-                       /                       \
-                    Yes/unknown                 No
-                        |                        |
-              Stop/fence old writer      Normal CSI detach
-                        \                       /
-                    Confirm old attachment released
-                                  |
-                   Attach on eligible same-AZ node
-                                  |
-                    Validate data + application health
+```mermaid
+flowchart TD
+    A["Multi-Attach error"]:::start
+    B["Identify old attachment and instance"]:::inspect
+    C{"Can the old node still write?"}:::decision
+    D["Stop or fence the old writer"]:::caution
+    E["Normal CSI detach"]:::action
+    F["Confirm old attachment released"]:::inspect
+    G["Attach on eligible same-AZ node"]:::action
+    H["✅ Validate data and application health"]:::success
+    A --> B
+    B --> C
+    C -->|"Yes or unknown"| D
+    C -->|"No"| E
+    D --> F
+    E --> F
+    F --> G
+    G --> H
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🔍 Troubleshooting / Reasoning Flow

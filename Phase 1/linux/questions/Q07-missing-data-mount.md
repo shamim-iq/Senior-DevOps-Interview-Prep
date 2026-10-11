@@ -10,14 +10,25 @@ After reboot, /data looks empty and the application creates new files there. The
 
 ## 🔄 Recovery Flow
 
-```text
-Stop writers → identify disk + confirm missing mount
-                         ↓
-Preserve new files outside /data; verify copy
-                         ↓
-Fix mount configuration → mount verified filesystem
-                         ↓
-Reconcile old/new data → validate → restart → prevent recurrence
+```mermaid
+flowchart TD
+    N0["Stop writers"]:::start
+    N1["Identify disk and confirm missing mount"]:::inspect
+    N2["Preserve new files outside /data; verify copy"]:::action
+    N3["Fix configuration; mount verified filesystem"]:::action
+    N4["Reconcile old and new data"]:::action
+    N5["✅ Validate, restart and prevent recurrence"]:::success
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
+    N4 --> N5
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🔍 Essential Commands

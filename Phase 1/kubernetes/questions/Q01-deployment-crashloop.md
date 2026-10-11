@@ -10,18 +10,26 @@ An EKS production API has just received a new application release through Argo C
 
 ## 🔄 Diagram
 
-```text
-Confirm impact + capture quick evidence
-                  |
-       Safe known-good version?
-         /                 \
-       Yes                  No
-        |                    |
- Revert Git + sync    Evidence-based fix
-         \                 /
-          Verify customer recovery
-                     |
-          RCA -> test -> prevent
+```mermaid
+flowchart TD
+    A["🔍 Confirm impact and capture evidence"]:::start
+    B{"Safe known-good version?"}:::decision
+    C["Revert Git and sync"]:::action
+    D["Evidence-based fix"]:::action
+    E["✅ Verify customer recovery"]:::success
+    F["Find root cause, test and prevent recurrence"]:::success
+    A --> B
+    B -->|"Yes"| C
+    B -->|"No"| D
+    C --> E
+    D --> E
+    E --> F
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 📣 Communicate severity and the next update time while mitigating; avoid an unsupported recovery ETA.

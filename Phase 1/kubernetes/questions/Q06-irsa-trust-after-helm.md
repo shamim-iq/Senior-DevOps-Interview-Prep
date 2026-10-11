@@ -10,19 +10,27 @@ An EKS application uses IRSA for S3 reads. After a Helm release, pods are Runnin
 
 ## 🔄 Diagram
 
-```text
-Pod uses ServiceAccount
-           |
-Kubernetes projects a signed JWT
-           |
-SDK -> STS AssumeRoleWithWebIdentity
-           |
-IAM trust matches issuer + subject + audience?
-       /                         \
-      No                         Yes
- AccessDenied          Temporary AWS credentials
-                                  |
-                         S3 authorization check
+```mermaid
+flowchart TD
+    A["Pod uses ServiceAccount"]:::start
+    B["Kubernetes projects signed JWT"]:::inspect
+    C["SDK calls STS<br/>AssumeRoleWithWebIdentity"]:::action
+    D{"Trust matches issuer,<br/>subject and audience?"}:::decision
+    E["AccessDenied"]:::caution
+    F["Temporary AWS credentials"]:::success
+    G["Check S3 authorization"]:::inspect
+    A --> B
+    B --> C
+    C --> D
+    D -->|"No"| E
+    D -->|"Yes"| F
+    F --> G
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🔍 Troubleshooting / Reasoning Flow

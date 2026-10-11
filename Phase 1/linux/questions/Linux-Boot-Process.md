@@ -27,14 +27,17 @@ flowchart TD
     F --> G["⚙️ systemd — process 1<br/>Manage mounts and start required services"]
     G --> H["🌐 Server mode<br/>Networking, SSH and configured applications"]
     H --> I["✅ Check readiness<br/>Verify login, storage and application health"]
-    classDef blue fill:#dbeafe,stroke:#2563eb,color:#172554;
-    classDef purple fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
-    classDef amber fill:#fef3c7,stroke:#d97706,color:#451a03;
-    classDef green fill:#dcfce7,stroke:#16a34a,color:#052e16;
-    class A,B blue;
-    class C,D purple;
-    class E,F amber;
-    class G,H,I green;
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
+    class A,B start;
+    class C,D inspect;
+    class E,F decision;
+    class G,H action;
+    class I success;
 ```
 
 ## 💡 Remember these points

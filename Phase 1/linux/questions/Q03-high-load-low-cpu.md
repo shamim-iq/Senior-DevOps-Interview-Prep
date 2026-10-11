@@ -10,16 +10,31 @@ An API on an 8-vCPU Linux host is slow. Load averages are 18, 16, 12; overall CP
 
 ## 🔄 Flow
 
-```text
-High load + slow API
-         ↓
-Sample runnable tasks / blocked tasks / per-core activity
-         ↓
-CPU pressure? → confirm busy cores and workload constraints
-I/O pressure? → confirm device latency/queues and affected tasks
-Neither?     → examine application/dependency latency and timing
-         ↓
-Targeted mitigation → verify API and bottleneck metrics
+```mermaid
+flowchart TD
+    A["High load and slow API"]:::start
+    B["Sample runnable/blocked tasks<br/>and per-core activity"]:::inspect
+    C{"Which evidence matches?"}:::decision
+    D["CPU pressure: confirm busy cores<br/>and workload constraints"]:::inspect
+    E["I/O pressure: confirm device<br/>latency, queues and affected tasks"]:::inspect
+    F["Neither: inspect application and<br/>dependency latency; compare timing"]:::inspect
+    G["Targeted mitigation"]:::action
+    H["✅ Verify API and bottleneck metrics"]:::success
+    A --> B
+    B --> C
+    C -->|"CPU"| D
+    C -->|"I/O"| E
+    C -->|"Neither"| F
+    D --> G
+    E --> G
+    F --> G
+    G --> H
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🔍 Essential Commands

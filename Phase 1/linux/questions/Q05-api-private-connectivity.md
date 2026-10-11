@@ -10,12 +10,28 @@ localhost:8080/health responds on the Linux API host. A second server cannot rea
 
 ## 🔄 Flow
 
-```text
-Inspect listener address → test private IP locally and remotely
-                                  ↓
-Loopback-only? Fix binding     Network failure? Check rules/routes
-                                  ↓
-             Narrow change → client works + isolation preserved
+```mermaid
+flowchart TD
+    A["Inspect listener address"]:::start
+    B["Test private IP locally and remotely"]:::inspect
+    C{"Evidence points where?"}:::decision
+    D["Loopback-only: fix intended binding"]:::action
+    E["Network path: check rules and routes"]:::inspect
+    F["Apply narrow change"]:::action
+    G["✅ Client works; isolation preserved"]:::success
+    A --> B
+    B --> C
+    C -->|"Listener"| D
+    C -->|"Network"| E
+    D --> F
+    E --> F
+    F --> G
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🔍 Essential Commands

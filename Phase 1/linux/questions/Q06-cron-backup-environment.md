@@ -10,14 +10,23 @@ A backup script works manually but its nightly cron job produces no backup. The 
 
 ## 🔄 Flow
 
-```text
-Correct schedule + daemon running?
-               ↓
-Was the job launched? → inspect script stderr / exit status
-               ↓
-Compare identity + environment + paths + access
-               ↓
-Minimal fix → scheduled run → verify backup + test restore
+```mermaid
+flowchart TD
+    N0["Check schedule and daemon"]:::start
+    N1["Confirm job launch; inspect stderr and exit status"]:::inspect
+    N2["Compare identity, environment, paths and access"]:::action
+    N3["Apply minimal fix"]:::action
+    N4["✅ Verify scheduled run, backup and test restore"]:::success
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🔍 Essential Commands

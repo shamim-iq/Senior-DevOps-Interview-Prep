@@ -10,12 +10,23 @@ TCP 22 is reachable, but an engineer gets Permission denied (publickey). An admi
 
 ## 🔄 Flow
 
-```text
-Keep admin session → client debug + matching server logs
-                              ↓
-Correct user/key? → authorized_keys + permissions + access rules
-                              ↓
-Minimal fix → validate configuration if changed → fresh login test
+```mermaid
+flowchart TD
+    N0["Keep administrator session open"]:::start
+    N1["Compare client debug and server logs"]:::inspect
+    N2["Check user/key, authorized_keys,<br/>permissions and access rules"]:::action
+    N3["Minimal fix; validate configuration if changed"]:::action
+    N4["✅ Test fresh login"]:::success
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🛠️ Essential Checks

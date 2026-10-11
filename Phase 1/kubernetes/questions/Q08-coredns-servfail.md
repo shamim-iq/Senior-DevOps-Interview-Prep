@@ -10,19 +10,26 @@ Several EKS applications intermittently fail to resolve internal Service names. 
 
 ## 🔄 Diagram
 
-```text
-Service IP works, name fails
-             |
-Reproduce query -> correlate DNS logs + metrics
-             |
-      Evidence of saturation?
-       /                 \
-     Yes                 No
-      |                   |
-Add DNS capacity     Inspect Corefile, API access,
-and verify spread    resolver path / recent change
-       \                 /
-        Test DNS + application recovery
+```mermaid
+flowchart TD
+    A["Service IP works; name fails"]:::start
+    B["Reproduce query; correlate DNS logs and metrics"]:::inspect
+    C{"Evidence of saturation?"}:::decision
+    D["Add DNS capacity and verify spread"]:::action
+    E["Inspect Corefile, API access,<br/>resolver path and recent changes"]:::action
+    F["✅ Test DNS and application recovery"]:::success
+    A --> B
+    B --> C
+    C -->|"Yes"| D
+    C -->|"No"| E
+    D --> F
+    E --> F
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🔍 Troubleshooting / Reasoning Flow

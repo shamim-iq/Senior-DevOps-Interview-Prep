@@ -10,14 +10,25 @@ A systemd-managed worker remains running but stops completing jobs. Some jobs ar
 
 ## 🔄 Flow
 
-```text
-Status/logs + process state + measured resource/dependency evidence
-                              ↓
-Record in-flight work → pause intake → controlled stop
-                              ↓
-Confirm old worker exited → reconcile/retry safely → start
-                              ↓
-Verify job completion, queue progress and duplicate/loss checks
+```mermaid
+flowchart TD
+    N0["Inspect status, logs and process state"]:::start
+    N1["Measure resource and dependency evidence"]:::inspect
+    N2["Record in-flight work; pause intake"]:::action
+    N3["Controlled stop; confirm old worker exited"]:::action
+    N4["Reconcile and retry safely; start"]:::action
+    N5["✅ Verify completions, queue progress<br/>and duplicate/loss checks"]:::success
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
+    N4 --> N5
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🔍 Essential Commands

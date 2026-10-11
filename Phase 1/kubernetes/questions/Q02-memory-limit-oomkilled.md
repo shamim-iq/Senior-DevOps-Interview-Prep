@@ -10,19 +10,26 @@ An EKS API container repeatedly restarts during peak traffic. Its last terminati
 
 ## 🔄 Diagram
 
-```text
-OOMKilled + usage near 512Mi + node has headroom
-                         |
-             Container limit is the constraint
-                         |
-          Legitimate demand or application growth?
-              /                        \
-     Demand tracks load          Leak / regression suspected
-             |                           |
-  Bounded limit increase;       Roll back if safe; investigate
-  check capacity first          allocation / cache / concurrency
-              \                        /
-           Controlled rollout -> peak-load validation
+```mermaid
+flowchart TD
+    A["OOMKilled; usage near 512Mi<br/>Node has headroom"]:::start
+    B["Container limit is the constraint"]:::inspect
+    C{"Demand or abnormal growth?"}:::decision
+    D["Load-related demand<br/>Check capacity; bounded limit increase"]:::action
+    E["Suspected leak or regression<br/>Safe rollback; investigate allocations,<br/>cache and concurrency"]:::caution
+    F["✅ Controlled rollout and peak-load validation"]:::success
+    A --> B
+    B --> C
+    C -->|"Demand"| D
+    C -->|"Abnormal growth"| E
+    D --> F
+    E --> F
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🔍 Troubleshooting / Reasoning Flow

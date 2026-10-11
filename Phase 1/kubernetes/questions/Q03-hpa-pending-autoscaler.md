@@ -10,19 +10,27 @@ During peak traffic, an EKS API's CPU-based HPA raises desired replicas from 4 t
 
 ## 🔄 Diagram
 
-```text
-HPA increases replicas -> Scheduler cannot fit requests
-                                      |
-                     Can a suitable node group grow?
-                       /                       \
-                     No                        Yes
-                      |                         |
-           Check max size / pod fit     Was a launch requested?
-           / discovery / permissions      /              \
-                                        No               Yes
-                                         |                |
-                                    CA logs         AWS activity,
-                                    and health      launch / node join
+```mermaid
+flowchart TD
+    A["HPA increases replicas"]:::start
+    B["Scheduler cannot fit requests"]:::inspect
+    C{"Can a suitable node group grow?"}:::decision
+    D["Check max size, pod fit,<br/>discovery and permissions"]:::action
+    E{"Was a launch requested?"}:::decision
+    F["Inspect CA logs and health"]:::action
+    G["Inspect AWS activity,<br/>launch and node join"]:::action
+    A --> B
+    B --> C
+    C -->|"No"| D
+    C -->|"Yes"| E
+    E -->|"No"| F
+    E -->|"Yes"| G
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef inspect fill:#ede9fe,stroke:#7c3aed,color:#2e1065;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#451a03;
+    classDef action fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef success fill:#dcfce7,stroke:#16a34a,color:#052e16;
+    classDef caution fill:#ffe4e6,stroke:#e11d48,color:#4c0519;
 ```
 
 ## 🔍 Troubleshooting / Reasoning Flow
