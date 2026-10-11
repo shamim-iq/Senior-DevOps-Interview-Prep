@@ -1,6 +1,6 @@
 # Linux Interview Progress
 
-**Active topic: Phase 1 / Linux.** Kubernetes is paused by request; its Q11 remains pending in its own progress file.
+**Paused while RAG is active, at the user's request on 2026-10-11.** Linux Q11 remains pending below. Kubernetes also remains paused.
 
 | Metric | Current status |
 | --- | --- |

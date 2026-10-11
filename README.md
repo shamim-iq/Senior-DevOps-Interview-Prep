@@ -21,11 +21,11 @@ Within each topic:
 - [ ] CI/CD pipelines
 - [ ] Terraform
 - [ ] Observability
-- [ ] [Linux / Networking](Phase%201/linux/Progress.md) — first 10 questions reviewed; Q11 pending.
+- [ ] [Linux / Networking](Phase%201/linux/Progress.md) — paused; Q11 pending.
 - [ ] Python
-- [ ] RAG
-- [ ] MCP
-- [ ] Amazon Bedrock
+- [ ] [RAG](Phase%201/rag/Progress.md) — active; Q01 pending.
+- [ ] [MCP](Phase%201/mcp/Progress.md) — cross-topic assessment through RAG; standalone practice later.
+- [ ] [Amazon Bedrock](Phase%201/bedrock/Progress.md) — assessed alongside RAG; standalone practice later.
 
 Each topic keeps its own coverage, scores and revision checklist in `Phase N/<topic>/Progress.md`. Completed assessments show ✅; remaining aspects stay unchecked. A topic is complete only after its agreed coverage and revision work are finished. Future phases are not yet scoped, so no overall completion percentage is assigned.
 
