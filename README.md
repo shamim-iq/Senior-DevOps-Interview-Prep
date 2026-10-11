@@ -20,7 +20,7 @@ Within each topic:
 - [ ] Azure
 - [ ] Terraform
 - [ ] Observability
-- [ ] [Linux / Networking](Phase%201/linux/Progress.md) — active; Linux Q10 pending.
+- [ ] [Linux / Networking](Phase%201/linux/Progress.md) — first 10 questions reviewed; Q11 pending.
 - [ ] Python
 - [ ] RAG
 - [ ] MCP

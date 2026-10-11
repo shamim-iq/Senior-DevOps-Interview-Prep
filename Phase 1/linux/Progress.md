@@ -4,19 +4,19 @@
 
 | Metric | Current status |
 | --- | --- |
-| Questions Attempted | 9 / 10 in the first cycle |
-| Average Score | 6.39/10 — 57.5 / 9; historical scores unchanged |
-| Average Acceptance Probability | 58.33% — subjective answer-specific estimates, not hiring probability |
-| Topic Coverage | 12 / 15 aspects assessed (80%); scripting remains deferred |
+| Questions Attempted | 10 / 10 — first cycle complete |
+| Average Score | 6.45/10 — 64.5 / 10; historical scores unchanged |
+| Average Acceptance Probability | 59.5% — subjective answer-specific estimates, not hiring probability |
+| Topic Coverage | 13 / 15 aspects assessed (86.7%); scripting remains deferred |
 | Current Strengths | Inode awareness, cautious deletion, least-privilege intent and path-permission investigation |
 | Current Weaknesses | df/du and load-state interpretation, latency versus capacity, precise access scope and recovery validation |
 | Readiness Trend | Useful diagnostic starting points; narrow mitigation, precise evidence interpretation and recovery validation remain recurring gaps. Overall readiness not established |
 
 ## Active Question
 
-Q10 — Log rotation and evidence preservation; awaiting an answer.
+First-cycle review completed in Feedback.md. Q11 — Host patching and safe recovery; pending for the next practice turn.
 
-A Linux API's application log keeps growing to several gigabytes despite a daily logrotate configuration. After rotation, the new log stays empty while the renamed old file continues growing. A teammate suggests truncating all logs every hour. How would you diagnose and fix rotation while preserving useful incident evidence, and verify that the fix works? Include essential Linux commands; no scripting required.
+Two Linux servers behind a load balancer run a production API. A kernel security update requires a reboot. A teammate suggests upgrading and rebooting both immediately. How would you prepare, patch and reboot safely, preserve a recovery path, and verify success before proceeding to the second host? Include essential Linux checks; no scripting required.
 
 The unanswered shell-pipeline Q08 was replaced at the user's request on 2026-10-10. No attempt or score was recorded for it. Keep current questions focused on Linux administration and troubleshooting; defer shell scripting until the user asks to resume it. Diagnostic Linux commands remain in scope.
 
@@ -37,7 +37,7 @@ The unanswered shell-pipeline Q08 was replaced at the user's request on 2026-10-
 - [x] ✅ Mounts, filesystem recovery and persistent configuration — Q07; preservation, recovery and persistent mount safeguards need retesting.
 - [ ] Shell scripting, pipelines, exit status and safe automation.
 - [x] ✅ Scheduled jobs, cron/systemd timers and execution environments — Q06 cron assessed; environment differences need retesting, timers remain for later sampling.
-- [ ] Log management, rotation and evidence preservation.
+- [x] ✅ Log management, rotation and evidence preservation — Q10; open-file reasoning correct, safe reopening and validation need retesting.
 - [ ] Host hardening, patching and operational recovery validation.
 
 ## Practice Strategy
@@ -52,7 +52,7 @@ The unanswered shell-pipeline Q08 was replaced at the user's request on 2026-10-
 
 ## Revision and Readiness
 
-- [ ] Complete the first 10 evaluated questions and consolidated review.
+- [x] ✅ Complete the first 10 evaluated questions and consolidated review — Q01–Q10, 2026-10-11; see Feedback.md.
 - [ ] Assess all planned Linux aspects.
 - [ ] Retest recorded weaknesses independently.
 - [ ] Demonstrate safe diagnosis, recovery and validation across varied scenarios.
@@ -70,8 +70,17 @@ The unanswered shell-pipeline Q08 was replaced at the user's request on 2026-10-
 | Q07 | 2026-10-10 | 6/10 | 55% | [Missing /data Mount](questions/Q07-missing-data-mount.md) |
 | Q08 | 2026-10-10 | 7/10 | 65% | [Stalled Worker / Signals](questions/Q08-stalled-worker-signals.md) |
 | Q09 | 2026-10-10 | 6.5/10 | 60% | [SSH Public-Key Access](questions/Q09-ssh-publickey-access.md) |
+| Q10 | 2026-10-11 | 7/10 | 70% | [Log Rotation / Open File](questions/Q10-logrotate-open-file.md) |
+
+Supplementary boot-process explanation: 8/10 conversational understanding check after reading the guide (2026-10-11); excluded from numbered attempts and averages.
+
+## Next-Cycle Strategy
+
+Cover host hardening/patching first, then alternate fresh DNS/ACL/sudo/timer scenarios with the retest queue. Checked broad areas still contain untested subtopics. Keep scripting deferred. Reassess after each answer and at the next ten-question checkpoint; coverage alone does not establish readiness.
 
 ## Retest Queue
+
+- Q10: confirm open log descriptors, use supported reopen/rotation configuration and demonstrate successful writes through a subsequent rotation.
 
 - Q09: demonstrate client-owned key recovery, account/key permissions, safe configuration validation and fresh-session verification.
 

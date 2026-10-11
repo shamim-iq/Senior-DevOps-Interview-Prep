@@ -1,5 +1,38 @@
 # Linux Interview Feedback
 
+## Q10 — Log Rotation / Open File — 2026-10-11
+
+**Score: 7/10.** Subjective answer-specific acceptance estimate: 70%, not hiring probability. Four-year baseline; previous scores unchanged.
+
+✅ Correct open-file-descriptor diagnosis, clear need for log reopening and preservation of incident evidence.
+
+| Dimension | Assessment |
+| --- | --- |
+| Technical accuracy | Central cause correct; rotation does not redirect an open descriptor |
+| Coverage | Need lsof/config evidence, safe reopen mechanism and recovery verification |
+| Interview representation | Clear connection between symptom and cause |
+| Conciseness | Good; no brevity penalty |
+| Troubleshooting | ls shows files/sizes, not the process's open target |
+| Operational reasoning | Preserve logs while managing disk growth; verify recurring rotation works |
+
+Deductions: 1 diagnostic confirmation, 1 actionable mitigation/prevention, 1 verification. No advanced-tool requirement.
+
+## First-Cycle Review — Q01–Q10 — 2026-10-11
+
+**10 completed; total 64.5/100, average 6.45/10.** Historical Q01 remains 4.5; Q02 onward uses the clarified four-year baseline. Comparisons across different scenarios and scoring calibration are descriptive, not proof of improvement. Subjective answer-estimate average is 59.5%; it is not an interview-pass probability.
+
+- **Demonstrated strengths:** cautious handling of deletion/root access/signals (Q01/Q02/Q08/Q09); practical status/log/resource tools (Q02–Q05/Q08/Q09); correct missing-mount hypothesis (Q07); clear open-file rotation explanation (Q10).
+- **Developing areas:** turning a plausible cause into verified evidence, interpreting metrics precisely, narrowing permissions and completing the recovery sequence.
+- **Priority gaps:** host versus service-limit OOM (Q04), private connectivity and source-scoped rules (Q05), cron environment (Q06), preserving both datasets during mount recovery (Q07), partial-job recovery (Q08), client-owned SSH key recovery (Q09).
+- **Recurring omission:** observable verification. Finish with the exact operation that previously failed, expected evidence and a recurrence check; avoid adding unrelated command lists.
+- **Communication:** clear explanations and useful safety instincts. Replace absolute claims with the condition under which an action is appropriate; spend less time on generic production warnings and more on evidence and the safe fix.
+- **Coverage:** 13/15 broad aspects assessed, not mastered. Host hardening/patching remains unchecked; scripting is explicitly deferred. DNS, ACLs, sudo, timers and some subtopics within checked groups still require deeper sampling.
+- **Readiness:** a useful four-year Linux foundation, but independent incident recovery is not yet consistently complete. More targeted practice is warranted; no company-specific hiring prediction is justified.
+
+Next stage: one host-patching scenario, then alternate untested subtopics with fresh retests from this queue. Keep Linux administration active and scripting deferred. No more than two consecutive scenarios on the same aspect. Judge improvement on independent answers, not repetition of a supplied solution.
+
+Supplementary history: the boot-process explanation received conversational feedback of 8/10 on 2026-10-11 after studying the guide. It is an assisted understanding check, not a numbered incident attempt, and is excluded from the ten-question average.
+
 ## Q09 — SSH Public-Key Access — 2026-10-10
 
 **Score: 6.5/10.** Subjective answer-specific acceptance estimate: 60%, not hiring probability. Four-year baseline; previous scores unchanged.
