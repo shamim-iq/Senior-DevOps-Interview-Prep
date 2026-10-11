@@ -74,26 +74,19 @@ No deployment commands executed. Confirm the actual CLI command/API, sync trigge
 
 ## 💻 Asking a Question from Windows CMD
 
-**Direct Knowledge Base option:** With AWS CLI v2 installed, an authorized AWS profile and successfully ingested documents, run this in **CMD**. Replace the profile, region, Knowledge Base ID and generation-model/inference-profile ARN with your configured values; the model must be supported for your region and KB retrieval/generation setup.
+With AWS CLI v2 authenticated, Bedrock permissions granted and documents synced, query the KB directly. Replace `KB_ID` and `MODEL_ARN` with your KB ID and supported **generation model/inference-profile ARN**; use your configured AWS region/profile.
 
 ```bat
-set "AWS_PROFILE=my-work-profile"
-set "AWS_REGION=us-east-1"
-set "KB_ID=YOUR_KB_ID"
-set "MODEL_ARN=YOUR_GENERATION_MODEL_OR_INFERENCE_PROFILE_ARN"
-
 aws bedrock-agent-runtime retrieve-and-generate ^
   --input "text=How do I restart the payments service safely?" ^
-  --retrieve-and-generate-configuration "type=KNOWLEDGE_BASE,knowledgeBaseConfiguration={knowledgeBaseId=%KB_ID%,modelArn=%MODEL_ARN%}" ^
+  --retrieve-and-generate-configuration "type=KNOWLEDGE_BASE,knowledgeBaseConfiguration={knowledgeBaseId=KB_ID,modelArn=MODEL_ARN}" ^
   --query "output.text" --output text --no-cli-pager
 ```
 
-- 🔑 For a company SSO profile, first run `aws sso login --profile my-work-profile`. The caller needs the required Bedrock permissions; configuring the KB alone does not authorize every user.
-- 💬 This command retrieves document context and generates the answer in CMD. `MODEL_ARN` identifies the **answer model**, not Titan embeddings. Remove `--query "output.text" --output text` to inspect the full response, including citations. Keep `^` as the last character on each continued CMD line.
-- 🤖 **For your Agent-based scenario:** A realistic company command is `python ask_agent.py "How do I restart the payments service safely?"`. This is a **custom client to implement**, not a built-in AWS command or a verified part of your deployment. It uses the AWS SDK's `invoke_agent` with your agent ID, deployed alias ID, session ID and prompt, then decodes and prints the response stream. The agent must have the KB associated and permission to retrieve from it; the caller needs `bedrock:InvokeAgent`. AWS CLI does not support this streaming Agent operation.
-- 🖥️ **Without a local client:** Use the Bedrock console's Knowledge Base or Agent test panel. The direct command above calls the KB, bypassing Agent orchestration; use the Agent client when testing your actual agent behavior.
+- 🤖 **Your Agent setup:** A custom command such as `python ask_agent.py "Your question"` calls SDK `invoke_agent` with the agent/alias IDs and session ID, then prints the response. This requires a client script; it is not a built-in AWS CLI command.
+- 🖥️ **Alternative:** Ask through the Bedrock console's KB or Agent test panel.
 
-References: [AWS CLI RetrieveAndGenerate](https://docs.aws.amazon.com/cli/latest/reference/bedrock-agent-runtime/retrieve-and-generate.html), [invoking an Agent with the SDK](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-invoke-agent.html). Examples are illustrative and have not been executed against your AWS account.
+[AWS CLI reference](https://docs.aws.amazon.com/cli/latest/reference/bedrock-agent-runtime/retrieve-and-generate.html) · [Agent SDK reference](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-invoke-agent.html). Illustrative examples, not executed.
 
 ## Attempt — 2026-10-11
 
