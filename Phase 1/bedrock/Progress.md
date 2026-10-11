@@ -5,10 +5,10 @@
 | Metric | Status |
 | --- | --- |
 | Completed standalone questions | 0 |
-| Evaluated cross-topic references | 0 |
-| Average score | N/A — no evaluated evidence |
-| Readiness | Unassessed |
-| Coverage | 0 / 10 aspects assessed |
+| Evaluated cross-topic references | 1 — RAG Q01 |
+| Average score | Standalone: N/A; cross-topic Bedrock subscore: 6/10 |
+| Readiness | Initial evidence only; service-role and operational precision need retesting |
+| Coverage | 2 / 10 aspects assessed (20%) |
 
 ## Current Position
 
@@ -18,8 +18,8 @@ Review relevant RAG attempts as they are evaluated. Do not pre-credit planned ov
 
 Checked means substantively assessed, not mastered. Explanations alone do not earn a checkmark.
 
-- [ ] Knowledge Bases, data sources and ingestion/sync
-- [ ] Titan embeddings and OpenSearch vector-store integration
+- [x] ✅ Knowledge Bases, data sources and ingestion/sync — RAG Q01; sync trigger unverified.
+- [x] ✅ Titan embeddings and OpenSearch vector-store integration — RAG Q01; responsibility boundary needs correction, index details remain.
 - [ ] Retrieval and generation APIs and response citations
 - [ ] Claude/model choice, inference settings and limits
 - [ ] Agents, orchestration and action groups
@@ -33,7 +33,7 @@ Checked means substantively assessed, not mastered. Explanations alone do not ea
 
 | Source question | Assessed aspect | Topic-specific result | Gaps / retest |
 | --- | --- | --- | --- |
-| None yet | — | — | — |
+| [RAG Q01](../rag/questions/Q01-bedrock-rag-project.md) | S3 ingestion, Titan/OpenSearch, retrieval/generation role distinction | Bedrock subscore 6/10; 0 standalone attempts | Verify sync trigger/store type; clarify Agent route and Haiku's role |
 
 - Keep the canonical scenario, answer and overall score in the topic where the question was asked.
 - After a RAG answer, link its saved question from MCP/Bedrock only where those concepts were substantively attempted and evaluated. Use relative links such as `../rag/questions/Q01-<name>.md` once the file exists.
@@ -50,6 +50,9 @@ Checked means substantively assessed, not mastered. Explanations alone do not ea
 - Commit evaluated progress locally; push only when explicitly requested.
 
 ## Revision
+
+- [ ] RAG Q01: verify sync mechanism, actual runtime API and serverless access/index responsibilities.
+- [ ] RAG Q01: independently explain embedding, retrieval and response-generation services. Agent mention alone does not complete orchestration coverage.
 
 - [ ] Complete initial assessment coverage.
 - [ ] Retest demonstrated weaknesses independently.

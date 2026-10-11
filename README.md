@@ -23,7 +23,7 @@ Within each topic:
 - [ ] Observability
 - [ ] [Linux / Networking](Phase%201/linux/Progress.md) — paused; Q11 pending.
 - [ ] Python
-- [ ] [RAG](Phase%201/rag/Progress.md) — active; Q01 pending.
+- [ ] [RAG](Phase%201/rag/Progress.md) — active; Q02 pending.
 - [ ] [MCP](Phase%201/mcp/Progress.md) — cross-topic assessment through RAG; standalone practice later.
 - [ ] [Amazon Bedrock](Phase%201/bedrock/Progress.md) — assessed alongside RAG; standalone practice later.
 
