@@ -31,6 +31,6 @@ Each topic keeps its own coverage, scores and revision checklist in `Phase N/<to
 
 All topics use scored questions, saved answers, feedback, coverage tracking and weakness retests. Python also includes coding exercises covering scripting, files, JSON/YAML, APIs, subprocesses, error handling, logging and testing.
 
-CI/CD questions cover pipeline design, triggers, build/test stages, artifacts, credentials, security checks, environment promotion, approvals, deployment, rollback and troubleshooting. Prioritize the user's primary pipeline platform; Jenkins is secondary. Confirm whether "data ops" means Azure DevOps or data-processing pipelines before platform-specific practice. Evaluate answers using the same four-year baseline, topic-specific scores, feedback, coverage checklist and retests as other topics.
+CI/CD questions prioritize GitHub Actions, with Jenkins secondary. Cover workflows, triggers, jobs and runners, build/test stages, artifacts, secrets and OIDC, reusable workflows, security checks, environment approvals, deployment, rollback and troubleshooting. Evaluate answers using the same four-year baseline, topic-specific scores, feedback, coverage checklist and retests as other topics.
 
 The local `Interviews/` directory is the repository root. Keep commits on `main`; push only when explicitly requested.
