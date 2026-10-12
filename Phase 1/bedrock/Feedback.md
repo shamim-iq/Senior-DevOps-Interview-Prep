@@ -17,3 +17,7 @@ Deductions: 1.5 retrieval/generation service roles; 1 sync precision; 1 serverle
 Record strengths, essential corrections, optional coaching, explained scores and retests after each substantive attempt. Preserve previous evaluations. For cross-topic evidence, link the canonical question and evaluate only this topic's demonstrated concepts; do not duplicate the whole answer or its overall score.
 
 Consolidate after each ten standalone questions, or during the RAG checkpoint for cross-topic evidence. Do not infer hiring probability or readiness from coverage alone.
+
+## Partial Cross-Topic Evidence - RAG Q02 - 2026-10-12
+
+[Canonical question](../rag/questions/Q02-chunking-retrieval-quality.md): useful chunking/overlap and parent-child reasoning. Bedrock configuration, re-ingestion and API inspection were not demonstrated. No separate subscore, standalone attempt or new coverage credit. Q01 subscore remains 6/10.

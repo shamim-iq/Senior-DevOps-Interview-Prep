@@ -5,7 +5,7 @@
 | Metric | Status |
 | --- | --- |
 | Completed standalone questions | 0 |
-| Evaluated cross-topic references | 1 — RAG Q01 |
+| Evaluated cross-topic references | 2 - RAG Q01 scored; RAG Q02 partial, unscored |
 | Average score | Standalone: N/A; cross-topic Bedrock subscore: 6/10 |
 | Readiness | Initial evidence only; service-role and operational precision need retesting |
 | Coverage | 2 / 10 aspects assessed (20%) |
@@ -34,6 +34,7 @@ Checked means substantively assessed, not mastered. Explanations alone do not ea
 | Source question | Assessed aspect | Topic-specific result | Gaps / retest |
 | --- | --- | --- | --- |
 | [RAG Q01](../rag/questions/Q01-bedrock-rag-project.md) | S3 ingestion, Titan/OpenSearch, retrieval/generation role distinction | Bedrock subscore 6/10; 0 standalone attempts | Verify sync trigger/store type; clarify Agent route and Haiku's role |
+| [RAG Q02](../rag/questions/Q02-chunking-retrieval-quality.md) | Chunking approaches in a KB scenario | Partial evidence; no numeric subscore or new coverage check | Demonstrate configuration, re-ingestion and retrieval inspection |
 
 - Keep the canonical scenario, answer and overall score in the topic where the question was asked.
 - After a RAG answer, link its saved question from MCP/Bedrock only where those concepts were substantively attempted and evaluated. Use relative links such as `../rag/questions/Q01-<name>.md` once the file exists.
