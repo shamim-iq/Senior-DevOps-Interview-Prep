@@ -1,6 +1,6 @@
 # RAG Interview Progress
 
-**Active topic: Phase 1 / RAG.** Linux is paused with Q11 preserved; Kubernetes remains paused.
+**Paused on 2026-10-15 at the user's request.** Q03 is preserved below. Active topic: Phase 1 / Terraform, a 20-question track. Linux and Kubernetes remain paused.
 
 | Metric | Status |
 | --- | --- |

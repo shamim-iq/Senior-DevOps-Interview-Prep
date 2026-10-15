@@ -19,11 +19,11 @@ Within each topic:
 - [ ] AWS
 - [ ] Azure
 - [ ] CI/CD pipelines
-- [ ] Terraform
+- [ ] [Terraform](Phase%201/terraform/Progress.md) — active; 20-question track; Q01 pending.
 - [ ] Observability
 - [ ] [Linux / Networking](Phase%201/linux/Progress.md) — paused; Q11 pending.
 - [ ] Python
-- [ ] [RAG](Phase%201/rag/Progress.md) — active; Q03 pending.
+- [ ] [RAG](Phase%201/rag/Progress.md) — paused; Q03 preserved.
 - [ ] [MCP](Phase%201/mcp/Progress.md) — cross-topic assessment through RAG; standalone practice later.
 - [ ] [Amazon Bedrock](Phase%201/bedrock/Progress.md) — assessed alongside RAG; standalone practice later.
 
