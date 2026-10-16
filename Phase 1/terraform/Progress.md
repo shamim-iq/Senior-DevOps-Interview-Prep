@@ -16,8 +16,8 @@
 | Metric | Status |
 | --- | --- |
 | Evaluated questions | 1 / 20 |
-| Average score | 6/10 |
-| Individual verdicts | Q01: caution sound; diagnosis/lifecycle need revision |
+| Average score | Latest per-question: 8/10 (Q01 revised after feedback); original attempts: 6/10 |
+| Individual verdicts | Q01 revised: sound approach; diagnostic specificity and verification remain |
 | Final verdict | Pending Q20 |
 | Coverage | 1 / 12 aspects assessed |
 
@@ -48,7 +48,9 @@ Checked means substantively assessed, not mastered. Link evidence after each eva
 
 | Question | Assessed aspects | Score | Verdict | Revision |
 | --- | --- | --- | --- | --- |
-| [Q01](questions/Q01-unexpected-database-replacement.md) | Plan safety and lifecycle; CI approval discussed | 6/10 | Good caution; incorrect lifecycle fix | Diagnose replacement; ignore_changes; verify result |
+| [Q01](questions/Q01-unexpected-database-replacement.md) | Plan safety and lifecycle; CI approval discussed | Original 6/10; revised 8/10 (2026-10-17) | Revised after feedback: sound approach | Exact replacement evidence; saved plan; verify result |
+
+Q01 reassessment is a revision of the same question, not a new numbered question or independent retest. Latest-score average uses 8/10; original baseline remains 6/10. Coverage and 1/20 completion are unchanged.
 
 ## Revision and Final Assessment
 
