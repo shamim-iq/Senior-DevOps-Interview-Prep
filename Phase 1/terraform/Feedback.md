@@ -1,6 +1,6 @@
 # Terraform Interview Feedback
 
-Eight questions evaluated; original-attempt average 6.44/10; latest per-question average 7.13/10 (includes Q01 and Q04 revisions after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
+Nine questions evaluated; original-attempt average 6.39/10; latest per-question average 7.00/10 (includes Q01 and Q04 revisions after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
 
 Record each individual verdict, score, strengths, explained deductions and revision needs after the answer. Consolidate after Q10 and deliver the final evidence-based verdict after Q20. Preserve scores and history. See Progress.md for the assessment agreement and pending question.
 
@@ -90,3 +90,9 @@ Credit: parameterization, environment segregation, OIDC, Python policy checking 
 [Canonical answer](questions/Q08-provider-alias-module-region.md). **6.5/10; subjective acceptance estimate 60%, not hiring probability.**
 
 Credit: regional configurations, aliases, plan review and CI gates. Deductions: 1.5 missing module provider mapping/inheritance; 1 concrete effective account/region verification; 1 existing-resource protection/migration. No code omission or repeated-gates penalty. Q09 independently retests Q02's untracked-resource recovery gap.
+
+## Q09 — Import an Existing S3 Bucket — 2026-10-17
+
+[Canonical answer](questions/Q09-import-existing-s3-bucket.md). **6/10; subjective answer-specific acceptance estimate 55%, not hiring probability.**
+
+Credit: correct missing-state diagnosis, import over deletion, preserving application data, follow-up plan and controlled CI. Q02 preservation reasoning improved in this independent retest. Deductions: 1.5 replacing the resource block; 1.5 refresh-only cannot perform the import; 1 combined unsupported no-drift assumption and missing exact-object verification. No duplicate syntax penalty. Retest import execution and mapping evidence; Q10 covers provider locks/reproducibility, followed by the interim consolidation.
