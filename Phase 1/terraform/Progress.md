@@ -15,17 +15,17 @@
 
 | Metric | Status |
 | --- | --- |
-| Evaluated questions | 4 / 20 |
-| Average score | Latest per-question: 7.625/10 ((8 + 7 + 7.5 + 8) / 4); original attempts: 6.25/10 ((6 + 7 + 7.5 + 4.5) / 4) |
-| Individual verdicts | Q01 revised: sound; Q02: recovery gaps; Q03: version/isolation gaps; Q04 revised: core concepts sound; replacement/verification gaps |
+| Evaluated questions | 5 / 20 |
+| Average score | Latest per-question: 7.6/10 ((8 + 7 + 7.5 + 8 + 7.5) / 5); original attempts: 6.5/10 ((6 + 7 + 7.5 + 4.5 + 7.5) / 5) |
+| Individual verdicts | Q01 revised: sound; Q02: recovery gaps; Q03: version/isolation gaps; Q04 revised: core concepts sound; Q05: state/code sound, access-validation gaps |
 | Final verdict | Pending Q20 |
-| Coverage | 9 / 12 aspects assessed |
+| Coverage | 10 / 12 aspects assessed |
 
 ## Current Position
 
-Q05 — Emergency change outside Terraform; awaiting an answer.
+Q06 — Dependencies and values known after apply; awaiting an answer.
 
-During a production incident, an engineer manually changes a security-group rule to restore application connectivity. The next Terraform plan proposes reverting that rule, but the application still needs the access. How would you investigate, decide the correct desired configuration and reconcile the change safely without keeping unnecessary access?
+A configuration creates a VPC, subnets and EC2 instances. On a clean environment, instance creation fails because the expected network dependency is not ready. A teammate proposes adding depends_on to every resource and using targeted applies in a fixed sequence. How would you investigate the dependency graph, connect resources correctly and decide when an explicit dependency is actually needed?
 
 ## Coverage Checklist
 
@@ -33,7 +33,7 @@ Checked means substantively assessed, not mastered. Link evidence after each eva
 
 - [x] ✅ Plan interpretation, resource lifecycle and safe changes — Q01; lifecycle semantics and diagnosis need retesting.
 - [x] ✅ State, remote backends, locking and recovery — Q02; stale-lock verification needs retest.
-- [ ] Drift and changes made outside Terraform
+- [x] ✅ Drift and changes made outside Terraform — Q05; least-privilege investigation and verification need retest.
 - [x] ✅ Import and adoption of existing infrastructure — Q02 recovery decision assessed; import was missed, so revision remains.
 - [x] ✅ Refactoring, resource addresses and moved blocks — Q04 revised: mapping understood; independent retest required.
 - [x] ✅ Modules, interfaces and versioning — Q03; pinning needs retest; output/interface depth remains.
@@ -52,8 +52,9 @@ Checked means substantively assessed, not mastered. Link evidence after each eva
 | [Q02](questions/Q02-state-lock-interrupted-pipeline.md) | Locking, partial recovery, untracked resources and CI | 7/10 | Good reasoning; recovery safeguards need refinement | Prove stale lock; import; concurrency |
 | [Q03](questions/Q03-modules-environment-isolation.md) | Modules, provider versions, environment isolation and secrets | 7.5/10 | Sound design; version/isolation gaps | Pin modules; lock providers; scope backend/roles |
 | [Q04](questions/Q04-count-stable-resource-identity.md) | Count identity and safe refactoring | Original 4.5/10; revised 8/10 (2026-10-17) | Core identity/migration corrected after feedback | Tag updates; mapping validation; independent retest |
+| [Q05](questions/Q05-emergency-security-group-drift.md) | Drift, desired configuration and emergency access | 7.5/10 | Correct state/code distinction | Minimum access; optional refresh; verify traffic |
 
-Q01 and Q04 reassessments revise the same questions after feedback; neither is a new numbered question or independent retest. Latest-score average: (8 + 7 + 7.5 + 8) / 4 = 7.625/10. Original-attempt average: (6 + 7 + 7.5 + 4.5) / 4 = 6.25/10. Coverage means assessed, not mastered; untested subtopics and independent retests remain pending.
+Q01 and Q04 reassessments revise the same questions after feedback; neither is a new numbered question or independent retest. Latest-score average: (8 + 7 + 7.5 + 8 + 7.5) / 5 = 7.6/10. Original-attempt average: (6 + 7 + 7.5 + 4.5 + 7.5) / 5 = 6.5/10. Coverage means assessed, not mastered; untested subtopics and independent retests remain pending.
 
 ## Revision and Final Assessment
 
@@ -61,6 +62,7 @@ Q01 and Q04 reassessments revise the same questions after feedback; neither is a
 - [ ] Q02: verify stale lock, preserve/import untracked resources and enforce CI concurrency.
 - [ ] Q03: pin module revisions, distinguish provider locks, and enforce backend/role isolation.
 - [ ] Q04: retest index shifting, stable keys and address migration with actual instance IDs.
+- [ ] Q05: investigate and minimize emergency access; explain optional refresh-only; verify allowed/denied traffic.
 - [ ] Complete 20 evaluated attempts.
 - [ ] Consolidate evidence after Q10.
 - [ ] Retest demonstrated weaknesses within the agreed 20 questions.

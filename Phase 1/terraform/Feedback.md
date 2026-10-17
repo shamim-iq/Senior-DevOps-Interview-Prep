@@ -1,6 +1,6 @@
 # Terraform Interview Feedback
 
-Four questions evaluated; original-attempt average 6.25/10; latest per-question average 7.625/10 (includes Q01 and Q04 revisions after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
+Five questions evaluated; original-attempt average 6.5/10; latest per-question average 7.6/10 (includes Q01 and Q04 revisions after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
 
 Record each individual verdict, score, strengths, explained deductions and revision needs after the answer. Consolidate after Q10 and deliver the final evidence-based verdict after Q20. Preserve scores and history. See Progress.md for the assessment agreement and pending question.
 
@@ -66,3 +66,9 @@ moved {
 ```
 
 [AWS: tags on existing EC2 resources](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags_Console.html) · [HashiCorp: address migration](https://developer.hashicorp.com/terraform/language/modules/develop/refactoring).
+
+## Q05 — Emergency Security-Group Drift — 2026-10-17
+
+[Canonical answer](questions/Q05-emergency-security-group-drift.md). **7.5/10; subjective acceptance estimate 70%, not hiring probability.**
+
+Credit: correct state/code distinction, required configuration update, plan review and controlled emergency exception. Deductions: 1.5 exact rule/incident and minimum-access decision missing; 0.5 unnecessary refresh-only prerequisite; 0.5 post-change access tests missing. No additional penalty for admin terminology or repeating command names. Next Q06 covers dependency reasoning; retest minimum-access decisions later.
