@@ -1,6 +1,6 @@
 # Terraform Interview Feedback
 
-One question evaluated; original-attempt average 6/10; latest revised-answer average 8/10 (after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
+Two questions evaluated; original-attempt average 6.5/10; latest per-question average 7.5/10 (includes Q01 revision after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
 
 Record each individual verdict, score, strengths, explained deductions and revision needs after the answer. Consolidate after Q10 and deliver the final evidence-based verdict after Q20. Preserve scores and history. See Progress.md for the assessment agreement and pending question.
 
@@ -25,3 +25,9 @@ Deductions: 2 lifecycle misconception/unsupported certainty; 1.5 missing root-ca
 **Remaining deductions:** 1 point for keeping the diagnosis generic rather than identifying the exact replacement attribute/address and tracing its input; 0.5 for not explicitly ensuring apply uses the reviewed saved plan; 0.5 for omitting verification of database identity/health and the actual tag after apply.
 
 **Clarification:** `prevent_destroy = true` rejects a destructive plan; it does not convert replacement into an in-place update. It requires the rule to remain in configuration and does not protect against deletion outside Terraform. Independently retest later to confirm retention.
+
+## Q02 — State Lock and Interrupted Apply — 2026-10-17
+
+[Canonical answer](questions/Q02-state-lock-interrupted-pipeline.md). **7/10; subjective answer-specific acceptance 65%, not hiring probability.**
+
+Credit: waits for active owner, rejects lock bypass, understands partial apply and reconciliation, knows S3 locking and refresh-only. Deductions: 1 stale-lock/no-writer proof missing; 1 deletion-first recovery without import; 0.5 CI concurrency prevention missing; 0.5 admin-only and complete-CloudTrail claims. User qualified deletion as safe; no indiscriminate-deletion penalty. Retest stale-lock evidence, import and concurrency. Next Q03 rotates to modules/environment management; no new question answered yet.

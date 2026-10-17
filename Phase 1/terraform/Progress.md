@@ -15,26 +15,26 @@
 
 | Metric | Status |
 | --- | --- |
-| Evaluated questions | 1 / 20 |
-| Average score | Latest per-question: 8/10 (Q01 revised after feedback); original attempts: 6/10 |
-| Individual verdicts | Q01 revised: sound approach; diagnostic specificity and verification remain |
+| Evaluated questions | 2 / 20 |
+| Average score | Latest per-question: 7.5/10 ((8 + 7) / 2); original attempts: 6.5/10 ((6 + 7) / 2) |
+| Individual verdicts | Q01 revised: sound approach; Q02: good reasoning, recovery safeguards need refinement |
 | Final verdict | Pending Q20 |
-| Coverage | 1 / 12 aspects assessed |
+| Coverage | 4 / 12 aspects assessed |
 
 ## Current Position
 
-Q02 — State lock after an interrupted pipeline; awaiting an answer.
+Q03 — Reusable modules across environments; awaiting an answer.
 
-Your production Terraform pipeline was interrupted. A new run fails with an error acquiring the remote state lock. A teammate suggests disabling locking or immediately force-unlocking it. How would you investigate, recover safely and prevent simultaneous runs from damaging the environment?
+Your team has copied Terraform configurations for dev, QA and production. Fixes are applied inconsistently, and a shared module update recently changed production unexpectedly. How would you organize reusable modules and environment configuration, control module versions and roll out changes safely without mixing state or credentials?
 
 ## Coverage Checklist
 
 Checked means substantively assessed, not mastered. Link evidence after each evaluated attempt.
 
 - [x] ✅ Plan interpretation, resource lifecycle and safe changes — Q01; lifecycle semantics and diagnosis need retesting.
-- [ ] State, remote backends, locking and recovery
+- [x] ✅ State, remote backends, locking and recovery — Q02; stale-lock verification needs retest.
 - [ ] Drift and changes made outside Terraform
-- [ ] Import and adoption of existing infrastructure
+- [x] ✅ Import and adoption of existing infrastructure — Q02 recovery decision assessed; import was missed, so revision remains.
 - [ ] Refactoring, resource addresses and moved blocks
 - [ ] Modules, interfaces and versioning
 - [ ] Variables, locals, outputs and type validation
@@ -42,19 +42,21 @@ Checked means substantively assessed, not mastered. Link evidence after each eva
 - [ ] count, for_each and stable resource identity
 - [ ] Providers, aliases, constraints and dependency lock files
 - [ ] Environment/account isolation, secrets and access
-- [ ] CI/CD, tests, policy checks and partial-failure recovery
+- [x] ✅ CI/CD, tests, policy checks and partial-failure recovery — Q01/Q02 approvals and recovery assessed; tests/policy depth and concurrency remain.
 
 ## Individual Results
 
 | Question | Assessed aspects | Score | Verdict | Revision |
 | --- | --- | --- | --- | --- |
 | [Q01](questions/Q01-unexpected-database-replacement.md) | Plan safety and lifecycle; CI approval discussed | Original 6/10; revised 8/10 (2026-10-17) | Revised after feedback: sound approach | Exact replacement evidence; saved plan; verify result |
+| [Q02](questions/Q02-state-lock-interrupted-pipeline.md) | Locking, partial recovery, untracked resources and CI | 7/10 | Good reasoning; recovery safeguards need refinement | Prove stale lock; import; concurrency |
 
-Q01 reassessment is a revision of the same question, not a new numbered question or independent retest. Latest-score average uses 8/10; original baseline remains 6/10. Coverage and 1/20 completion are unchanged.
+Q01 reassessment is a revision of the same question, not a new numbered question or independent retest. Latest-score average includes revised Q01 (8) and Q02 (7); original baseline includes Q01 (6) and Q02 (7). Coverage means assessed, not mastered; broad checked groups retain untested subtopics.
 
 ## Revision and Final Assessment
 
 - [ ] Q01: retest replacement diagnosis, lifecycle semantics and post-apply verification.
+- [ ] Q02: verify stale lock, preserve/import untracked resources and enforce CI concurrency.
 - [ ] Complete 20 evaluated attempts.
 - [ ] Consolidate evidence after Q10.
 - [ ] Retest demonstrated weaknesses within the agreed 20 questions.
