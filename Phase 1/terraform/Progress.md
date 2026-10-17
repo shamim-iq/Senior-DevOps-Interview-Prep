@@ -15,17 +15,17 @@
 
 | Metric | Status |
 | --- | --- |
-| Evaluated questions | 5 / 20 |
-| Average score | Latest per-question: 7.6/10 ((8 + 7 + 7.5 + 8 + 7.5) / 5); original attempts: 6.5/10 ((6 + 7 + 7.5 + 4.5 + 7.5) / 5) |
-| Individual verdicts | Q01 revised: sound; Q02: recovery gaps; Q03: version/isolation gaps; Q04 revised: core concepts sound; Q05: state/code sound, access-validation gaps |
+| Evaluated questions | 6 / 20 |
+| Average score | Latest per-question: 7.33/10 (44 / 6); original attempts: 6.42/10 (38.5 / 6) |
+| Individual verdicts | Q01 revised: sound; Q02: recovery gaps; Q03: version/isolation gaps; Q04 revised: core concepts sound; Q05: state/code sound; Q06: implicit-dependency and diagnostic gaps |
 | Final verdict | Pending Q20 |
-| Coverage | 10 / 12 aspects assessed |
+| Coverage | 11 / 12 aspects assessed |
 
 ## Current Position
 
-Q06 — Dependencies and values known after apply; awaiting an answer.
+Q07 — Invalid module inputs reaching production; awaiting an answer.
 
-A configuration creates a VPC, subnets and EC2 instances. On a clean environment, instance creation fails because the expected network dependency is not ready. A teammate proposes adding depends_on to every resource and using targeted applies in a fixed sequence. How would you investigate the dependency graph, connect resources correctly and decide when an explicit dependency is actually needed?
+A shared Terraform module accepts instance settings, environment name and network CIDRs. Invalid inputs are discovered only during apply, and a recent production run used development-sized instances because an input was omitted. How would you design the module inputs and validation so mistakes fail early while keeping the module reusable? Include a small HCL example and explain which checks still require a plan or cloud-side validation.
 
 ## Coverage Checklist
 
@@ -38,7 +38,7 @@ Checked means substantively assessed, not mastered. Link evidence after each eva
 - [x] ✅ Refactoring, resource addresses and moved blocks — Q04 revised: mapping understood; independent retest required.
 - [x] ✅ Modules, interfaces and versioning — Q03; pinning needs retest; output/interface depth remains.
 - [ ] Variables, locals, outputs and type validation
-- [ ] Dependencies, data sources and unknown values
+- [x] ✅ Dependencies, data sources and unknown values — Q06 ordering attempted; implicit references need retest; data-source and unknown-value depth remains.
 - [x] ✅ count, for_each and stable resource identity — Q04 revised: index shift and stable keys understood; independent retest pending.
 - [x] ✅ Providers, aliases, constraints and dependency lock files — Q03 version control attempted; aliases and lock-file handling remain.
 - [x] ✅ Environment/account isolation, secrets and access — Q03; explicit backend and role boundaries need retest.
@@ -53,8 +53,9 @@ Checked means substantively assessed, not mastered. Link evidence after each eva
 | [Q03](questions/Q03-modules-environment-isolation.md) | Modules, provider versions, environment isolation and secrets | 7.5/10 | Sound design; version/isolation gaps | Pin modules; lock providers; scope backend/roles |
 | [Q04](questions/Q04-count-stable-resource-identity.md) | Count identity and safe refactoring | Original 4.5/10; revised 8/10 (2026-10-17) | Core identity/migration corrected after feedback | Tag updates; mapping validation; independent retest |
 | [Q05](questions/Q05-emergency-security-group-drift.md) | Drift, desired configuration and emergency access | 7.5/10 | Correct state/code distinction | Minimum access; optional refresh; verify traffic |
+| [Q06](questions/Q06-dependencies-creation-order.md) | Dependency ordering and investigation | 6/10 | Selective ordering understood; implicit dependencies missed | References; hidden dependencies; fresh test |
 
-Q01 and Q04 reassessments revise the same questions after feedback; neither is a new numbered question or independent retest. Latest-score average: (8 + 7 + 7.5 + 8 + 7.5) / 5 = 7.6/10. Original-attempt average: (6 + 7 + 7.5 + 4.5 + 7.5) / 5 = 6.5/10. Coverage means assessed, not mastered; untested subtopics and independent retests remain pending.
+Q01 and Q04 reassessments revise the same questions after feedback; neither is a new numbered question or independent retest. Latest-score average: (8 + 7 + 7.5 + 8 + 7.5 + 6) / 6 = 7.33/10 (rounded). Original-attempt average: (6 + 7 + 7.5 + 4.5 + 7.5 + 6) / 6 = 6.42/10 (rounded). Coverage means assessed, not mastered; untested subtopics and independent retests remain pending.
 
 ## Revision and Final Assessment
 
@@ -63,6 +64,7 @@ Q01 and Q04 reassessments revise the same questions after feedback; neither is a
 - [ ] Q03: pin module revisions, distinguish provider locks, and enforce backend/role isolation.
 - [ ] Q04: retest index shifting, stable keys and address migration with actual instance IDs.
 - [ ] Q05: investigate and minimize emergency access; explain optional refresh-only; verify allowed/denied traffic.
+- [ ] Q06: retest implicit references, hidden dependencies and fresh-environment verification.
 - [ ] Complete 20 evaluated attempts.
 - [ ] Consolidate evidence after Q10.
 - [ ] Retest demonstrated weaknesses within the agreed 20 questions.
