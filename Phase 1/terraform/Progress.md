@@ -15,17 +15,17 @@
 
 | Metric | Status |
 | --- | --- |
-| Evaluated questions | 9 / 20 |
-| Average score | Latest per-question: 7.00/10 (63 / 9); original attempts: 6.39/10 (57.5 / 9) |
-| Individual verdicts | Q01 revised: sound; Q02: recovery gaps; Q03: version/isolation gaps; Q04 revised: core concepts sound; Q05: state/code sound; Q06: dependency gaps; Q07: input-contract gaps; Q08: provider mapping and migration gaps; Q09: import execution gaps |
+| Evaluated questions | 10 / 20 |
+| Average score | Latest per-question: 7.15/10 (71.5 / 10); original attempts: 6.60/10 (66 / 10) |
+| Individual verdicts | Q01 revised: sound; Q02: recovery gaps; Q03: version/isolation gaps; Q04 revised: core concepts sound; Q05: state/code sound; Q06: dependency gaps; Q07: input-contract gaps; Q08: provider mapping and migration gaps; Q09: import execution gaps; Q10: strong version-control reasoning |
 | Final verdict | Pending Q20 |
 | Coverage | 12 / 12 broad aspects attempted; mastery and remaining subtopics pending |
 
 ## Current Position
 
-Q10 — Provider versions and reproducible CI plans; awaiting an answer.
+Q11 — Data sources and values unknown during planning; awaiting an answer.
 
-The same Terraform commit produces a no-change plan on your laptop but proposes production changes in a fresh CI runner. Both target the correct backend and account. The AWS provider constraint is `~> 5.0`; `.terraform.lock.hcl` is ignored by Git, and CI runs `terraform init -upgrade` on every deployment. A teammate suggests approving CI's plan because the configuration has not changed. How would you investigate the difference, restore reproducible deployments and safely introduce future provider upgrades? Include the essential commands or configuration.
+A configuration creates an application VPC and reads an existing shared-services VPC by a fixed tag filter. The data-source block has `depends_on = [module.application]`. Following a small application-module change, the plan says the shared VPC will be read during apply, its ID is “known after apply”, and an existing peering connection is marked for replacement. The shared VPC has not changed. How would you investigate the dependency and replacement, adjust the configuration safely, and verify the next plan before approving production?
 
 ## Coverage Checklist
 
@@ -40,7 +40,7 @@ Checked means substantively assessed, not mastered. Link evidence after each eva
 - [x] ✅ Variables, locals, outputs and type validation — Q07 input design attempted; required inputs/validation need retest; locals/outputs depth remains.
 - [x] ✅ Dependencies, data sources and unknown values — Q06 ordering attempted; implicit references need retest; data-source and unknown-value depth remains.
 - [x] ✅ count, for_each and stable resource identity — Q04 revised: index shift and stable keys understood; independent retest pending.
-- [x] ✅ Providers, aliases, constraints and dependency lock files — Q03/Q08 version control and aliases attempted; module mapping and lock-file handling need retest.
+- [x] ✅ Providers, aliases, constraints and dependency lock files — Q03/Q08 version control and aliases attempted; [Q10](questions/Q10-provider-lock-reproducible-ci.md) demonstrates sound provider locking/upgrades; module mapping and concrete evidence interpretation remain.
 - [x] ✅ Environment/account isolation, secrets and access — Q03; explicit backend and role boundaries need retest.
 - [x] ✅ CI/CD, tests, policy checks and partial-failure recovery — Q01/Q02 approvals and recovery assessed; tests/policy depth and concurrency remain.
 
@@ -57,14 +57,15 @@ Checked means substantively assessed, not mastered. Link evidence after each eva
 | [Q07](questions/Q07-module-input-validation.md) | Input contracts, environment inputs and plan policy | 6.5/10 | Useful pipeline controls; module validation missing | Required inputs; types; validation; plan JSON |
 | [Q08](questions/Q08-provider-alias-module-region.md) | Regional aliases and module provider selection | 6.5/10 | Alias concept correct; module/recovery details missing | Provider map; identity checks; preserve deployed resources |
 | [Q09](questions/Q09-import-existing-s3-bucket.md) | Existing-resource import; Q02 recovery retest | 6/10 | Preservation improved; execution incorrect | Keep resource; normal import plan/apply; verify mapping |
+| [Q10](questions/Q10-provider-lock-reproducible-ci.md) | Provider locks, constraints and controlled upgrades | 8.5/10 | Strong diagnosis and upgrade strategy | Compare actual versions/plan changes; regenerate production plan |
 
-Q01 and Q04 reassessments revise the same questions after feedback; neither is a new numbered question or independent retest. Latest-score average: 63 / 9 = 7.00/10 (rounded). Original-attempt average: 57.5 / 9 = 6.39/10 (rounded). Coverage means assessed, not mastered; untested subtopics and independent retests remain pending.
+Q01 and Q04 reassessments revise the same questions after feedback; neither is a new numbered question or independent retest. Latest-score average: 71.5 / 10 = 7.15/10 (rounded). Original-attempt average: 66 / 10 = 6.60/10 (rounded). Coverage means assessed, not mastered; untested subtopics and independent retests remain pending.
 
 ## Revision and Final Assessment
 
 - [ ] Q01: retest replacement diagnosis, lifecycle semantics and post-apply verification.
 - [ ] Q02: verify stale lock, preserve/import untracked resources and enforce CI concurrency.
-- [ ] Q03: pin module revisions, distinguish provider locks, and enforce backend/role isolation.
+- [ ] Q03: pin module revisions and enforce backend/role isolation; provider locking improved in Q10.
 - [ ] Q04: retest index shifting, stable keys and address migration with actual instance IDs.
 - [ ] Q05: investigate and minimize emergency access; explain optional refresh-only; verify allowed/denied traffic.
 - [ ] Q06: retest implicit references, hidden dependencies and fresh-environment verification.
@@ -72,8 +73,17 @@ Q01 and Q04 reassessments revise the same questions after feedback; neither is a
 - [ ] Q08: map module providers, verify destinations and preserve resources across regional changes.
 - [ ] Q09: retain resource configuration, import through normal plan/apply and verify identity/differences; Q02 preservation decision improved.
 - [ ] Complete 20 evaluated attempts.
-- [ ] Consolidate evidence after Q10.
+- [x] ✅ Consolidate evidence after Q10 — see Feedback.md first-ten review.
 - [ ] Retest demonstrated weaknesses within the agreed 20 questions.
 - [ ] After Q20, calculate the actual average and deliver the final Terraform-specific verdict with practical limits and priorities.
 
 Unassessed skills remain N/A. Do not infer overall role readiness from Terraform alone.
+
+## Strategy for Q11–Q20
+
+First-ten review: production caution, CI approvals and conceptual diagnosis are strengths. Precision in dependencies, import/migration mechanics and evidence-based validation remains inconsistent. Latest-score average includes coached Q01/Q04 revisions; it is not an independent-readiness measure.
+
+- Continue with Q11 data-source/unknown-value behavior, then interleave remaining locals/outputs, module interfaces and practical test/policy coverage with spaced retests.
+- Revisit Q04 identity mapping, Q07 validation, Q08 provider wiring, and Q02/Q09 recovery using concrete plan/configuration evidence. Combine related gaps when realistic to stay within exactly 20 questions.
+- Avoid repeating general pipeline safety at the expense of the scenario's central mechanism. Review remaining coverage after each attempt; preserve historical scores.
+- Final assessment at Q20: accuracy, safe execution, evidence interpretation and independent retest results. Do not equate 12/12 broad aspects attempted with mastery or hiring readiness.

@@ -1,6 +1,6 @@
 # Terraform Interview Feedback
 
-Nine questions evaluated; original-attempt average 6.39/10; latest per-question average 7.00/10 (includes Q01 and Q04 revisions after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
+Ten questions evaluated; original-attempt average 6.60/10; latest per-question average 7.15/10 (includes Q01 and Q04 revisions after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
 
 Record each individual verdict, score, strengths, explained deductions and revision needs after the answer. Consolidate after Q10 and deliver the final evidence-based verdict after Q20. Preserve scores and history. See Progress.md for the assessment agreement and pending question.
 
@@ -96,3 +96,19 @@ Credit: regional configurations, aliases, plan review and CI gates. Deductions: 
 [Canonical answer](questions/Q09-import-existing-s3-bucket.md). **6/10; subjective answer-specific acceptance estimate 55%, not hiring probability.**
 
 Credit: correct missing-state diagnosis, import over deletion, preserving application data, follow-up plan and controlled CI. Q02 preservation reasoning improved in this independent retest. Deductions: 1.5 replacing the resource block; 1.5 refresh-only cannot perform the import; 1 combined unsupported no-drift assumption and missing exact-object verification. No duplicate syntax penalty. Retest import execution and mapping evidence; Q10 covers provider locks/reproducibility, followed by the interim consolidation.
+
+## Q10 — Provider Locks and Reproducible CI — 2026-10-17
+
+[Canonical answer](questions/Q10-provider-lock-reproducible-ci.md). **8.5/10; subjective answer-specific acceptance estimate 80%, not hiring probability.**
+
+Credit: correct range, ignored lock-file diagnosis, rejection of routine upgrades, branch/release-note review, lower-environment tests and approved promotion. Final “log file” interpreted as lock file; no wording penalty. Deductions: 1 actual local/CI version and resource-plan comparison; 0.5 explicit production re-plan after the fix. No deduction for optional advanced details or repeated approval steps. Q03 provider-lock reasoning improved.
+
+## First-ten review — 2026-10-17
+
+**10/20 assessed. Original attempts: 66/100 = 6.60/10. Latest per-question: 71.5/100 = 7.15/10**, including Q01/Q04 revisions after feedback. Original scores remain intact. Q09 independently improves Q02's preservation decision but not import execution; Q10 demonstrates stronger provider-version reasoning.
+
+**Verdict:** Sound production-safety instincts and useful Terraform knowledge, with uneven execution precision. Stronger in CI approvals, environment organization, state/configuration distinction and controlled upgrades. Not yet consistently independent across the tested troubleshooting scenarios; no overall hiring probability follows from these results.
+
+**Priorities:** Implicit/hidden dependencies (Q06), required inputs/custom validation (Q07), module provider mapping and destination proof (Q08), import versus refresh-only (Q09), and independent stable-address migration (Q04). Q01 lifecycle diagnosis and Q02 stale-lock proof/concurrency still need evidence-based retests.
+
+**Remaining breadth:** Data sources/unknown values, locals/outputs/module interfaces and practical tests/policy controls. Continue to Q20 by interleaving these with the listed retests, combining related aspects without extending the agreed count. Judge concise answers by correct decisions and essential evidence, not command volume. All 12 broad coverage boxes mean attempted, not mastered; retain unresolved revision items.
