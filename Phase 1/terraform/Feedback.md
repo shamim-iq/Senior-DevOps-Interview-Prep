@@ -1,6 +1,6 @@
 # Terraform Interview Feedback
 
-Four questions evaluated; original-attempt average 6.25/10; latest per-question average 6.75/10 (includes Q01 revision after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
+Four questions evaluated; original-attempt average 6.25/10; latest per-question average 7.625/10 (includes Q01 and Q04 revisions after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
 
 Record each individual verdict, score, strengths, explained deductions and revision needs after the answer. Consolidate after Q10 and deliver the final evidence-based verdict after Q20. Preserve scores and history. See Progress.md for the assessment agreement and pending question.
 
@@ -43,3 +43,26 @@ Credit: directory roots, shared modules/inputs, protected state, OIDC/Secrets Ma
 [Canonical answer](questions/Q04-count-stable-resource-identity.md). **4.5/10; subjective acceptance estimate 35%, not hiring probability.**
 
 Credit: count/list-length understanding, dependency awareness, plan review and production caution. Main gap: numeric index shifting, not necessarily downstream dependencies. Deductions: 2.5 wrong central diagnosis; 2 combined stable-key/address-migration omission; 1 lifecycle limits and compulsory-protection claim. No terminology or repeated-command penalty. Retest with instance-ID mapping later; Q05 rotates to drift and desired-state decisions.
+
+## Q04 revised attempt — 2026-10-17
+
+**8/10 — Core identity and migration concepts corrected; replacement behavior and migration verification need precision.** Answer-specific acceptance estimate: **75%**, subjective coaching, not hiring probability. Revision after reading the solution; preserve original 4.5/10. Not a new numbered question or independent retest.
+
+**Response summary:** Identified count indices and trailing-resource risk; proposed stable for_each keys/each.key, keeping resource configuration unchanged and using a moved block to preserve resources. Incorrectly said changing an EC2 instance name can itself recreate it.
+
+**Credit:** Correct cause, stable-key solution and explicit migration awareness. Saying “move” instead of `moved` is a minor terminology slip with no separate penalty.
+
+**Deductions:** 1 for claiming a Name-tag-only change causes recreation; 1 for incomplete migration verification: map every original index to the correct key/instance ID, confirm an address-only plan and separately remove the unwanted service. Previously stated CI approval habits are credited, not penalized again.
+
+**Precision:** The EC2 Name tag normally updates in place. Replacement depends on the changed argument or explicit replacement behavior. A `moved` block maps an old Terraform address to its new address; it is not a general deletion guard and cannot prevent replacement required by other argument changes. Stable keys help only while keys remain unchanged. Retest independently later.
+
+Example mapping (repeat for every existing instance using its verified original identity):
+
+```hcl
+moved {
+  from = aws_instance.service[2]
+  to   = aws_instance.service["notifications"]
+}
+```
+
+[AWS: tags on existing EC2 resources](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags_Console.html) · [HashiCorp: address migration](https://developer.hashicorp.com/terraform/language/modules/develop/refactoring).

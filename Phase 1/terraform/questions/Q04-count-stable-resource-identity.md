@@ -108,3 +108,26 @@ flowchart TD
 - [Count and index identity](https://developer.hashicorp.com/terraform/language/meta-arguments/count)
 - [Refactoring and moved blocks](https://developer.hashicorp.com/terraform/language/modules/develop/refactoring)
 - [Lifecycle limits](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle)
+
+## Q04 revised attempt — 2026-10-17
+
+**8/10 — Core identity and migration concepts corrected; replacement behavior and migration verification need precision.** Answer-specific acceptance estimate: **75%**, subjective coaching, not hiring probability. Revision after reading the solution; preserve original 4.5/10. Not a new numbered question or independent retest.
+
+**Response summary:** Identified count indices and trailing-resource risk; proposed stable for_each keys/each.key, keeping resource configuration unchanged and using a moved block to preserve resources. Incorrectly said changing an EC2 instance name can itself recreate it.
+
+**Credit:** Correct cause, stable-key solution and explicit migration awareness. Saying “move” instead of `moved` is a minor terminology slip with no separate penalty.
+
+**Deductions:** 1 for claiming a Name-tag-only change causes recreation; 1 for incomplete migration verification: map every original index to the correct key/instance ID, confirm an address-only plan and separately remove the unwanted service. Previously stated CI approval habits are credited, not penalized again.
+
+**Precision:** The EC2 Name tag normally updates in place. Replacement depends on the changed argument or explicit replacement behavior. A `moved` block maps an old Terraform address to its new address; it is not a general deletion guard and cannot prevent replacement required by other argument changes. Stable keys help only while keys remain unchanged. Retest independently later.
+
+Example mapping (repeat for every existing instance using its verified original identity):
+
+```hcl
+moved {
+  from = aws_instance.service[2]
+  to   = aws_instance.service["notifications"]
+}
+```
+
+[AWS: tags on existing EC2 resources](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags_Console.html) · [HashiCorp: address migration](https://developer.hashicorp.com/terraform/language/modules/develop/refactoring).
