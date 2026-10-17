@@ -1,6 +1,6 @@
 # Terraform Interview Feedback
 
-Six questions evaluated; original-attempt average 6.42/10; latest per-question average 7.33/10 (includes Q01 and Q04 revisions after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
+Seven questions evaluated; original-attempt average 6.43/10; latest per-question average 7.21/10 (includes Q01 and Q04 revisions after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
 
 Record each individual verdict, score, strengths, explained deductions and revision needs after the answer. Consolidate after Q10 and deliver the final evidence-based verdict after Q20. Preserve scores and history. See Progress.md for the assessment agreement and pending question.
 
@@ -78,3 +78,9 @@ Credit: correct state/code distinction, required configuration update, plan revi
 [Canonical answer](questions/Q06-dependencies-creation-order.md). **6/10; subjective acceptance estimate 55%, not hiring probability.**
 
 Credit: selective ordering, dependency list syntax, independent parallelism and rejection of routine targeting. Deductions: 2 missing implicit-reference/hidden-dependency distinction; 1 overbroad EC2 network prerequisites; 1 missing actual-error investigation and fresh-deployment verification. No code-volume penalty. Retest these gaps; Q07 covers module input validation.
+
+## Q07 — Module Input Validation — 2026-10-17
+
+[Canonical answer](questions/Q07-module-input-validation.md). **6.5/10; subjective acceptance estimate 60%, not hiring probability.**
+
+Credit: parameterization, environment segregation, OIDC, Python policy checking and approval. Deductions: 2 missing module contract (required inputs, types, value validation, safe defaults); 0.75 validate described as syntax-only; 0.5 guaranteed correctness from separation; 0.25 unstructured plan-log parsing. No separate HCL-omission penalty. Retest the contract with invalid inputs; Q08 covers provider aliases, an untested subtopic despite broad coverage checks.
