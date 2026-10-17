@@ -19,7 +19,7 @@ Within each topic:
 - [ ] AWS
 - [ ] Azure
 - [ ] CI/CD pipelines
-- [ ] [Terraform](Phase%201/terraform/Progress.md) — active; 20-question track; 3/20 evaluated; Q04 pending.
+- [ ] [Terraform](Phase%201/terraform/Progress.md) — active; 20-question track; 4/20 evaluated; Q05 pending.
 - [ ] Observability
 - [ ] [Linux / Networking](Phase%201/linux/Progress.md) — paused; Q11 pending.
 - [ ] Python

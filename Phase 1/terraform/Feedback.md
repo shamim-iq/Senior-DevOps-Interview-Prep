@@ -1,6 +1,6 @@
 # Terraform Interview Feedback
 
-Three questions evaluated; original-attempt average 6.83/10; latest per-question average 7.5/10 (includes Q01 revision after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
+Four questions evaluated; original-attempt average 6.25/10; latest per-question average 6.75/10 (includes Q01 revision after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
 
 Record each individual verdict, score, strengths, explained deductions and revision needs after the answer. Consolidate after Q10 and deliver the final evidence-based verdict after Q20. Preserve scores and history. See Progress.md for the assessment agreement and pending question.
 
@@ -37,3 +37,9 @@ Credit: waits for active owner, rejects lock bypass, understands partial apply a
 [Canonical answer](questions/Q03-modules-environment-isolation.md). **7.5/10; subjective acceptance estimate 70%, not hiring probability.**
 
 Credit: directory roots, shared modules/inputs, protected state, OIDC/Secrets Manager, progressive testing and production approvals. Deductions: 1 module pinning/promotion missing; 0.75 explicit backend/role isolation missing; 0.5 provider constraints/lock controls; 0.25 CLI/file secret-injection caveats. No penalty for optional tooling. Retest these gaps; Q04 rotates to resource identity and safe refactoring.
+
+## Q04 — Count and Stable Resource Identity — 2026-10-17
+
+[Canonical answer](questions/Q04-count-stable-resource-identity.md). **4.5/10; subjective acceptance estimate 35%, not hiring probability.**
+
+Credit: count/list-length understanding, dependency awareness, plan review and production caution. Main gap: numeric index shifting, not necessarily downstream dependencies. Deductions: 2.5 wrong central diagnosis; 2 combined stable-key/address-migration omission; 1 lifecycle limits and compulsory-protection claim. No terminology or repeated-command penalty. Retest with instance-ID mapping later; Q05 rotates to drift and desired-state decisions.
