@@ -4,21 +4,21 @@
 
 ## Assessment Agreement
 
-- Exactly 20 scenario-based questions, asked one at a time. Wait for each answer before evaluating or asking the next question. Do not extend beyond Q20 without a new request.
+- Revised by user request on 2026-10-17: ten initial questions plus at most five focused follow-up scenarios (Q11–Q15), asked one at a time. Stop earlier if independent answers sufficiently address the priority gaps. Do not add questions beyond this cap without a new request.
 - Use the four-year DevOps / Platform Engineer baseline in AGENTS.md. Include practical evidence interpretation and safe production decisions.
 - After each attempt: individual verdict, score out of 10, credited strengths, explained deductions, concise corrected answer and revision needs. Label the required answer-specific acceptance estimate as subjective coaching, not a hiring probability.
-- After Q10: interim consolidation. After Q20: final verdict based on all 20 scores, topic evidence, safety, independence, strengths and unresolved gaps. Distinguish coverage from mastery; preserve historical scores and dated retests.
-- Adapt remaining scenarios to gaps while maintaining breadth. Retests count within the 20-question limit. No future answers or hints before an attempt.
+- After Q10: interim consolidation. At the end of the shortened follow-up cycle: final verdict based on actual attempts, topic evidence, safety, independence, strengths and unresolved gaps. Distinguish coverage from mastery; preserve historical scores and dated retests.
+- Adapt remaining scenarios to gaps while maintaining breadth. Retests count within the five-question follow-up cap; do not disguise extra questions as lengthy multipart scenarios. No future answers or hints before an attempt.
 - Save question/answer files only after attempts. Commit reviewed progress locally; push only when explicitly requested. Follow AGENTS.md for all Git operations.
 
 ## Metrics
 
 | Metric | Status |
 | --- | --- |
-| Evaluated questions | 10 / 20 |
+| Evaluated questions | 10 completed; 0 / up to 5 focused follow-ups assessed |
 | Average score | Latest per-question: 7.15/10 (71.5 / 10); original attempts: 6.60/10 (66 / 10) |
 | Individual verdicts | Q01 revised: sound; Q02: recovery gaps; Q03: version/isolation gaps; Q04 revised: core concepts sound; Q05: state/code sound; Q06: dependency gaps; Q07: input-contract gaps; Q08: provider mapping and migration gaps; Q09: import execution gaps; Q10: strong version-control reasoning |
-| Final verdict | Pending Q20 |
+| Final verdict | After focused follow-ups; no later than Q15 |
 | Coverage | 12 / 12 broad aspects attempted; mastery and remaining subtopics pending |
 
 ## Current Position
@@ -72,18 +72,25 @@ Q01 and Q04 reassessments revise the same questions after feedback; neither is a
 - [ ] Q07: require critical inputs, validate values and verify structured production policy.
 - [ ] Q08: map module providers, verify destinations and preserve resources across regional changes.
 - [ ] Q09: retain resource configuration, import through normal plan/apply and verify identity/differences; Q02 preservation decision improved.
-- [ ] Complete 20 evaluated attempts.
+- [ ] Complete the shortened follow-up cycle (at most five additional scenarios).
 - [x] ✅ Consolidate evidence after Q10 — see Feedback.md first-ten review.
-- [ ] Retest demonstrated weaknesses within the agreed 20 questions.
-- [ ] After Q20, calculate the actual average and deliver the final Terraform-specific verdict with practical limits and priorities.
+- [ ] Retest demonstrated weaknesses within the shortened follow-up cycle.
+- [ ] At cycle closure, calculate the actual average and deliver the final Terraform-specific verdict with practical limits and priorities.
 
 Unassessed skills remain N/A. Do not infer overall role readiness from Terraform alone.
 
-## Strategy for Q11–Q20
+## Focused follow-up strategy — revised 2026-10-17
 
-First-ten review: production caution, CI approvals and conceptual diagnosis are strengths. Precision in dependencies, import/migration mechanics and evidence-based validation remains inconsistent. Latest-score average includes coached Q01/Q04 revisions; it is not an independent-readiness measure.
+User superseded the original 20-question plan with at most five additional questions. Preserve Q01–Q10 scores and pending Q11. These are compact scenarios, not five bundles of separate interviews.
 
-- Continue with Q11 data-source/unknown-value behavior, then interleave remaining locals/outputs, module interfaces and practical test/policy coverage with spaced retests.
-- Revisit Q04 identity mapping, Q07 validation, Q08 provider wiring, and Q02/Q09 recovery using concrete plan/configuration evidence. Combine related gaps when realistic to stay within exactly 20 questions.
-- Avoid repeating general pipeline safety at the expense of the scenario's central mechanism. Review remaining coverage after each attempt; preserve historical scores.
-- Final assessment at Q20: accuracy, safe execution, evidence interpretation and independent retest results. Do not equate 12/12 broad aspects attempted with mastery or hiring readiness.
+| Slot | Focus | Earlier evidence |
+| --- | --- | --- |
+| Q11 (preserved) | Dependency reasoning, unknown values and replacement-plan evidence | Q01/Q06 |
+| Q12 candidate | Interrupted apply: lock ownership, import and recovery verification | Q02/Q09 |
+| Q13 candidate | Stable identity and safe address migration | Q04 |
+| Q14 candidate | Module input contract and a meaningful production validation check | Q07; Q03 interfaces |
+| Q15 candidate | Module provider mapping and effective account/region isolation | Q03/Q08 |
+
+Adapt unasked slots to demonstrated gaps. Incorporate related lifecycle, drift, outputs or pipeline safeguards only when naturally relevant; do not force every remaining subtopic into each scenario. No repeated general safety discussion is required when already demonstrated.
+
+After each answer, distinguish independently corrected gaps from coached understanding and remaining uncertainty. Stop before five only if priority gaps have sufficient independent evidence of correct diagnosis, safe execution and verification. A score alone is not proof of closure. At the cap, deliver the verdict even if weaknesses remain; report them honestly rather than adding questions automatically. Untested breadth stays unassessed and unresolved revision boxes remain unchecked. No mastery or hiring guarantee follows from finishing this cycle.

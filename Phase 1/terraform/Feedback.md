@@ -1,8 +1,8 @@
 # Terraform Interview Feedback
 
-Ten questions evaluated; original-attempt average 6.60/10; latest per-question average 7.15/10 (includes Q01 and Q04 revisions after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
+Ten questions evaluated; original-attempt average 6.60/10; latest per-question average 7.15/10 (includes Q01 and Q04 revisions after feedback). Current track: ten initial questions plus up to five focused follow-ups, one at a time, using the four-year baseline in AGENTS.md.
 
-Record each individual verdict, score, strengths, explained deductions and revision needs after the answer. Consolidate after Q10 and deliver the final evidence-based verdict after Q20. Preserve scores and history. See Progress.md for the assessment agreement and pending question.
+Record each individual verdict, score, strengths, explained deductions and revision needs after the answer. Consolidate after Q10 and deliver the final evidence-based verdict at the shortened cycle closure (no later than Q15). Preserve scores and history. See Progress.md for the assessment agreement and pending question.
 
 ## Q01 — Unexpected Database Replacement — 2026-10-17
 
@@ -112,3 +112,7 @@ Credit: correct range, ignored lock-file diagnosis, rejection of routine upgrade
 **Priorities:** Implicit/hidden dependencies (Q06), required inputs/custom validation (Q07), module provider mapping and destination proof (Q08), import versus refresh-only (Q09), and independent stable-address migration (Q04). Q01 lifecycle diagnosis and Q02 stale-lock proof/concurrency still need evidence-based retests.
 
 **Remaining breadth:** Data sources/unknown values, locals/outputs/module interfaces and practical tests/policy controls. Continue to Q20 by interleaving these with the listed retests, combining related aspects without extending the agreed count. Judge concise answers by correct decisions and essential evidence, not command volume. All 12 broad coverage boxes mean attempted, not mastered; retain unresolved revision items.
+
+## Assessment scope revision — 2026-10-17
+
+At the user's request, the original Q20 target is superseded by at most five follow-ups (Q11–Q15), with earlier closure if priority weaknesses are independently resolved. Historical first-ten plans and scores above are retained as history, not current authorization for ten more questions. See Progress.md for the focused mapping and closure criteria. No new attempt or score was recorded for this planning change; unresolved or untested aspects will remain explicit in the final verdict.
