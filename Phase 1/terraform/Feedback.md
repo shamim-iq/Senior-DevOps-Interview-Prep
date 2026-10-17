@@ -1,6 +1,6 @@
 # Terraform Interview Feedback
 
-Two questions evaluated; original-attempt average 6.5/10; latest per-question average 7.5/10 (includes Q01 revision after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
+Three questions evaluated; original-attempt average 6.83/10; latest per-question average 7.5/10 (includes Q01 revision after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
 
 Record each individual verdict, score, strengths, explained deductions and revision needs after the answer. Consolidate after Q10 and deliver the final evidence-based verdict after Q20. Preserve scores and history. See Progress.md for the assessment agreement and pending question.
 
@@ -31,3 +31,9 @@ Deductions: 2 lifecycle misconception/unsupported certainty; 1.5 missing root-ca
 [Canonical answer](questions/Q02-state-lock-interrupted-pipeline.md). **7/10; subjective answer-specific acceptance 65%, not hiring probability.**
 
 Credit: waits for active owner, rejects lock bypass, understands partial apply and reconciliation, knows S3 locking and refresh-only. Deductions: 1 stale-lock/no-writer proof missing; 1 deletion-first recovery without import; 0.5 CI concurrency prevention missing; 0.5 admin-only and complete-CloudTrail claims. User qualified deletion as safe; no indiscriminate-deletion penalty. Retest stale-lock evidence, import and concurrency. Next Q03 rotates to modules/environment management; no new question answered yet.
+
+## Q03 — Modules and Environment Isolation — 2026-10-17
+
+[Canonical answer](questions/Q03-modules-environment-isolation.md). **7.5/10; subjective acceptance estimate 70%, not hiring probability.**
+
+Credit: directory roots, shared modules/inputs, protected state, OIDC/Secrets Manager, progressive testing and production approvals. Deductions: 1 module pinning/promotion missing; 0.75 explicit backend/role isolation missing; 0.5 provider constraints/lock controls; 0.25 CLI/file secret-injection caveats. No penalty for optional tooling. Retest these gaps; Q04 rotates to resource identity and safe refactoring.
