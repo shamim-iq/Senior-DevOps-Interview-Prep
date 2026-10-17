@@ -22,7 +22,15 @@ A production tag change unexpectedly plans to destroy and recreate an existing A
 | `ignore_changes = [tags]` | Skips tag differences when planning updates to an existing resource. It does **not** apply your requested tag or stop replacement triggered elsewhere. |
 | `prevent_destroy = true` | Rejects a destructive plan while the rule remains in configuration; a safeguard, not the underlying fix. Removing the resource configuration removes this protection. |
 
-Tags can also drive access rules or automation; do not assume every tag is operationally harmless.
+Inside the existing RDS resource (excerpt):
+
+```hcl
+lifecycle {
+  prevent_destroy = true # Reject destruction; does not fix its cause
+}
+```
+
+Keep the intended tag managed; do not add `ignore_changes = [tags]` to apply a tag update. Tags can also drive access rules or automation.
 
 ## 🔧 Essential pipeline commands
 

@@ -21,7 +21,22 @@ EC2 instances use `count` with `services = ["payments", "orders", "notifications
 ## 🛠️ Safe migration
 
 1. Preserve a protected state backup/version and prevent competing applies. Inspect `terraform state list` and `terraform state show 'aws_instance.service[1]'` (shell quoting may vary) to confirm the existing IDs and original mapping. If a prior apply already changed them, reconstruct the actual mapping first.
-2. Keep all three service names initially. Replace `count` with `for_each = toset(var.services)` in the existing resource and replace indexed name references with `each.key`; preserve other arguments. For differing configurations, use a map with stable keys and `each.value`. Do not use list positions as keys.
+2. Keep all three services during migration. Replace the existing resource's `count` and indexed references as below; preserve its other settings. This is an excerpt, not a complete EC2 configuration.
+
+```hcl
+variable "services" {
+  type    = set(string)
+  default = ["payments", "orders", "notifications"]
+}
+
+resource "aws_instance" "service" {
+  for_each = var.services
+  # Keep existing AMI, instance type, network and other arguments here.
+  tags = { Name = each.key } # Merge with existing tags if present
+}
+```
+
+Each service now has a stable key, such as `aws_instance.service["notifications"]`. Use a map and `each.value` when services need different settings; never use list positions as keys.
 3. Add these blocks in the same module as the resource. They preserve address-to-object associations; they do not copy or recreate instances.
 
 ```hcl

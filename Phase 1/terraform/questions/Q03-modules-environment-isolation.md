@@ -19,6 +19,29 @@ Copied dev/QA/prod configurations drift apart, and a shared module update unexpe
 | Local module path | Uses the module in the checked-out repository revision; no independent module `version` pin. Promote the tested repository commit deliberately. Directory separation alone does not freeze shared code. |
 | Providers | Put constraints under `terraform.required_providers`; commit each root's `.terraform.lock.hcl`. The lock file selects providers, not module versions. The filename `provider.tf` is a convention; block placement matters. |
 
+### Minimal versioning example
+
+Illustrative private-registry module and provider constraint; replace the module address/release with your own tested values. Other root configuration is omitted.
+
+```hcl
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 6.0" # Allowed provider versions; lock file selects exact build
+    }
+  }
+}
+
+module "app" {
+  source      = "app.terraform.io/acme/app/aws"
+  version     = "1.2.3" # Exact module release; promoted deliberately
+  environment = "prod" # Input defined by this example module
+}
+```
+
+Use distinct backend keys such as `dev/terraform.tfstate` and `prod/terraform.tfstate`, plus separate environment roles. The module's version and provider's version control different dependencies.
+
 ## 🔐 Isolation and secrets
 
 - Give every root a distinct backend key/state (or separately secured backend). Directories alone do not prevent two roots using the same state. Retain locking/versioning and restrict state access to authorized roles.
