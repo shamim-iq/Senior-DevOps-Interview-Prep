@@ -1,6 +1,6 @@
 # Terraform Interview Feedback
 
-Seven questions evaluated; original-attempt average 6.43/10; latest per-question average 7.21/10 (includes Q01 and Q04 revisions after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
+Eight questions evaluated; original-attempt average 6.44/10; latest per-question average 7.13/10 (includes Q01 and Q04 revisions after feedback). Track: 20 questions, one at a time, using the four-year baseline in AGENTS.md.
 
 Record each individual verdict, score, strengths, explained deductions and revision needs after the answer. Consolidate after Q10 and deliver the final evidence-based verdict after Q20. Preserve scores and history. See Progress.md for the assessment agreement and pending question.
 
@@ -84,3 +84,9 @@ Credit: selective ordering, dependency list syntax, independent parallelism and 
 [Canonical answer](questions/Q07-module-input-validation.md). **6.5/10; subjective acceptance estimate 60%, not hiring probability.**
 
 Credit: parameterization, environment segregation, OIDC, Python policy checking and approval. Deductions: 2 missing module contract (required inputs, types, value validation, safe defaults); 0.75 validate described as syntax-only; 0.5 guaranteed correctness from separation; 0.25 unstructured plan-log parsing. No separate HCL-omission penalty. Retest the contract with invalid inputs; Q08 covers provider aliases, an untested subtopic despite broad coverage checks.
+
+## Q08 — Provider Aliases and Module Regions — 2026-10-17
+
+[Canonical answer](questions/Q08-provider-alias-module-region.md). **6.5/10; subjective acceptance estimate 60%, not hiring probability.**
+
+Credit: regional configurations, aliases, plan review and CI gates. Deductions: 1.5 missing module provider mapping/inheritance; 1 concrete effective account/region verification; 1 existing-resource protection/migration. No code omission or repeated-gates penalty. Q09 independently retests Q02's untracked-resource recovery gap.

@@ -15,17 +15,17 @@
 
 | Metric | Status |
 | --- | --- |
-| Evaluated questions | 7 / 20 |
-| Average score | Latest per-question: 7.21/10 (50.5 / 7); original attempts: 6.43/10 (45 / 7) |
-| Individual verdicts | Q01 revised: sound; Q02: recovery gaps; Q03: version/isolation gaps; Q04 revised: core concepts sound; Q05: state/code sound; Q06: dependency gaps; Q07: module input-contract gaps |
+| Evaluated questions | 8 / 20 |
+| Average score | Latest per-question: 7.13/10 (57 / 8); original attempts: 6.44/10 (51.5 / 8) |
+| Individual verdicts | Q01 revised: sound; Q02: recovery gaps; Q03: version/isolation gaps; Q04 revised: core concepts sound; Q05: state/code sound; Q06: dependency gaps; Q07: input-contract gaps; Q08: provider mapping and migration gaps |
 | Final verdict | Pending Q20 |
 | Coverage | 12 / 12 broad aspects attempted; mastery and remaining subtopics pending |
 
 ## Current Position
 
-Q08 — Provider aliases across regions; awaiting an answer.
+Q09 — Existing resource missing from state (Q02 recovery retest); awaiting an answer.
 
-A Terraform root manages AWS resources in two regions using provider aliases. A reusable module intended for the secondary region plans resources in the default region instead. How would you investigate and correctly pass the provider configuration into the module, verify the destination before apply and avoid accidentally replacing existing resources?
+A failed production apply created an S3 bucket, but a reviewed state inventory confirms the bucket is not tracked. The matching resource block remains in Git, and the next plan proposes creating it again. The bucket now contains application data. How would you safely bring it under Terraform management, prove the correct object is mapped and avoid unintended changes after adoption? Include the essential commands or configuration.
 
 ## Coverage Checklist
 
@@ -40,7 +40,7 @@ Checked means substantively assessed, not mastered. Link evidence after each eva
 - [x] ✅ Variables, locals, outputs and type validation — Q07 input design attempted; required inputs/validation need retest; locals/outputs depth remains.
 - [x] ✅ Dependencies, data sources and unknown values — Q06 ordering attempted; implicit references need retest; data-source and unknown-value depth remains.
 - [x] ✅ count, for_each and stable resource identity — Q04 revised: index shift and stable keys understood; independent retest pending.
-- [x] ✅ Providers, aliases, constraints and dependency lock files — Q03 version control attempted; aliases and lock-file handling remain.
+- [x] ✅ Providers, aliases, constraints and dependency lock files — Q03/Q08 version control and aliases attempted; module mapping and lock-file handling need retest.
 - [x] ✅ Environment/account isolation, secrets and access — Q03; explicit backend and role boundaries need retest.
 - [x] ✅ CI/CD, tests, policy checks and partial-failure recovery — Q01/Q02 approvals and recovery assessed; tests/policy depth and concurrency remain.
 
@@ -55,8 +55,9 @@ Checked means substantively assessed, not mastered. Link evidence after each eva
 | [Q05](questions/Q05-emergency-security-group-drift.md) | Drift, desired configuration and emergency access | 7.5/10 | Correct state/code distinction | Minimum access; optional refresh; verify traffic |
 | [Q06](questions/Q06-dependencies-creation-order.md) | Dependency ordering and investigation | 6/10 | Selective ordering understood; implicit dependencies missed | References; hidden dependencies; fresh test |
 | [Q07](questions/Q07-module-input-validation.md) | Input contracts, environment inputs and plan policy | 6.5/10 | Useful pipeline controls; module validation missing | Required inputs; types; validation; plan JSON |
+| [Q08](questions/Q08-provider-alias-module-region.md) | Regional aliases and module provider selection | 6.5/10 | Alias concept correct; module/recovery details missing | Provider map; identity checks; preserve deployed resources |
 
-Q01 and Q04 reassessments revise the same questions after feedback; neither is a new numbered question or independent retest. Latest-score average: 50.5 / 7 = 7.21/10 (rounded). Original-attempt average: 45 / 7 = 6.43/10 (rounded). Coverage means assessed, not mastered; untested subtopics and independent retests remain pending.
+Q01 and Q04 reassessments revise the same questions after feedback; neither is a new numbered question or independent retest. Latest-score average: 57 / 8 = 7.13/10 (rounded). Original-attempt average: 51.5 / 8 = 6.44/10 (rounded). Coverage means assessed, not mastered; untested subtopics and independent retests remain pending.
 
 ## Revision and Final Assessment
 
@@ -67,6 +68,7 @@ Q01 and Q04 reassessments revise the same questions after feedback; neither is a
 - [ ] Q05: investigate and minimize emergency access; explain optional refresh-only; verify allowed/denied traffic.
 - [ ] Q06: retest implicit references, hidden dependencies and fresh-environment verification.
 - [ ] Q07: require critical inputs, validate values and verify structured production policy.
+- [ ] Q08: map module providers, verify destinations and preserve resources across regional changes.
 - [ ] Complete 20 evaluated attempts.
 - [ ] Consolidate evidence after Q10.
 - [ ] Retest demonstrated weaknesses within the agreed 20 questions.
