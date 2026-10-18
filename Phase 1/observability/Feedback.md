@@ -19,3 +19,7 @@ For future relevant attempts, append the canonical link, demonstrated evidence, 
 ## AWS Q02 — 2026-10-18
 
 [Answer](../aws/questions/Q02-s3-kms-access-denied.md): recovery verification partially improved from AWS Q01 through explicit retrieval-success monitoring. Exact-role/object testing and denial evidence remain missing. No separate subscore; coverage stays 4/10, with full recovery verification unchecked.
+
+## AWS Q03 — 2026-10-18
+
+[Answer](../aws/questions/Q03-rds-failover-connectivity.md): application dashboards and DNS checks provide partial recovery evidence; concrete transactions and error/latency acceptance criteria remain absent. Verification remains partially improved, not resolved. No separate subscore or new coverage check.

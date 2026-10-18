@@ -15,18 +15,18 @@
 
 | Metric | Status |
 | --- | --- |
-| Initial cycle | 2 / 10 evaluated |
+| Initial cycle | 3 / 10 evaluated |
 | Optional follow-ups | 0 / up to 5; need determined after Q10 |
-| Latest question | Q02 evaluated; Q03 pending |
-| Average score | 7.00/10 (14 / 2) |
-| Coverage | 5 / 15 aspects sampled; subtopics and mastery remain pending |
+| Latest question | Q03 evaluated; Q04 pending |
+| Average score | 7.00/10 (21 / 3) |
+| Coverage | 7 / 15 aspects sampled; subtopics and mastery remain pending |
 | Readiness | Initial evidence: sound diagnosis; restoration and recovery verification need retest |
 
 Prior AWS-related discussions in Terraform, Kubernetes and RAG are context, not automatically credited AWS scores or completed coverage.
 
-## Current position — Q03 pending
+## Current position — Q04 pending
 
-A production application uses an RDS PostgreSQL Multi-AZ DB instance. After an AZ disruption, RDS reports successful failover and the new primary is available, but application requests still fail with database connection errors. A teammate suggests restoring last night's snapshot and changing the application to the new primary's IP. How would you restore connectivity safely, determine whether data recovery is actually needed and verify application recovery?
+An application on private EC2 instances uploads files to S3 in the same Region. Its NAT Gateway has become a major cost source; during a NAT outage, S3 uploads fail. The instances also need outbound access to an external payment API. A teammate suggests removing NAT and sending all outbound traffic through an S3 VPC endpoint. What network design would you choose, what routing/access settings would you inspect, and how would you verify both destinations remain reachable without making the instances public?
 
 ## Coverage checklist
 
@@ -38,14 +38,14 @@ Check only after substantive attempt and evaluation, with question links. A chec
 - [x] ✅ IAM role and least-privilege access — [Q02](questions/Q02-s3-kms-access-denied.md); policy evaluation/identity verification need retest; cross-account depth unassessed.
 - [x] ✅ S3 encryption/access — [Q02](questions/Q02-s3-kms-access-denied.md); default encryption needs correction; versioning/lifecycle unassessed.
 - [ ] EBS/EFS storage choice, attachment constraints and snapshots.
-- [ ] RDS/Aurora availability, connectivity, backups and recovery.
+- [x] ✅ RDS Multi-AZ failover/connectivity — [Q03](questions/Q03-rds-failover-connectivity.md); same-Region topology and recovery proof need retest; Aurora depth unassessed.
 - [ ] Route 53, DNS, load balancing, TLS/ACM and CloudFront delivery.
 - [ ] CloudWatch metrics/logs/alarms and CloudTrail audit investigation.
 - [x] ✅ KMS key access — [Q02](questions/Q02-s3-kms-access-denied.md); key policy/scope need retest; Secrets Manager/rotation unassessed.
 - [ ] Lambda/API Gateway: permissions, failures, concurrency and integration.
 - [ ] SQS/SNS/EventBridge: delivery failures, retries and safe processing.
 - [ ] Container hosting and image delivery: ECS/EKS/ECR service boundaries.
-- [ ] Backup/DR, RTO/RPO and verified restoration/failover.
+- [x] ✅ Failover versus snapshot recovery — [Q03](questions/Q03-rds-failover-connectivity.md); regional DR, RTO/RPO and restore validation remain incomplete.
 - [ ] Cost, quotas and capacity trade-offs; account/governance safeguards.
 
 ## Adaptive coverage plan
@@ -60,11 +60,13 @@ After Q10, report measured strengths, remaining gaps and a realistic AWS-specifi
 | --- | --- | --- | --- |
 | [Q01](questions/Q01-alb-unhealthy-targets.md) | 7/10 | Private isolation; port/path and app checks | Narrow access checks; rollback; recovery proof |
 | [Q02](questions/Q02-s3-kms-access-denied.md) | 7/10 | KMS access diagnosis; success-rate verification | Key policy/scope; denied-operation evidence; actual-role test |
+| [Q03](questions/Q03-rds-failover-connectivity.md) | 7/10 | Stable endpoint; DNS cache; standby promotion | Same-Region topology; connection pools; transaction/data checks |
 
 ## Revision and readiness
 
 - [ ] Q01: verify ALB-to-target rules, select a safe restoration action and prove recovery through target health and real requests.
 - [ ] Q02: verify key policy, exact key scope, denial evidence and actual-role read; correct default-encryption assumption. Q01 recovery verification partially improved, not closed.
+- [ ] Q03: distinguish AZ availability from regional DR; renew stale sessions; verify transactions/data rather than assuming loss is impossible.
 - [ ] Complete the first ten assessments and interim review.
 - [ ] Retest demonstrated weaknesses where needed within the five-follow-up cap.
 - [ ] Demonstrate safe diagnosis, mitigation and recovery using concrete evidence.

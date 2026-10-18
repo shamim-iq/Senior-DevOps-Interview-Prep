@@ -1,6 +1,6 @@
 # AWS Interview Feedback
 
-Started 2026-10-18. Two evaluated AWS attempts; average 7/10. Readiness evidence is preliminary.
+Started 2026-10-18. Three evaluated AWS attempts; average 7/10. Readiness evidence is preliminary.
 
 Evaluate at the four-year DevOps / Platform baseline. Credit correct reasoning; separate material errors, omissions, minor slips and optional advanced coaching. Do not penalize concise answers for irrelevant command omissions.
 
@@ -21,3 +21,9 @@ Credit: private isolation, deployment correlation, port/path mismatch, target he
 [Canonical answer](questions/Q02-s3-kms-access-denied.md). **7/10; subjective acceptance estimate 65%, not hiring probability.** Correct KMS authorization diagnosis, rejection of excessive access and retrieval-success monitoring. Deductions: 1 key policy; 1 combined denial evidence/actual-role test; 0.5 default-encryption misconception; 0.5 exact-key scope. Role/profile terminology clarified without separate penalty.
 
 Recovery: Q01 missing action resolved in this scenario; verification partially improved through retrieval success but identity-specific proof remains. Networking/rollback gaps not reassessed. Q03 rotates to RDS failover and application recovery.
+
+## Q03 — RDS Failover Connectivity — 2026-10-18
+
+[Canonical answer](questions/Q03-rds-failover-connectivity.md). **7/10; subjective acceptance estimate 65%, not hiring probability.** Credit endpoint/DNS diagnosis, standby promotion and dashboard verification. Deductions: 1 incorrect DR-Region location; 1 incomplete runtime cache/pool reconnection; 1 combined unconditional data-safety claim and missing transaction/data verification. No additional terminology/tooling penalty.
+
+Recovery: Q01 mitigation and Q01/Q02 verification partially improved, with explicit cache action and app-health observation; concrete pool/transaction recovery remains. IAM/KMS and ALB-specific gaps not reassessed. Q04 covers private networking/endpoints and NAT cost/reliability.

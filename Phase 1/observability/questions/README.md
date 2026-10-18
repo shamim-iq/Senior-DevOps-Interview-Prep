@@ -13,3 +13,5 @@ See [Progress](../Progress.md) for coverage and [Feedback](../Feedback.md) for g
 - [AWS Q01 — ALB unhealthy targets](../../aws/questions/Q01-alb-unhealthy-targets.md): service-health evidence and recovery verification.
 
 - [AWS Q02 — S3/KMS access](../../aws/questions/Q02-s3-kms-access-denied.md): retrieval-success monitoring and identity-specific verification gap.
+
+- [AWS Q03 — RDS failover](../../aws/questions/Q03-rds-failover-connectivity.md): application recovery observation and transaction-verification gaps.
