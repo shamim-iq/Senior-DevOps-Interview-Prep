@@ -15,26 +15,26 @@
 
 | Metric | Status |
 | --- | --- |
-| Initial cycle | 0 / 10 evaluated |
+| Initial cycle | 1 / 10 evaluated |
 | Optional follow-ups | 0 / up to 5; need determined after Q10 |
-| Latest question | Q01 pending; no completed AWS attempts |
-| Average score | N/A |
-| Coverage | 0 / 15 aspects assessed |
-| Readiness | Unassessed in this dedicated AWS cycle |
+| Latest question | Q01 evaluated; Q02 pending |
+| Average score | 7.00/10 (7 / 1) |
+| Coverage | 2 / 15 aspects sampled; subtopics and mastery remain pending |
+| Readiness | Initial evidence: sound diagnosis; restoration and recovery verification need retest |
 
 Prior AWS-related discussions in Terraform, Kubernetes and RAG are context, not automatically credited AWS scores or completed coverage.
 
-## Current position — Q01 pending
+## Current position — Q02 pending
 
-A production web application runs on EC2 instances in private subnets across two Availability Zones, behind an internet-facing Application Load Balancer. After a deployment, users receive HTTP 503 responses. The EC2 instances are running and both instance status checks pass, but the target group marks every instance unhealthy. A teammate suggests assigning public IPs to the instances and opening all inbound ports. How would you investigate, restore service safely and verify recovery? Include the AWS settings or evidence you would inspect; CLI commands are optional.
+An EC2 application uses an instance IAM role to read reports from an S3 bucket in the same account. Reads worked until the objects began using a customer-managed KMS key; now GetObject returns AccessDenied. The role still allows s3:GetObject for the correct prefix. A teammate suggests AdministratorAccess or making the bucket public. How would you identify the denied operation, restore only the required access and verify it using the application's actual identity?
 
 ## Coverage checklist
 
 Check only after substantive attempt and evaluation, with question links. A check means assessed, not mastered; weak subskills stay in revision.
 
 - [ ] VPC routing, public/private subnets, NAT and private service endpoints.
-- [ ] Security groups, network ACLs and safe network access.
-- [ ] EC2, ALB target health, Auto Scaling and availability across AZs.
+- [x] ✅ Safe network access — [Q01](questions/Q01-alb-unhealthy-targets.md); private isolation assessed, precise SG/NACL rules need retest.
+- [x] ✅ EC2 and ALB target health — [Q01](questions/Q01-alb-unhealthy-targets.md); Auto Scaling and AZ resilience depth unassessed.
 - [ ] IAM policies, roles/STS, cross-account access and least privilege.
 - [ ] S3 policies, encryption, versioning and lifecycle/data protection.
 - [ ] EBS/EFS storage choice, attachment constraints and snapshots.
@@ -56,10 +56,13 @@ After Q10, report measured strengths, remaining gaps and a realistic AWS-specifi
 
 ## Results
 
-No evaluated attempts yet.
+| Question | Score | Strength | Revision |
+| --- | --- | --- | --- |
+| [Q01](questions/Q01-alb-unhealthy-targets.md) | 7/10 | Private isolation; port/path and app checks | Narrow access checks; rollback; recovery proof |
 
 ## Revision and readiness
 
+- [ ] Q01: verify ALB-to-target rules, select a safe restoration action and prove recovery through target health and real requests.
 - [ ] Complete the first ten assessments and interim review.
 - [ ] Retest demonstrated weaknesses where needed within the five-follow-up cap.
 - [ ] Demonstrate safe diagnosis, mitigation and recovery using concrete evidence.

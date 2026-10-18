@@ -9,3 +9,5 @@ Canonical answers stay in the topic where they were asked. This directory links 
 - [Kubernetes Q08 — CoreDNS SERVFAIL](../../kubernetes/questions/Q08-coredns-servfail.md): DNS health and evidence-based diagnosis.
 
 See [Progress](../Progress.md) for coverage and [Feedback](../Feedback.md) for gaps. Linked overall scores remain owned by their original topics.
+
+- [AWS Q01 — ALB unhealthy targets](../../aws/questions/Q01-alb-unhealthy-targets.md): service-health evidence and recovery verification.

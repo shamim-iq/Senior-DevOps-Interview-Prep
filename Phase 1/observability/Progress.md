@@ -6,7 +6,7 @@
 
 | Metric | Status |
 | --- | --- |
-| Linked evaluated attempts | 5 existing attempts indexed; not new questions |
+| Linked evaluated attempts | 6 attempts indexed; not new questions |
 | Standalone questions | 0; none planned |
 | Observability-specific average | N/A — historical overall topic scores are not observability subscores |
 | Coverage | 4 / 10 aspects substantively sampled; coverage is not mastery |
@@ -16,7 +16,7 @@
 
 - [x] ✅ Host resource metrics and bottleneck interpretation — Linux Q03/Q04.
 - [x] ✅ Container resource metrics and restart investigation — Kubernetes Q02.
-- [x] ✅ Service-health diagnosis versus process/pod status — Kubernetes Q08.
+- [x] ✅ Service-health diagnosis versus process/pod status — Kubernetes Q08 / AWS Q01.
 - [x] ✅ Log rotation, continuity and evidence preservation — Linux Q10.
 - [ ] Central log collection, searching, retention and sensitive-data handling.
 - [ ] Distributed tracing and correlation between logs, metrics and traces.
@@ -34,6 +34,7 @@
 | [Linux Q10](../linux/questions/Q10-logrotate-open-file.md) | Old file-descriptor reasoning and evidence preservation | Confirm open file, supported reopening and successful new writes |
 | [Kubernetes Q02](../kubernetes/questions/Q02-memory-limit-oomkilled.md) | Peak memory, restart logs and resource metrics | Establish cause from evidence rather than assuming bad limits; verify stability |
 | [Kubernetes Q08](../kubernetes/questions/Q08-coredns-servfail.md) | DNS failure/health reasoning substantively assessed | Running pods do not prove successful queries or overload; isolate and verify |
+| [AWS Q01](../aws/questions/Q01-alb-unhealthy-targets.md) | App listener/logs and health-path diagnosis despite passing EC2 checks | Concrete recovery metrics/requests absent; deployment correlation is not proof |
 
 This is an initial evidence index, not an exhaustive remapping of every answer. Reference answers contain coaching that must not be counted as candidate-demonstrated skill.
 
