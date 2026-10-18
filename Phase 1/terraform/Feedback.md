@@ -1,6 +1,6 @@
 # Terraform Interview Feedback
 
-Ten questions evaluated; original-attempt average 6.60/10; latest per-question average 7.15/10 (includes Q01 and Q04 revisions after feedback). Current track: ten initial questions plus up to five focused follow-ups, one at a time, using the four-year baseline in AGENTS.md.
+Eleven questions evaluated; original-attempt average 6.77/10; latest per-question average 7.27/10 (includes Q01 and Q04 revisions after feedback). Current track: ten initial questions plus up to five focused follow-ups, one at a time, using the four-year baseline in AGENTS.md.
 
 Record each individual verdict, score, strengths, explained deductions and revision needs after the answer. Consolidate after Q10 and deliver the final evidence-based verdict at the shortened cycle closure (no later than Q15). Preserve scores and history. See Progress.md for the assessment agreement and pending question.
 
@@ -116,3 +116,11 @@ Credit: correct range, ignored lock-file diagnosis, rejection of routine upgrade
 ## Assessment scope revision — 2026-10-17
 
 At the user's request, the original Q20 target is superseded by at most five follow-ups (Q11–Q15), with earlier closure if priority weaknesses are independently resolved. Historical first-ten plans and scores above are retained as history, not current authorization for ten more questions. See Progress.md for the focused mapping and closure criteria. No new attempt or score was recorded for this planning change; unresolved or untested aspects will remain explicit in the final verdict.
+
+## Q11 — Deferred Lookup and Replacement — 2026-10-18
+
+[Canonical answer and recovery comparison](questions/Q11-data-source-deferred-read.md). **8.5/10; subjective answer-specific acceptance estimate 80%, not hiring probability.** First focused follow-up assessed; at most four remain.
+
+Credit: unnecessary explicit dependency, delayed lookup, unknown immutable endpoint, focused removal and re-plan. Deduct 0.5 for absolute lookup timing and 1 combined for missing exact replacement/ID/no-change evidence and post-apply connectivity. No command-volume penalty.
+
+**Recovery:** Q06 broad-dependency misuse and Q01 causal replacement diagnosis resolved in this scenario. Q06 implicit/hidden-dependency precision and Q01/Q06 verification partially improved. Original EC2/fresh-environment reasoning, lifecycle semantics and unrelated gaps not reassessed. Historical scores preserved; composite revision items remain open. Q12 tests interrupted-apply locking and import recovery.
