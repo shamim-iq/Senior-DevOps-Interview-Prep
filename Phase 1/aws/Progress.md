@@ -15,18 +15,18 @@
 
 | Metric | Status |
 | --- | --- |
-| Initial cycle | 1 / 10 evaluated |
+| Initial cycle | 2 / 10 evaluated |
 | Optional follow-ups | 0 / up to 5; need determined after Q10 |
-| Latest question | Q01 evaluated; Q02 pending |
-| Average score | 7.00/10 (7 / 1) |
-| Coverage | 2 / 15 aspects sampled; subtopics and mastery remain pending |
+| Latest question | Q02 evaluated; Q03 pending |
+| Average score | 7.00/10 (14 / 2) |
+| Coverage | 5 / 15 aspects sampled; subtopics and mastery remain pending |
 | Readiness | Initial evidence: sound diagnosis; restoration and recovery verification need retest |
 
 Prior AWS-related discussions in Terraform, Kubernetes and RAG are context, not automatically credited AWS scores or completed coverage.
 
-## Current position — Q02 pending
+## Current position — Q03 pending
 
-An EC2 application uses an instance IAM role to read reports from an S3 bucket in the same account. Reads worked until the objects began using a customer-managed KMS key; now GetObject returns AccessDenied. The role still allows s3:GetObject for the correct prefix. A teammate suggests AdministratorAccess or making the bucket public. How would you identify the denied operation, restore only the required access and verify it using the application's actual identity?
+A production application uses an RDS PostgreSQL Multi-AZ DB instance. After an AZ disruption, RDS reports successful failover and the new primary is available, but application requests still fail with database connection errors. A teammate suggests restoring last night's snapshot and changing the application to the new primary's IP. How would you restore connectivity safely, determine whether data recovery is actually needed and verify application recovery?
 
 ## Coverage checklist
 
@@ -35,13 +35,13 @@ Check only after substantive attempt and evaluation, with question links. A chec
 - [ ] VPC routing, public/private subnets, NAT and private service endpoints.
 - [x] ✅ Safe network access — [Q01](questions/Q01-alb-unhealthy-targets.md); private isolation assessed, precise SG/NACL rules need retest.
 - [x] ✅ EC2 and ALB target health — [Q01](questions/Q01-alb-unhealthy-targets.md); Auto Scaling and AZ resilience depth unassessed.
-- [ ] IAM policies, roles/STS, cross-account access and least privilege.
-- [ ] S3 policies, encryption, versioning and lifecycle/data protection.
+- [x] ✅ IAM role and least-privilege access — [Q02](questions/Q02-s3-kms-access-denied.md); policy evaluation/identity verification need retest; cross-account depth unassessed.
+- [x] ✅ S3 encryption/access — [Q02](questions/Q02-s3-kms-access-denied.md); default encryption needs correction; versioning/lifecycle unassessed.
 - [ ] EBS/EFS storage choice, attachment constraints and snapshots.
 - [ ] RDS/Aurora availability, connectivity, backups and recovery.
 - [ ] Route 53, DNS, load balancing, TLS/ACM and CloudFront delivery.
 - [ ] CloudWatch metrics/logs/alarms and CloudTrail audit investigation.
-- [ ] KMS and Secrets Manager: key access, encryption and rotation.
+- [x] ✅ KMS key access — [Q02](questions/Q02-s3-kms-access-denied.md); key policy/scope need retest; Secrets Manager/rotation unassessed.
 - [ ] Lambda/API Gateway: permissions, failures, concurrency and integration.
 - [ ] SQS/SNS/EventBridge: delivery failures, retries and safe processing.
 - [ ] Container hosting and image delivery: ECS/EKS/ECR service boundaries.
@@ -59,10 +59,12 @@ After Q10, report measured strengths, remaining gaps and a realistic AWS-specifi
 | Question | Score | Strength | Revision |
 | --- | --- | --- | --- |
 | [Q01](questions/Q01-alb-unhealthy-targets.md) | 7/10 | Private isolation; port/path and app checks | Narrow access checks; rollback; recovery proof |
+| [Q02](questions/Q02-s3-kms-access-denied.md) | 7/10 | KMS access diagnosis; success-rate verification | Key policy/scope; denied-operation evidence; actual-role test |
 
 ## Revision and readiness
 
 - [ ] Q01: verify ALB-to-target rules, select a safe restoration action and prove recovery through target health and real requests.
+- [ ] Q02: verify key policy, exact key scope, denial evidence and actual-role read; correct default-encryption assumption. Q01 recovery verification partially improved, not closed.
 - [ ] Complete the first ten assessments and interim review.
 - [ ] Retest demonstrated weaknesses where needed within the five-follow-up cap.
 - [ ] Demonstrate safe diagnosis, mitigation and recovery using concrete evidence.

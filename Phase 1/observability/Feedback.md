@@ -15,3 +15,7 @@ For future relevant attempts, append the canonical link, demonstrated evidence, 
 ## AWS Q01 — 2026-10-18
 
 [Canonical answer](../aws/questions/Q01-alb-unhealthy-targets.md). No observability subscore assigned. Service-health reasoning partially improved relative to Kubernetes Q08: passing EC2 checks did not prevent investigating application listener/logs and health path. Diagnosis still assumes infrastructure was unchanged without proof. Recovery verification remains unresolved relative to Linux Q03/Q04/Q10: no real-request, target-health or latency/error success criteria. No new coverage aspect completed; four of ten remain sampled.
+
+## AWS Q02 — 2026-10-18
+
+[Answer](../aws/questions/Q02-s3-kms-access-denied.md): recovery verification partially improved from AWS Q01 through explicit retrieval-success monitoring. Exact-role/object testing and denial evidence remain missing. No separate subscore; coverage stays 4/10, with full recovery verification unchecked.
