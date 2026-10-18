@@ -16,10 +16,10 @@ Within each topic:
 
 - [ ] [Kubernetes](Phase%201/kubernetes/Progress.md) — paused; Q11 pending.
 - [ ] Docker
-- [ ] AWS
+- [ ] [AWS](Phase%201/aws/Progress.md) — active; 0/10 initial questions evaluated; up to 5 targeted follow-ups if needed; Q01 pending.
 - [ ] Azure
 - [ ] CI/CD pipelines
-- [ ] [Terraform](Phase%201/terraform/Progress.md) — active; 11 evaluated; 1 of up to 5 focused follow-ups assessed; Q12 pending.
+- [ ] [Terraform](Phase%201/terraform/Progress.md) — paused; 11 evaluated; 1 of up to 5 focused follow-ups assessed; Q12 pending.
 - [Observability](Phase%201/observability/Progress.md) — integrated into other topics; linked evidence, no standalone assessment cycle.
 - [ ] [Linux / Networking](Phase%201/linux/Progress.md) — paused; Q11 pending.
 - [ ] Python

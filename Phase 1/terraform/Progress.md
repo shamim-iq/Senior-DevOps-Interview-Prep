@@ -1,6 +1,6 @@
 # Terraform Interview Progress
 
-**Active topic: Phase 1 / Terraform.** Started 2026-10-15. RAG is paused with Q03 preserved.
+**Paused by user request on 2026-10-18 while AWS is active.** Started 2026-10-15. Q12 remains pending; all scores and unresolved gaps are preserved. Pausing is not a final readiness assessment.
 
 ## Assessment Agreement
 
@@ -24,7 +24,7 @@
 
 ## Current Position
 
-Q12 — Interrupted apply and safe recovery; awaiting an answer.
+Q12 — Interrupted apply and safe recovery; preserved for resumption, not currently being asked.
 
 A production CI apply lost its runner connection. A retry reports a state lock. AWS shows a newly created S3 bucket containing application data, but the correct backend's state does not list it; its resource block is still in Git. The old runner's status is initially uncertain. How would you establish whether recovery can safely proceed and bring the bucket under Terraform management without deleting data? Include the essential commands or a short configuration excerpt and how you would verify the result.
 
