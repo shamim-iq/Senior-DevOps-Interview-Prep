@@ -20,7 +20,7 @@ Within each topic:
 - [ ] Azure
 - [ ] CI/CD pipelines
 - [ ] [Terraform](Phase%201/terraform/Progress.md) — active; 11 evaluated; 1 of up to 5 focused follow-ups assessed; Q12 pending.
-- [ ] Observability
+- [Observability](Phase%201/observability/Progress.md) — integrated into other topics; linked evidence, no standalone assessment cycle.
 - [ ] [Linux / Networking](Phase%201/linux/Progress.md) — paused; Q11 pending.
 - [ ] Python
 - [ ] [RAG](Phase%201/rag/Progress.md) — paused; Q03 preserved.
@@ -29,7 +29,9 @@ Within each topic:
 
 Each topic keeps its own coverage, scores and revision checklist in `Phase N/<topic>/Progress.md`. Completed assessments show ✅; remaining aspects stay unchecked. A topic is complete only after its agreed coverage and revision work are finished. Future phases are not yet scoped, so no overall completion percentage is assigned.
 
-All topics use scored questions, saved answers, feedback, coverage tracking and weakness retests. Python also includes coding exercises covering scripting, files, JSON/YAML, APIs, subprocesses, error handling, logging and testing.
+Observability stays on the roadmap as integrated coverage, not a separate completion item. Its directory tracks linked answers, feedback and coverage from other topics without duplicating questions or overall scores.
+
+All assessed topics use scored questions, saved answers, feedback, coverage tracking and weakness retests. Python also includes coding exercises covering scripting, files, JSON/YAML, APIs, subprocesses, error handling, logging and testing.
 
 CI/CD questions prioritize GitHub Actions, with Jenkins secondary. Cover workflows, triggers, jobs and runners, build/test stages, artifacts, secrets and OIDC, reusable workflows, security checks, environment approvals, deployment, rollback and troubleshooting. Evaluate answers using the same four-year baseline, topic-specific scores, feedback, coverage checklist and retests as other topics.
 

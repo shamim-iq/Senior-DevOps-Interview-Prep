@@ -27,6 +27,8 @@ Never use `git reset --hard`, `git clean -fd`, or force-push unless the user exp
 
 ## Interview practice
 
+- Observability is integrated into other topic scenarios, not a standalone assessment cycle or roadmap completion checkbox. Maintain `Phase 1/observability/Progress.md`, `Feedback.md` and `questions/README.md` with links to canonical answers and evidence-based coverage. Do not duplicate questions or reuse overall topic scores as observability subscores; leave unassessed metrics N/A. Preserve current topic limits and pending questions.
+
 - For Terraform answers, include short HCL configuration blocks only when they clarify the scenario or fix. Always label Terraform configuration fences with `hcl` for syntax highlighting; keep command fences labeled with their actual shell. Prefer minimal focused excerpts with one brief purpose statement; label incomplete excerpts and placeholders. Keep explanations concise without dropping technical details, safety conditions or verification. Omit configuration blocks when commands or prose already explain the issue. Preserve scores and attempt history when improving examples.
 
 - Every answer flowchart must use a colorful Mermaid layout from `Flowchart-Templates.md` (linear, troubleshooting or pipeline). This applies to all existing and future topics, including supplementary guides. Adapt labels and branches to the actual scenario; retain the shared readable palette, concise labels and purposeful symbols/emojis. Do not use plain-text/ASCII flowcharts. Preserve technical meaning, command examples, scores and history when changing presentation.
