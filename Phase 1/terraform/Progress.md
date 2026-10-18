@@ -6,6 +6,7 @@
 
 - Revised by user request on 2026-10-17: ten initial questions plus at most five focused follow-up scenarios (Q11–Q15), asked one at a time. Stop earlier if independent answers sufficiently address the priority gaps. Do not add questions beyond this cap without a new request.
 - Use the four-year DevOps / Platform Engineer baseline in AGENTS.md. Include practical evidence interpretation and safe production decisions.
+- Recovery tracking requested 2026-10-18: for each follow-up, explicitly map the assessed gap to its original question and label it resolved, partially improved, or still unresolved, citing evidence from the new answer. Mark gaps outside the scenario as not reassessed. Preserve original scores; close revision checkboxes only when independent evidence supports resolution.
 - After each attempt: individual verdict, score out of 10, credited strengths, explained deductions, concise corrected answer and revision needs. Label the required answer-specific acceptance estimate as subjective coaching, not a hiring probability.
 - After Q10: interim consolidation. At the end of the shortened follow-up cycle: final verdict based on actual attempts, topic evidence, safety, independence, strengths and unresolved gaps. Distinguish coverage from mastery; preserve historical scores and dated retests.
 - Adapt remaining scenarios to gaps while maintaining breadth. Retests count within the five-question follow-up cap; do not disguise extra questions as lengthy multipart scenarios. No future answers or hints before an attempt.
