@@ -15,24 +15,24 @@
 
 | Metric | Status |
 | --- | --- |
-| Initial cycle | 3 / 10 evaluated |
+| Initial cycle | 4 / 10 evaluated |
 | Optional follow-ups | 0 / up to 5; need determined after Q10 |
-| Latest question | Q03 evaluated; Q04 pending |
-| Average score | 7.00/10 (21 / 3) |
-| Coverage | 7 / 15 aspects sampled; subtopics and mastery remain pending |
+| Latest question | Q04 evaluated; Q05 pending |
+| Average score | 7.00/10 (28 / 4) |
+| Coverage | 9 / 15 aspects sampled; subtopics and mastery remain pending |
 | Readiness | Initial evidence: sound diagnosis; restoration and recovery verification need retest |
 
 Prior AWS-related discussions in Terraform, Kubernetes and RAG are context, not automatically credited AWS scores or completed coverage.
 
-## Current position — Q04 pending
+## Current position — Q05 pending
 
-An application on private EC2 instances uploads files to S3 in the same Region. Its NAT Gateway has become a major cost source; during a NAT outage, S3 uploads fail. The instances also need outbound access to an external payment API. A teammate suggests removing NAT and sending all outbound traffic through an S3 VPC endpoint. What network design would you choose, what routing/access settings would you inspect, and how would you verify both destinations remain reachable without making the instances public?
+A Lambda function consumes order messages from a standard SQS queue and calls a payment service. During a traffic spike, some orders are charged twice, the queue backlog grows and one malformed message fails repeatedly. A teammate proposes increasing Lambda concurrency to its maximum and deleting the troublesome messages. How would you diagnose and safely correct processing, protect the payment service and verify that orders are neither lost nor charged twice?
 
 ## Coverage checklist
 
 Check only after substantive attempt and evaluation, with question links. A check means assessed, not mastered; weak subskills stay in revision.
 
-- [ ] VPC routing, public/private subnets, NAT and private service endpoints.
+- [x] ✅ VPC routing/NAT/endpoints — [Q04](questions/Q04-s3-endpoint-nat-routing.md); traffic separation understood, route/policy implementation needs retest.
 - [x] ✅ Safe network access — [Q01](questions/Q01-alb-unhealthy-targets.md); private isolation assessed, precise SG/NACL rules need retest.
 - [x] ✅ EC2 and ALB target health — [Q01](questions/Q01-alb-unhealthy-targets.md); Auto Scaling and AZ resilience depth unassessed.
 - [x] ✅ IAM role and least-privilege access — [Q02](questions/Q02-s3-kms-access-denied.md); policy evaluation/identity verification need retest; cross-account depth unassessed.
@@ -46,7 +46,7 @@ Check only after substantive attempt and evaluation, with question links. A chec
 - [ ] SQS/SNS/EventBridge: delivery failures, retries and safe processing.
 - [ ] Container hosting and image delivery: ECS/EKS/ECR service boundaries.
 - [x] ✅ Failover versus snapshot recovery — [Q03](questions/Q03-rds-failover-connectivity.md); regional DR, RTO/RPO and restore validation remain incomplete.
-- [ ] Cost, quotas and capacity trade-offs; account/governance safeguards.
+- [x] ✅ NAT cost/dependency trade-off — [Q04](questions/Q04-s3-endpoint-nat-routing.md); cost validation, quotas and governance remain unassessed.
 
 ## Adaptive coverage plan
 
@@ -61,12 +61,14 @@ After Q10, report measured strengths, remaining gaps and a realistic AWS-specifi
 | [Q01](questions/Q01-alb-unhealthy-targets.md) | 7/10 | Private isolation; port/path and app checks | Narrow access checks; rollback; recovery proof |
 | [Q02](questions/Q02-s3-kms-access-denied.md) | 7/10 | KMS access diagnosis; success-rate verification | Key policy/scope; denied-operation evidence; actual-role test |
 | [Q03](questions/Q03-rds-failover-connectivity.md) | 7/10 | Stable endpoint; DNS cache; standby promotion | Same-Region topology; connection pools; transaction/data checks |
+| [Q04](questions/Q04-s3-endpoint-nat-routing.md) | 7/10 | S3/payment traffic separation; outcome monitoring | Gateway routes; access policies; actual-path/cost verification |
 
 ## Revision and readiness
 
 - [ ] Q01: verify ALB-to-target rules, select a safe restoration action and prove recovery through target health and real requests.
 - [ ] Q02: verify key policy, exact key scope, denial evidence and actual-role read; correct default-encryption assumption. Q01 recovery verification partially improved, not closed.
 - [ ] Q03: distinguish AZ availability from regional DR; renew stale sessions; verify transactions/data rather than assuming loss is impossible.
+- [ ] Q04: configure gateway endpoint associations/prefix-list routing and scoped access; prove both paths and cost effect.
 - [ ] Complete the first ten assessments and interim review.
 - [ ] Retest demonstrated weaknesses where needed within the five-follow-up cap.
 - [ ] Demonstrate safe diagnosis, mitigation and recovery using concrete evidence.

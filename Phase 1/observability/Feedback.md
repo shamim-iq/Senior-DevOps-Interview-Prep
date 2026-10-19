@@ -23,3 +23,7 @@ For future relevant attempts, append the canonical link, demonstrated evidence, 
 ## AWS Q03 — 2026-10-18
 
 [Answer](../aws/questions/Q03-rds-failover-connectivity.md): application dashboards and DNS checks provide partial recovery evidence; concrete transactions and error/latency acceptance criteria remain absent. Verification remains partially improved, not resolved. No separate subscore or new coverage check.
+
+## AWS Q04 — 2026-10-19
+
+[Answer](../aws/questions/Q04-s3-endpoint-nat-routing.md): names payment success and upload failures as recovery signals. Verification remains partially improved: direct tests from app subnets and route/cost evidence absent. No separate subscore or new coverage check; 4/10 aspects remain sampled.

@@ -6,7 +6,7 @@
 
 | Metric | Status |
 | --- | --- |
-| Linked evaluated attempts | 8 attempts indexed; not new questions |
+| Linked evaluated attempts | 9 attempts indexed; not new questions |
 | Standalone questions | 0; none planned |
 | Observability-specific average | N/A — historical overall topic scores are not observability subscores |
 | Coverage | 4 / 10 aspects substantively sampled; coverage is not mastery |
@@ -37,6 +37,7 @@
 | [AWS Q01](../aws/questions/Q01-alb-unhealthy-targets.md) | App listener/logs and health-path diagnosis despite passing EC2 checks | Concrete recovery metrics/requests absent; deployment correlation is not proof |
 | [AWS Q02](../aws/questions/Q02-s3-kms-access-denied.md) | Retrieval-success monitoring after access fix | Actual-role read and denial evidence missing; recovery partially improved |
 | [AWS Q03](../aws/questions/Q03-rds-failover-connectivity.md) | App-level monitoring and DNS lookup | Real transactions, exact error/latency criteria and data checks remain missing |
+| [AWS Q04](../aws/questions/Q04-s3-endpoint-nat-routing.md) | Separate payment success and upload failures | Direct path testing and NAT cost/byte evidence missing |
 
 This is an initial evidence index, not an exhaustive remapping of every answer. Reference answers contain coaching that must not be counted as candidate-demonstrated skill.
 

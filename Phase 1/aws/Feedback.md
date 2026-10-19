@@ -1,6 +1,6 @@
 # AWS Interview Feedback
 
-Started 2026-10-18. Three evaluated AWS attempts; average 7/10. Readiness evidence is preliminary.
+Started 2026-10-18. Four evaluated AWS attempts; average 7/10. Readiness evidence is preliminary.
 
 Evaluate at the four-year DevOps / Platform baseline. Credit correct reasoning; separate material errors, omissions, minor slips and optional advanced coaching. Do not penalize concise answers for irrelevant command omissions.
 
@@ -27,3 +27,9 @@ Recovery: Q01 missing action resolved in this scenario; verification partially i
 [Canonical answer](questions/Q03-rds-failover-connectivity.md). **7/10; subjective acceptance estimate 65%, not hiring probability.** Credit endpoint/DNS diagnosis, standby promotion and dashboard verification. Deductions: 1 incorrect DR-Region location; 1 incomplete runtime cache/pool reconnection; 1 combined unconditional data-safety claim and missing transaction/data verification. No additional terminology/tooling penalty.
 
 Recovery: Q01 mitigation and Q01/Q02 verification partially improved, with explicit cache action and app-health observation; concrete pool/transaction recovery remains. IAM/KMS and ALB-specific gaps not reassessed. Q04 covers private networking/endpoints and NAT cost/reliability.
+
+## Q04 — S3 Endpoint and NAT — 2026-10-19
+
+[Canonical answer](questions/Q04-s3-endpoint-nat-routing.md). **7/10; subjective acceptance estimate 65%, not hiring probability.** Credit traffic separation, retained payment egress, S3 private access and monitoring both outcomes. Deductions: 1.5 gateway selection/concrete routing; 1 access checks; 0.5 direct operation/path/cost verification. Advanced NAT resilience is coaching, not a further penalty.
+
+Recovery: verification remains partially improved; previous concrete-network/access checks still unresolved. Other gaps not reassessed. Q05 rotates to Lambda/SQS processing and safe retries.
