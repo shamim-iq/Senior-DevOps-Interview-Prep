@@ -17,14 +17,16 @@
 | --- | --- |
 | Initial cycle | 4 / 10 evaluated |
 | Optional follow-ups | 0 / up to 5; need determined after Q10 |
-| Latest question | Q04 evaluated; Q05 pending |
+| Latest question | Q04 evaluated; Q05 deferred (unattempted) |
 | Average score | 7.00/10 (28 / 4) |
 | Coverage | 9 / 15 aspects sampled; subtopics and mastery remain pending |
 | Readiness | Initial evidence: sound diagnosis; restoration and recovery verification need retest |
 
 Prior AWS-related discussions in Terraform, Kubernetes and RAG are context, not automatically credited AWS scores or completed coverage.
 
-## Current position — Q05 pending
+## Current position — Q05 deferred
+
+**Deferred by user request on 2026-10-19.** Preserve this question for later; no attempt, score or coverage credit. SQS is not listed in the supplied résumé and the user reports limited depth; treat eventual assessment as introductory learning, not a gap in claimed experience. Do not automatically resume this question until the user asks to revisit it. AWS remains the active topic; no replacement question has been selected. This deferral does not consume an evaluated-question slot or extend the 15-question cap.
 
 A Lambda function consumes order messages from a standard SQS queue and calls a payment service. During a traffic spike, some orders are charged twice, the queue backlog grows and one malformed message fails repeatedly. A teammate proposes increasing Lambda concurrency to its maximum and deleting the troublesome messages. How would you diagnose and safely correct processing, protect the payment service and verify that orders are neither lost nor charged twice?
 
