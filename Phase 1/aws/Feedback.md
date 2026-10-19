@@ -1,6 +1,6 @@
 # AWS Interview Feedback
 
-Started 2026-10-18. Five evaluated AWS attempts; average 7.10/10. Q05 remains deferred. Readiness evidence is preliminary.
+Started 2026-10-18. Six evaluated AWS attempts; average 7.17/10. Q05 remains deferred. Readiness evidence is preliminary.
 
 Evaluate at the four-year DevOps / Platform baseline. Credit correct reasoning; separate material errors, omissions, minor slips and optional advanced coaching. Do not penalize concise answers for irrelevant command omissions.
 
@@ -39,3 +39,9 @@ Recovery: verification remains partially improved; previous concrete-network/acc
 [Canonical answer](questions/Q06-cloudfront-private-s3-403.md). **7.5/10; subjective acceptance estimate 70%, not hiring probability.** Credit policy/path diagnosis, private bucket and actual browser test via CloudFront. Deductions: 1.5 specific origin identity/permission scope; 0.5 cache precision; 0.5 content/assets and access-boundary verification. No command or advanced-feature penalty.
 
 Recovery: actual-path test selection resolved in this scenario relative to dashboard-only answers; full recovery proof and exact policy evaluation partially improved. Other gaps not reassessed. Fifth evaluated attempt; Q05 unassessed. Q07 rotates to ECS/Fargate image delivery.
+
+## Q07 — Fargate/ECR Image Pull — 2026-10-19
+
+[Canonical answer](questions/Q07-fargate-ecr-image-pull.md). **7.5/10; subjective acceptance estimate 70%, not hiring probability.** Credit execution-role distinction, permission/network hypotheses and rollback/staged rollout. Deductions: 1 error evidence/image existence; 0.5 tag-versus-authorization precision; 0.5 concrete network path; 0.5 health/request gates.
+
+Recovery: responsible-identity selection and explicit mitigation resolved in this scenario; original KMS/OAC details not reassessed. Diagnostic evidence and verification partially improved; Q04 concrete network configuration unresolved. Q08 moves to shared storage across AZs.

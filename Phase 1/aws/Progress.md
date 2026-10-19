@@ -15,20 +15,20 @@
 
 | Metric | Status |
 | --- | --- |
-| Initial cycle | 5 / 10 evaluated |
+| Initial cycle | 6 / 10 evaluated |
 | Optional follow-ups | 0 / up to 5; need determined after Q10 |
-| Latest question | Q06 evaluated; Q07 pending; Q05 deferred (unattempted) |
-| Average score | 7.10/10 (35.5 / 5) |
-| Coverage | 10 / 15 aspects sampled; subtopics and mastery remain pending |
+| Latest question | Q07 evaluated; Q08 pending; Q05 deferred (unattempted) |
+| Average score | 7.17/10 (43 / 6) |
+| Coverage | 11 / 15 aspects sampled; subtopics and mastery remain pending |
 | Readiness | Initial evidence: sound diagnosis; restoration and recovery verification need retest |
 
 Prior AWS-related discussions in Terraform, Kubernetes and RAG are context, not automatically credited AWS scores or completed coverage.
 
-## Current position — Q07 pending
+## Current position — Q08 pending
 
-An ECS Fargate service is deployed in private subnets. After updating its task definition to use a new private ECR image, replacement tasks stop with CannotPullContainerError before the application starts; existing tasks still serve traffic. A teammate suggests granting ECR permissions to the application's task role and retrying repeatedly. How would you investigate the failure, correct the relevant identity/network or image configuration and complete the rollout without disrupting the healthy tasks?
+Two EC2 instances behind an ALB serve an application across two AZs. User uploads are stored on an EBS volume attached to the first instance. Requests routed to the second instance cannot find those files. A teammate proposes attaching that same EBS volume to both instances, including across AZs. The application expects a shared filesystem and cannot immediately be rewritten for object storage. How would you choose storage, migrate existing files safely and verify both instances can serve consistent uploads?
 
-Q07 will be the sixth evaluated attempt if answered. Q05 stays reserved below. Checkpoints use actual evaluated counts, not question numbering.
+Q08 will be the seventh evaluated attempt. Q05 remains deferred. Checkpoints use evaluated counts, not question numbering.
 
 ## Deferred — Q05
 
@@ -52,7 +52,7 @@ Check only after substantive attempt and evaluation, with question links. A chec
 - [x] ✅ KMS key access — [Q02](questions/Q02-s3-kms-access-denied.md); key policy/scope need retest; Secrets Manager/rotation unassessed.
 - [ ] Lambda/API Gateway: permissions, failures, concurrency and integration.
 - [ ] SQS/SNS/EventBridge: delivery failures, retries and safe processing.
-- [ ] Container hosting and image delivery: ECS/EKS/ECR service boundaries.
+- [x] ✅ ECS/Fargate/ECR image delivery — [Q07](questions/Q07-fargate-ecr-image-pull.md); execution role correct, concrete evidence/network/rollout gates need retest; broader container hosting depth remains.
 - [x] ✅ Failover versus snapshot recovery — [Q03](questions/Q03-rds-failover-connectivity.md); regional DR, RTO/RPO and restore validation remain incomplete.
 - [x] ✅ NAT cost/dependency trade-off — [Q04](questions/Q04-s3-endpoint-nat-routing.md); cost validation, quotas and governance remain unassessed.
 
@@ -71,6 +71,7 @@ After ten evaluated attempts, report measured strengths, remaining gaps and a re
 | [Q03](questions/Q03-rds-failover-connectivity.md) | 7/10 | Stable endpoint; DNS cache; standby promotion | Same-Region topology; connection pools; transaction/data checks |
 | [Q04](questions/Q04-s3-endpoint-nat-routing.md) | 7/10 | S3/payment traffic separation; outcome monitoring | Gateway routes; access policies; actual-path/cost verification |
 | [Q06](questions/Q06-cloudfront-private-s3-403.md) | 7.5/10 | Policy/path diagnosis; actual CloudFront test | OAC/OAI identity; error-cache invalidation; boundary checks |
+| [Q07](questions/Q07-fargate-ecr-image-pull.md) | 7.5/10 | Execution-role identity; rollback and staged rollout | Stopped reasons; exact image; network path; health gates |
 
 ## Revision and readiness
 
@@ -79,6 +80,7 @@ After ten evaluated attempts, report measured strengths, remaining gaps and a re
 - [ ] Q03: distinguish AZ availability from regional DR; renew stale sessions; verify transactions/data rather than assuming loss is impossible.
 - [ ] Q04: configure gateway endpoint associations/prefix-list routing and scoped access; prove both paths and cost effect.
 - [ ] Q06: specify origin identity/distribution scope, distinguish error-cache expiry/invalidation and verify content plus private S3 boundary. Actual-path test selection improved.
+- [ ] Q07: inspect stopped reasons/exact image, specify pull-network path and validate new-task health/requests. Correct execution-role and mitigation selection demonstrated.
 - [ ] Complete the first ten assessments and interim review.
 - [ ] Retest demonstrated weaknesses where needed within the five-follow-up cap.
 - [ ] Demonstrate safe diagnosis, mitigation and recovery using concrete evidence.
