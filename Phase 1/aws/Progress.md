@@ -85,3 +85,9 @@ After ten evaluated attempts, report measured strengths, remaining gaps and a re
 - [ ] Retest demonstrated weaknesses where needed within the five-follow-up cap.
 - [ ] Demonstrate safe diagnosis, mitigation and recovery using concrete evidence.
 - [ ] Deliver final verdict at cycle closure with unresolved and unassessed areas explicit.
+
+## EKS emphasis — 2026-10-19
+
+Prioritize EKS in upcoming unasked AWS scenarios, integrating IAM/workload identity, VPC networking, node capacity, storage, upgrades and operational evidence where naturally relevant. Preserve pending Q08 and deferred Q05. Use remaining initial-cycle slots and any needed follow-ups within the existing maximum of 15 assessed attempts; no extra EKS quota. Do not cram all aspects into one question.
+
+Keep AWS service decisions primary here. When Kubernetes resumes, EKS is the primary managed platform and AKS is secondary, with deeper Kubernetes behavior and platform comparisons. Cross-link substantive attempts between topic progress files without copying scores or counting an answer twice. Do not mark EKS mastered from Q07's ECS evidence. Prior Kubernetes questions guide retests but are not new AWS coverage credit.

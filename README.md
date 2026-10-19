@@ -33,6 +33,8 @@ Observability stays on the roadmap as integrated coverage, not a separate comple
 
 All assessed topics use scored questions, saved answers, feedback, coverage tracking and weakness retests. Python also includes coding exercises covering scripting, files, JSON/YAML, APIs, subprocesses, error handling, logging and testing.
 
+AWS scenarios emphasize EKS alongside related cloud services. When Kubernetes resumes, EKS is the primary managed platform and AKS is secondary; relevant answers are cross-linked without duplicate scores.
+
 CI/CD questions prioritize GitHub Actions, with Jenkins secondary. Cover workflows, triggers, jobs and runners, build/test stages, artifacts, secrets and OIDC, reusable workflows, security checks, environment approvals, deployment, rollback and troubleshooting. Evaluate answers using the same four-year baseline, topic-specific scores, feedback, coverage checklist and retests as other topics.
 
 The local `Interviews/` directory is the repository root. Keep commits on `main`; push only when explicitly requested.

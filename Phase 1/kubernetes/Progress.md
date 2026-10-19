@@ -146,3 +146,7 @@ Prioritize unchecked aspects when choosing new questions. Avoid more than two co
 - Later: AWS workload identity and native configuration; GitOps rollback safeguards; request-path diagnosis and recovery validation.
 - Scheduling assessed in Q03; Autoscaler diagnosis needs a later retest. HPA metrics remain unassessed. CoreDNS was assessed in Q08; hypothesis testing and safe recovery need revision. Maintenance was assessed in Q07; PDB capacity and safe drain reasoning need retesting. Storage was assessed in Q05; safe detachment and migration need retesting. Q04 assessed NetworkPolicy basics; AKS-specific platform depth remains unassessed.
 - No mastery percentages inferred from ten answers. Current score movement is descriptive, not proof of overall senior readiness.
+
+## Platform emphasis on resumption — 2026-10-19
+
+Kubernetes remains paused; preserve its existing pending question and history. On resumption, use EKS as the primary managed platform and AKS secondarily. AWS practice will integrate EKS with related cloud concepts now; later Kubernetes practice should deepen cluster behavior and revisit evidenced gaps without repeating already demonstrated basics. Link relevant AWS attempts when assessed; no automatic coverage credit or copied overall scores. This planning change does not evaluate any skill or alter historical metrics.
