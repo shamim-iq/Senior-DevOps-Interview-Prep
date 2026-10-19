@@ -17,3 +17,5 @@ See [Progress](../Progress.md) for coverage and [Feedback](../Feedback.md) for g
 - [AWS Q03 — RDS failover](../../aws/questions/Q03-rds-failover-connectivity.md): application recovery observation and transaction-verification gaps.
 
 - [AWS Q04 — S3/NAT paths](../../aws/questions/Q04-s3-endpoint-nat-routing.md): separate operation success and path/cost-verification gaps.
+
+- [AWS Q06 — CloudFront/S3](../../aws/questions/Q06-cloudfront-private-s3-403.md): actual delivery-path verification improvement.

@@ -1,6 +1,6 @@
 # AWS Interview Feedback
 
-Started 2026-10-18. Four evaluated AWS attempts; average 7/10. Readiness evidence is preliminary.
+Started 2026-10-18. Five evaluated AWS attempts; average 7.10/10. Q05 remains deferred. Readiness evidence is preliminary.
 
 Evaluate at the four-year DevOps / Platform baseline. Credit correct reasoning; separate material errors, omissions, minor slips and optional advanced coaching. Do not penalize concise answers for irrelevant command omissions.
 
@@ -33,3 +33,9 @@ Recovery: Q01 mitigation and Q01/Q02 verification partially improved, with expli
 [Canonical answer](questions/Q04-s3-endpoint-nat-routing.md). **7/10; subjective acceptance estimate 65%, not hiring probability.** Credit traffic separation, retained payment egress, S3 private access and monitoring both outcomes. Deductions: 1.5 gateway selection/concrete routing; 1 access checks; 0.5 direct operation/path/cost verification. Advanced NAT resilience is coaching, not a further penalty.
 
 Recovery: verification remains partially improved; previous concrete-network/access checks still unresolved. Other gaps not reassessed. Q05 rotates to Lambda/SQS processing and safe retries.
+
+## Q06 — CloudFront Private S3 403 — 2026-10-19
+
+[Canonical answer](questions/Q06-cloudfront-private-s3-403.md). **7.5/10; subjective acceptance estimate 70%, not hiring probability.** Credit policy/path diagnosis, private bucket and actual browser test via CloudFront. Deductions: 1.5 specific origin identity/permission scope; 0.5 cache precision; 0.5 content/assets and access-boundary verification. No command or advanced-feature penalty.
+
+Recovery: actual-path test selection resolved in this scenario relative to dashboard-only answers; full recovery proof and exact policy evaluation partially improved. Other gaps not reassessed. Fifth evaluated attempt; Q05 unassessed. Q07 rotates to ECS/Fargate image delivery.

@@ -15,24 +15,24 @@
 
 | Metric | Status |
 | --- | --- |
-| Initial cycle | 4 / 10 evaluated |
+| Initial cycle | 5 / 10 evaluated |
 | Optional follow-ups | 0 / up to 5; need determined after Q10 |
-| Latest question | Q04 evaluated; Q06 pending; Q05 deferred (unattempted) |
-| Average score | 7.00/10 (28 / 4) |
-| Coverage | 9 / 15 aspects sampled; subtopics and mastery remain pending |
+| Latest question | Q06 evaluated; Q07 pending; Q05 deferred (unattempted) |
+| Average score | 7.10/10 (35.5 / 5) |
+| Coverage | 10 / 15 aspects sampled; subtopics and mastery remain pending |
 | Readiness | Initial evidence: sound diagnosis; restoration and recovery verification need retest |
 
 Prior AWS-related discussions in Terraform, Kubernetes and RAG are context, not automatically credited AWS scores or completed coverage.
 
-## Current position — Q06 pending
+## Current position — Q07 pending
 
-A company serves its website through CloudFront using a private S3 bucket as the origin. After a deployment, users receive HTTP 403 for the homepage and assets. The files exist, and an administrator can read them using the AWS CLI. A teammate suggests making the bucket public. How would you diagnose the access failure, restore delivery while keeping the bucket private, and verify the fix through the actual CloudFront URL?
+An ECS Fargate service is deployed in private subnets. After updating its task definition to use a new private ECR image, replacement tasks stop with CannotPullContainerError before the application starts; existing tasks still serve traffic. A teammate suggests granting ECR permissions to the application's task role and retrying repeatedly. How would you investigate the failure, correct the relevant identity/network or image configuration and complete the rollout without disrupting the healthy tasks?
 
-Q06 is the next numbered scenario and will be the fifth evaluated attempt if answered. Q05 remains reserved below; checkpoints use actual evaluated-attempt counts (ten initial, at most fifteen total), not the highest question number.
+Q07 will be the sixth evaluated attempt if answered. Q05 stays reserved below. Checkpoints use actual evaluated counts, not question numbering.
 
 ## Deferred — Q05
 
-**Deferred by user request on 2026-10-19.** Preserve this question for later; no attempt, score or coverage credit. SQS is not listed in the supplied résumé and the user reports limited depth; treat eventual assessment as introductory learning, not a gap in claimed experience. Do not automatically resume this question until the user asks to revisit it. AWS remains active; continue with Q06 while retaining this scenario. This deferral does not consume an evaluated-question slot or extend the 15-question cap.
+**Deferred by user request on 2026-10-19.** Preserve this question for later; no attempt, score or coverage credit. SQS is not listed in the supplied résumé and the user reports limited depth; treat eventual assessment as introductory learning, not a gap in claimed experience. Do not automatically resume this question until the user asks to revisit it. AWS remains active; continue with the current pending scenario while retaining this question. This deferral does not consume an evaluated-question slot or extend the 15-question cap.
 
 A Lambda function consumes order messages from a standard SQS queue and calls a payment service. During a traffic spike, some orders are charged twice, the queue backlog grows and one malformed message fails repeatedly. A teammate proposes increasing Lambda concurrency to its maximum and deleting the troublesome messages. How would you diagnose and safely correct processing, protect the payment service and verify that orders are neither lost nor charged twice?
 
@@ -47,7 +47,7 @@ Check only after substantive attempt and evaluation, with question links. A chec
 - [x] ✅ S3 encryption/access — [Q02](questions/Q02-s3-kms-access-denied.md); default encryption needs correction; versioning/lifecycle unassessed.
 - [ ] EBS/EFS storage choice, attachment constraints and snapshots.
 - [x] ✅ RDS Multi-AZ failover/connectivity — [Q03](questions/Q03-rds-failover-connectivity.md); same-Region topology and recovery proof need retest; Aurora depth unassessed.
-- [ ] Route 53, DNS, load balancing, TLS/ACM and CloudFront delivery.
+- [x] ✅ CloudFront/private-S3 delivery — [Q06](questions/Q06-cloudfront-private-s3-403.md); origin authorization/cache precision need retest; Route 53/TLS/ACM depth unassessed.
 - [ ] CloudWatch metrics/logs/alarms and CloudTrail audit investigation.
 - [x] ✅ KMS key access — [Q02](questions/Q02-s3-kms-access-denied.md); key policy/scope need retest; Secrets Manager/rotation unassessed.
 - [ ] Lambda/API Gateway: permissions, failures, concurrency and integration.
@@ -70,6 +70,7 @@ After ten evaluated attempts, report measured strengths, remaining gaps and a re
 | [Q02](questions/Q02-s3-kms-access-denied.md) | 7/10 | KMS access diagnosis; success-rate verification | Key policy/scope; denied-operation evidence; actual-role test |
 | [Q03](questions/Q03-rds-failover-connectivity.md) | 7/10 | Stable endpoint; DNS cache; standby promotion | Same-Region topology; connection pools; transaction/data checks |
 | [Q04](questions/Q04-s3-endpoint-nat-routing.md) | 7/10 | S3/payment traffic separation; outcome monitoring | Gateway routes; access policies; actual-path/cost verification |
+| [Q06](questions/Q06-cloudfront-private-s3-403.md) | 7.5/10 | Policy/path diagnosis; actual CloudFront test | OAC/OAI identity; error-cache invalidation; boundary checks |
 
 ## Revision and readiness
 
@@ -77,6 +78,7 @@ After ten evaluated attempts, report measured strengths, remaining gaps and a re
 - [ ] Q02: verify key policy, exact key scope, denial evidence and actual-role read; correct default-encryption assumption. Q01 recovery verification partially improved, not closed.
 - [ ] Q03: distinguish AZ availability from regional DR; renew stale sessions; verify transactions/data rather than assuming loss is impossible.
 - [ ] Q04: configure gateway endpoint associations/prefix-list routing and scoped access; prove both paths and cost effect.
+- [ ] Q06: specify origin identity/distribution scope, distinguish error-cache expiry/invalidation and verify content plus private S3 boundary. Actual-path test selection improved.
 - [ ] Complete the first ten assessments and interim review.
 - [ ] Retest demonstrated weaknesses where needed within the five-follow-up cap.
 - [ ] Demonstrate safe diagnosis, mitigation and recovery using concrete evidence.
