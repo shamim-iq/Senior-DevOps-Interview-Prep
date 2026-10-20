@@ -15,20 +15,20 @@
 
 | Metric | Status |
 | --- | --- |
-| Initial cycle | 6 / 10 evaluated |
+| Initial cycle | 7 / 10 evaluated |
 | Optional follow-ups | 0 / up to 5; need determined after Q10 |
-| Latest question | Q07 evaluated; Q08 pending; Q05 deferred (unattempted) |
-| Average score | 7.17/10 (43 / 6) |
-| Coverage | 11 / 15 aspects sampled; subtopics and mastery remain pending |
+| Latest question | Q08 evaluated; Q09 pending; Q05 deferred (unattempted) |
+| Average score | 7.14/10 (50 / 7) |
+| Coverage | 12 / 15 aspects sampled; subtopics and mastery remain pending |
 | Readiness | Initial evidence: sound diagnosis; restoration and recovery verification need retest |
 
 Prior AWS-related discussions in Terraform, Kubernetes and RAG are context, not automatically credited AWS scores or completed coverage.
 
-## Current position — Q08 pending
+## Current position — Q09 pending
 
-Two EC2 instances behind an ALB serve an application across two AZs. User uploads are stored on an EBS volume attached to the first instance. Requests routed to the second instance cannot find those files. A teammate proposes attaching that same EBS volume to both instances, including across AZs. The application expects a shared filesystem and cannot immediately be rewritten for object storage. How would you choose storage, migrate existing files safely and verify both instances can serve consistent uploads?
+An EKS application previously read files from a private S3 bucket using IRSA. After a Helm release, new pods run normally but S3 requests return AccessDenied. Other applications still access S3. A teammate proposes adding broad S3 access to the worker-node IAM role. How would you identify the AWS identity actually used by the affected pods, restore narrowly scoped access and verify the fix without broadening permissions for other workloads?
 
-Q08 will be the seventh evaluated attempt. Q05 remains deferred. Checkpoints use evaluated counts, not question numbering.
+Q09 will be the eighth evaluated attempt. Q05 remains deferred; use evaluated counts for checkpoints. This scenario retests prior workload-identity gaps in an AWS/EKS context.
 
 ## Deferred — Q05
 
@@ -45,7 +45,7 @@ Check only after substantive attempt and evaluation, with question links. A chec
 - [x] ✅ EC2 and ALB target health — [Q01](questions/Q01-alb-unhealthy-targets.md); Auto Scaling and AZ resilience depth unassessed.
 - [x] ✅ IAM role and least-privilege access — [Q02](questions/Q02-s3-kms-access-denied.md); policy evaluation/identity verification need retest; cross-account depth unassessed.
 - [x] ✅ S3 encryption/access — [Q02](questions/Q02-s3-kms-access-denied.md); default encryption needs correction; versioning/lifecycle unassessed.
-- [ ] EBS/EFS storage choice, attachment constraints and snapshots.
+- [x] ✅ EBS/EFS shared storage — [Q08](questions/Q08-efs-shared-uploads.md); safe migration, mounts and cross-instance verification need retest; snapshot depth remains.
 - [x] ✅ RDS Multi-AZ failover/connectivity — [Q03](questions/Q03-rds-failover-connectivity.md); same-Region topology and recovery proof need retest; Aurora depth unassessed.
 - [x] ✅ CloudFront/private-S3 delivery — [Q06](questions/Q06-cloudfront-private-s3-403.md); origin authorization/cache precision need retest; Route 53/TLS/ACM depth unassessed.
 - [ ] CloudWatch metrics/logs/alarms and CloudTrail audit investigation.
@@ -72,6 +72,7 @@ After ten evaluated attempts, report measured strengths, remaining gaps and a re
 | [Q04](questions/Q04-s3-endpoint-nat-routing.md) | 7/10 | S3/payment traffic separation; outcome monitoring | Gateway routes; access policies; actual-path/cost verification |
 | [Q06](questions/Q06-cloudfront-private-s3-403.md) | 7.5/10 | Policy/path diagnosis; actual CloudFront test | OAC/OAI identity; error-cache invalidation; boundary checks |
 | [Q07](questions/Q07-fargate-ecr-image-pull.md) | 7.5/10 | Execution-role identity; rollback and staged rollout | Stopped reasons; exact image; network path; health gates |
+| [Q08](questions/Q08-efs-shared-uploads.md) | 7/10 | EBS AZ limit; EFS shared-filesystem selection | Safe live-data cutover; mounts/access; cross-instance tests |
 
 ## Revision and readiness
 
@@ -81,6 +82,7 @@ After ten evaluated attempts, report measured strengths, remaining gaps and a re
 - [ ] Q04: configure gateway endpoint associations/prefix-list routing and scoped access; prove both paths and cost effect.
 - [ ] Q06: specify origin identity/distribution scope, distinguish error-cache expiry/invalidation and verify content plus private S3 boundary. Actual-path test selection improved.
 - [ ] Q07: inspect stopped reasons/exact image, specify pull-network path and validate new-task health/requests. Correct execution-role and mitigation selection demonstrated.
+- [ ] Q08: preserve writes during migration, configure mount targets/access and prove consistent files from both instances.
 - [ ] Complete the first ten assessments and interim review.
 - [ ] Retest demonstrated weaknesses where needed within the five-follow-up cap.
 - [ ] Demonstrate safe diagnosis, mitigation and recovery using concrete evidence.

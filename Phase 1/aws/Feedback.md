@@ -1,6 +1,6 @@
 # AWS Interview Feedback
 
-Started 2026-10-18. Six evaluated AWS attempts; average 7.17/10. Q05 remains deferred. Readiness evidence is preliminary.
+Started 2026-10-18. Seven evaluated AWS attempts; average 7.14/10. Q05 remains deferred. Readiness evidence is preliminary.
 
 Evaluate at the four-year DevOps / Platform baseline. Credit correct reasoning; separate material errors, omissions, minor slips and optional advanced coaching. Do not penalize concise answers for irrelevant command omissions.
 
@@ -45,3 +45,9 @@ Recovery: actual-path test selection resolved in this scenario relative to dashb
 [Canonical answer](questions/Q07-fargate-ecr-image-pull.md). **7.5/10; subjective acceptance estimate 70%, not hiring probability.** Credit execution-role distinction, permission/network hypotheses and rollback/staged rollout. Deductions: 1 error evidence/image existence; 0.5 tag-versus-authorization precision; 0.5 concrete network path; 0.5 health/request gates.
 
 Recovery: responsible-identity selection and explicit mitigation resolved in this scenario; original KMS/OAC details not reassessed. Diagnostic evidence and verification partially improved; Q04 concrete network configuration unresolved. Q08 moves to shared storage across AZs.
+
+## Q08 — EFS Shared Uploads — 2026-10-20
+
+[Canonical answer](questions/Q08-efs-shared-uploads.md). **7/10; subjective acceptance estimate 65%, not hiring probability.** Credit AZ limitation, EFS choice, copying intent and monitoring. Deductions: 1.5 combined safe-copy/cutover safeguards; 0.75 mount-target/access details; 0.75 cross-instance verification. ALB explanation excluded from score at user request and corrected separately.
+
+Recovery: storage migration concept partially improved relative to Kubernetes discussion; concrete consistency and network checks remain. Dashboard-only verification gap persists here, without undoing Q06's historical improvement. Q09 uses EKS/IRSA to retest identity boundaries.
