@@ -6,7 +6,7 @@
 
 | Metric | Status |
 | --- | --- |
-| Linked evaluated attempts | 10 attempts indexed; not new questions |
+| Linked evaluated attempts | 11 attempts indexed; not new questions |
 | Standalone questions | 0; none planned |
 | Observability-specific average | N/A — historical overall topic scores are not observability subscores |
 | Coverage | 4 / 10 aspects substantively sampled; coverage is not mastery |
@@ -56,3 +56,7 @@ This is an initial evidence index, not an exhaustive remapping of every answer. 
 - [ ] Use specific before/after signals to prove recovery.
 - [ ] Confirm logging continuity without losing required evidence.
 - [ ] Cover the remaining unchecked aspects naturally through other topics.
+
+## Kubernetes Q11 evidence — 2026-10-20
+
+[Latency investigation](../kubernetes/questions/Q11-latency-investigation-recovery.md): identified dashboards, dependencies and reduced p95 as recovery evidence; incorrectly defined p95 and did not demonstrate specific log/metric correlation or representative-load recovery criteria. Recovery observation partially improved; metric interpretation and evidence-led isolation unresolved. Coverage remains 4/10: no complete additional aspect demonstrated; no observability subscore. Kubernetes owns the attempt and score.

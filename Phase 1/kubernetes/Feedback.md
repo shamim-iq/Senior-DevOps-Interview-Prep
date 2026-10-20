@@ -323,3 +323,9 @@ Main deductions: imprecise isolation/placement explanation and missing evidence/
 ## Five-question follow-up agreement — 2026-10-20
 
 Resume Q11–Q15, with individual feedback after every answer and a consolidated improvement/readiness/weakness-recovery review after all five. Historical baseline: 58.5/100, average 5.85/10; keep scores unchanged. Report the new five-question average separately and explain limitations when comparing different scenarios/calibration. No new scores or mastery claims arise from this planning change. EKS primary, AKS secondary; cross-topic AWS evidence guides retests without double-counting attempts. No automatic extension beyond Q15.
+
+## Q11 — 2026-10-20: latency investigation
+
+**5.5/10; acceptance estimate 45%** (subjective, answer-specific). [Answer and deduction details](questions/Q11-latency-investigation-recovery.md). Credit workload localization, dependency consideration, logs and explicit p95 recovery observation. Deduct for incorrect p95/HPA/VPA concepts, weak evidence prioritization, missing rollback decision and incomplete recovery criteria. No extra deduction for command count or incidental syntax.
+
+Recovery versus earlier attempts: Q01/Q02/Q08 recovery observation **partially improved**; Q08 diagnosis-before-scaling **unresolved**; AWS Q10 HPA/VPA distinction **unresolved**; Q01/Q09 rollback decision **unresolved**. Storage/identity/PDB not reassessed. Follow-up 1/5; full readiness and weakness-recovery verdict after Q15.

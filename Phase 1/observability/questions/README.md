@@ -19,3 +19,5 @@ See [Progress](../Progress.md) for coverage and [Feedback](../Feedback.md) for g
 - [AWS Q04 — S3/NAT paths](../../aws/questions/Q04-s3-endpoint-nat-routing.md): separate operation success and path/cost-verification gaps.
 
 - [AWS Q06 — CloudFront/S3](../../aws/questions/Q06-cloudfront-private-s3-403.md): actual delivery-path verification improvement.
+
+- [Kubernetes Q11 — latency investigation](../../kubernetes/questions/Q11-latency-investigation-recovery.md): p95 misconception; dependency hypothesis and recovery observation credited; evidence correlation and sustained validation remain gaps. No separate score.

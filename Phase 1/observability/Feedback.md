@@ -31,3 +31,5 @@ For future relevant attempts, append the canonical link, demonstrated evidence, 
 ## AWS Q06 — 2026-10-19
 
 [Answer](../aws/questions/Q06-cloudfront-private-s3-403.md): actual-path test selection resolved for this scenario: browser test through CloudFront replaces dashboard-only verification. Full recovery proof remains partial without expected asset/content checks and private-origin boundary verification. No numeric subscore; coverage remains 4/10, with recovery mastery unchecked.
+
+- [Kubernetes Q11 — latency investigation](../kubernetes/questions/Q11-latency-investigation-recovery.md): p95 misconception; dependency hypothesis and recovery observation credited; evidence correlation and sustained validation remain gaps. No separate score.

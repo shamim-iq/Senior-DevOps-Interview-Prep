@@ -4,10 +4,10 @@
 
 | Metric | Current status |
 | --- | --- |
-| Questions Attempted | 10 initial assessments complete; follow-up cycle 0 / 5 assessed (Q11–Q15) |
-| Follow-up average | N/A; no new attempts yet |
-| Average Score | 5.85/10 — total 58.5 / 10 |
-| Average Acceptance Probability | 51.7% — total 517 / 10; subjective answer-specific estimates |
+| Questions Attempted | 10 initial assessments complete; follow-up cycle 1 / 5 assessed (Q11–Q15) |
+| Follow-up average | 5.5/10 — Q11 only; four assessments remain |
+| Average Score | Historical Q01–Q10: 5.85/10; combined Q01–Q11: 5.82/10 (64 / 11) |
+| Average Acceptance Probability | Historical: 51.7%; combined: 51.1% (562 / 11); subjective answer-specific estimates |
 | Topic Coverage | Q01: deployment failure, incident triage, GitOps; Q02: memory limits/OOM; Q03: request-based scheduling; autoscaling gaps identified; Q04: NetworkPolicy isolation; Q05: EBS/PVC/CSI recovery; Q06: IRSA/ServiceAccount identity; Q07: node maintenance/PDB; Q08: CoreDNS; Q09: ECR image pulls and GitOps; Q10: AKS placement constraints |
 | Current Strengths | Incident ownership, previous logs, measuring usage, distinguishing larger nodes from container limits, Helm identity-regression hypothesis and permission restraint |
 | Current Weaknesses | Alternative causes, request/limit precision, capacity-aware mitigation, IRSA distinction, storage attachment/migration safety, recovery validation and conciseness |
@@ -15,7 +15,7 @@
 
 ## ☑️ Kubernetes Coverage Checklist
 
-**Initial assessment coverage: 12 / 22 aspects (54.5%). Questions completed: 10 / 10 (100% of the first cycle).** These measure different things: one question can assess multiple aspects, and neither percentage is a readiness score.
+**Assessment coverage: 13 / 22 aspects (59.1%). Questions completed: 10 / 10 (100% of the first cycle).** These measure different things: one question can assess multiple aspects, and neither percentage is a readiness score.
 
 `[x] ✅` = substantively attempted and evaluated at least once, with question evidence. `[ ]` = not yet assessed sufficiently, including pending questions and concepts only discussed in follow-ups. Checked aspects can still require revision. The overall topic roadmap lives in the [root README](../../README.md).
 
@@ -29,7 +29,7 @@
 - [x] ✅ CoreDNS and service discovery — Q08; confirm saturation versus configuration/API issues and validate recovery.
 - [x] ✅ NetworkPolicy isolation — Q04; egress, narrow permissions and validation need revision.
 - [ ] CNI networking and enforcement troubleshooting — not assessed.
-- [ ] HPA behavior and metrics — Q03 touched replica changes; metrics reasoning still requires assessment.
+- [x] ✅ HPA behavior and metrics — Q11 substantively attempted scaling behavior but HPA/VPA distinction was incorrect; metric interpretation requires Q12 retest.
 - [ ] Cluster Autoscaler and node capacity — Q03 investigation unanswered; explanation provided, retest pending.
 - [x] ✅ PV/PVC and CSI storage troubleshooting — Q05; attachment versus AZ constraints, fencing and migration need revision.
 - [ ] RBAC and ServiceAccounts — ServiceAccount linkage sampled in Q06; Kubernetes authorization still needs assessment.
@@ -60,15 +60,15 @@ These boxes mean the activity has been completed with recorded evidence, not mer
 
 ## Current Position
 
-**Resumed by user request on 2026-10-20 for five questions, Q11–Q15.** Existing Q11 is retained unchanged.
+**Resumed by user request on 2026-10-20 for five questions, Q11–Q15.** Q11 has now been evaluated; Q12 is pending.
 
-First 10-question evaluation cycle complete. Further coverage and weakness-driven questioning authorized on 2026-10-04. **Q11 is pending**; do not restart numbering.
+First 10-question evaluation cycle complete. Further coverage and weakness-driven questioning authorized on 2026-10-04. **Q11 assessed; Q12 is pending**; do not restart numbering.
 
-See [first-cycle consolidated feedback](Feedback.md#first-cycle-consolidated-feedback--q01q10--2026-10-04). The initial assessment is complete, but topic coverage and revision are not. Prioritize an uncovered observability/SLI-SLO scenario next, then rotate with spaced retests; no future answer file has been created.
+See [first-cycle consolidated feedback](Feedback.md#first-cycle-consolidated-feedback--q01q10--2026-10-04). The initial assessment is complete, but topic coverage and revision are not. Q11 sampled latency reasoning; Q12 now tests scaling and scheduling evidence. No pending-question answer file exists.
 
-### Q11 — Observability and recovery decisions
+### Q12 — HPA metrics and scheduling capacity (pending)
 
-After a release, a Kubernetes API's p95 latency rises from 200 ms to 2 seconds. All pods are Ready, CPU averages 40%, and the HTTP 5xx rate is unchanged. Users report slow requests. Prometheus/Grafana and centralized application logs are available. How would you isolate the bottleneck, decide whether to roll back, and demonstrate that service performance has recovered?
+An EKS API has four replicas. Its HPA targets 60% CPU utilization, but displays `<unknown>/60%` while traffic grows. Metrics Server is healthy and `kubectl top pods` works. The live API container has neither a CPU request nor a CPU limit. During a controlled manual scale to six replicas, two new pods remain Pending with `Insufficient cpu`; node CPU usage is low. A teammate suggests increasing CPU limits and enabling VPA to add replicas. Explain the two failures, the evidence you would check, and how you would restore safe scaling and verify it.
 
 ## Second-Stage Preparation Strategy
 
@@ -155,7 +155,7 @@ Prioritize unchecked aspects when choosing new questions. Avoid more than two co
 - Next number: Q11. Prioritize observability/SLI-SLO coverage; the first-cycle consolidation is recorded in Feedback.md.
 - Q02 improved the larger-node misconception; revisit requests/limits and safe capacity planning in a different scenario.
 - Later: AWS workload identity and native configuration; GitOps rollback safeguards; request-path diagnosis and recovery validation.
-- Scheduling assessed in Q03; Autoscaler diagnosis needs a later retest. HPA metrics remain unassessed. CoreDNS was assessed in Q08; hypothesis testing and safe recovery need revision. Maintenance was assessed in Q07; PDB capacity and safe drain reasoning need retesting. Storage was assessed in Q05; safe detachment and migration need retesting. Q04 assessed NetworkPolicy basics; AKS-specific platform depth remains unassessed.
+- Scheduling assessed in Q03; Autoscaler diagnosis needs a later retest. HPA behavior was attempted in Q11; metrics interpretation is pending Q12. CoreDNS was assessed in Q08; hypothesis testing and safe recovery need revision. Maintenance was assessed in Q07; PDB capacity and safe drain reasoning need retesting. Storage was assessed in Q05; safe detachment and migration need retesting. Q04 assessed NetworkPolicy basics; AKS-specific platform depth remains unassessed.
 - No mastery percentages inferred from ten answers. Current score movement is descriptive, not proof of overall senior readiness.
 
 ## Platform emphasis on resumption — 2026-10-19
@@ -169,3 +169,7 @@ Historical preference, now active from 2026-10-20: preserve question history and
 ## AWS Q10 cross-topic evidence — 2026-10-20
 
 [EKS subnet exhaustion](../aws/questions/Q10-eks-subnet-ip-exhaustion.md): correct capacity constraint and healthy-workload preservation. Free-IP calculation, Calico/prefix modes and VPA semantics need correction; already-bound pod recovery and validation incomplete. AWS owns the 6.5/10 score; no extra Kubernetes attempt, subscore or changed average.
+
+## Q11 follow-up — 2026-10-20
+
+[Latency investigation](questions/Q11-latency-investigation-recovery.md): **5.5/10; 45% subjective acceptance estimate**. Follow-up 1/5. Recovery observation partially improved; evidence-led diagnosis, rollback decision and HPA/VPA precision remain unresolved. p95 definition needs correction. Tool-specific Prometheus/log searches and full SLI/SLO/recovery criteria remain unchecked; naming dashboards alone does not complete these aspects. No prior weakness marked resolved. Consolidated review after Q15.
