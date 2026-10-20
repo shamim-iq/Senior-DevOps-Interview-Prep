@@ -16,7 +16,7 @@ Within each topic:
 
 - [ ] [Kubernetes](Phase%201/kubernetes/Progress.md) — paused; Q11 pending.
 - [ ] Docker
-- [ ] [AWS](Phase%201/aws/Progress.md) — active; 8/10 initial questions evaluated; up to 5 targeted follow-ups if needed; Q10 pending; Q05 (SQS/Lambda) deferred.
+- [ ] [AWS](Phase%201/aws/Progress.md) — active; 9/10 initial questions evaluated; up to 5 targeted follow-ups if needed; Q11 pending; Q05 (SQS/Lambda) deferred.
 - [ ] Azure
 - [ ] CI/CD pipelines
 - [ ] [Terraform](Phase%201/terraform/Progress.md) — paused; 11 evaluated; 1 of up to 5 focused follow-ups assessed; Q12 pending.

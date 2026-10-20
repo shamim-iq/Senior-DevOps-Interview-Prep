@@ -315,3 +315,7 @@ Main deductions: imprecise isolation/placement explanation and missing evidence/
 ## Cross-topic follow-up — AWS Q09, 2026-10-20
 
 [IRSA/Helm evidence](../aws/questions/Q09-eks-irsa-helm-access.md): configuration mapping and least-privilege reasoning reinforced. Actual pod identity, issuer/sub/aud checks and access verification remain unproven. No separate Kubernetes score; prior Q06 score retained.
+
+## AWS Q10 cross-topic evidence — 2026-10-20
+
+[EKS subnet exhaustion](../aws/questions/Q10-eks-subnet-ip-exhaustion.md): correct capacity constraint and healthy-workload preservation. Free-IP calculation, Calico/prefix modes and VPA semantics need correction; already-bound pod recovery and validation incomplete. AWS owns the 6.5/10 score; no extra Kubernetes attempt, subscore or changed average.

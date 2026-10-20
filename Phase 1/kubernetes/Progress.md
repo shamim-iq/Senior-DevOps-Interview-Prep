@@ -154,3 +154,7 @@ Kubernetes remains paused; preserve its existing pending question and history. O
 ## Cross-topic EKS evidence — 2026-10-20
 
 [AWS Q09: IRSA after Helm release](../aws/questions/Q09-eks-irsa-helm-access.md) reinforces ServiceAccount/role mapping and Helm regression diagnosis. Runtime caller proof, precise trust verification and post-fix access tests remain gaps. AWS owns the 7.5/10 overall score; no Kubernetes subscore, new standalone attempt or changed average. Existing Kubernetes question and revision history remain preserved.
+
+## AWS Q10 cross-topic evidence — 2026-10-20
+
+[EKS subnet exhaustion](../aws/questions/Q10-eks-subnet-ip-exhaustion.md): correct capacity constraint and healthy-workload preservation. Free-IP calculation, Calico/prefix modes and VPA semantics need correction; already-bound pod recovery and validation incomplete. AWS owns the 6.5/10 score; no extra Kubernetes attempt, subscore or changed average.

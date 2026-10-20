@@ -1,6 +1,6 @@
 # AWS Interview Feedback
 
-Started 2026-10-18. Eight evaluated AWS attempts; average 7.19/10. Q05 remains deferred. Readiness evidence is preliminary.
+Started 2026-10-18. Nine evaluated AWS attempts; average 7.11/10. Q05 remains deferred. Readiness evidence is preliminary.
 
 Evaluate at the four-year DevOps / Platform baseline. Credit correct reasoning; separate material errors, omissions, minor slips and optional advanced coaching. Do not penalize concise answers for irrelevant command omissions.
 
@@ -57,3 +57,9 @@ Recovery: storage migration concept partially improved relative to Kubernetes di
 [Canonical answer](questions/Q09-eks-irsa-helm-access.md). **7.5/10; subjective estimate 70%, not hiring probability.** Credit SA/role/Helm diagnosis, OIDC temporary credentials and least privilege. Deductions: 1 runtime identity proof; 0.75 concrete trust verification/failure-stage distinction; 0.75 rollout/access validation. No syntax or node-inheritance wording penalty.
 
 Recovery: configuration-level identity understanding reinforced; AWS Q02 runtime identity gap and verification remain unresolved. Policy specificity partially improved. Q10 covers EKS VPC CNI/IP capacity. Eighth actual evaluation; Q05 deferred.
+
+## Q10 — EKS IP Exhaustion — 2026-10-20
+
+[Canonical answer](questions/Q10-eks-subnet-ip-exhaustion.md). **6.5/10; subjective estimate 60%, not hiring probability.** Credit subnet diagnosis, preserved healthy pods and parallel capacity. Deductions: 1 IP measurement; 1 Calico modes; 0.5 prefix limits; 0.5 VPA semantics; 0.5 combined bound-pod placement and end-to-end recovery. New subnets explicitly credited; no assumed in-place CIDR resize penalty.
+
+Recovery: safe mitigation improved; concrete evidence and validation remain partial. Kubernetes linkage carries no separate score. Q11 covers résumé-aligned regional DR and is the tenth assessed attempt, then consolidate.
