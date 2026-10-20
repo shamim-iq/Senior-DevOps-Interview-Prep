@@ -1,6 +1,6 @@
 # AWS Interview Progress
 
-**Active topic: Phase 1 / AWS.** Started 2026-10-18. Terraform paused by user request with Q12 preserved; no readiness certification implied.
+**Paused by user request on 2026-10-20 while Kubernetes is active.** Started 2026-10-18. Preserve AWS Q11 and deferred Q05, all scores and outstanding gaps. Terraform also remains paused.
 
 ## Assessment agreement
 
@@ -24,7 +24,7 @@
 
 Prior AWS-related discussions in Terraform, Kubernetes and RAG are context, not automatically credited AWS scores or completed coverage.
 
-## Current position — Q11 pending
+## Current position — Q11 preserved for resumption
 
 A production EKS application uses RDS PostgreSQL and S3 uploads in one AWS Region. The business requires recovery from a Region-wide outage within 60 minutes and at most 15 minutes of lost data. Today, Terraform and Helm are in Git, RDS snapshots are copied to a second Region once nightly, and S3 versioning is enabled only in the primary Region. A teammate says rebuilding EKS from Git guarantees those targets. How would you assess the current plan, choose a practical recovery design and demonstrate that the application and its data can actually recover within the targets?
 

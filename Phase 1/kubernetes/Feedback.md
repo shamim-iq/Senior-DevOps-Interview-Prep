@@ -319,3 +319,7 @@ Main deductions: imprecise isolation/placement explanation and missing evidence/
 ## AWS Q10 cross-topic evidence — 2026-10-20
 
 [EKS subnet exhaustion](../aws/questions/Q10-eks-subnet-ip-exhaustion.md): correct capacity constraint and healthy-workload preservation. Free-IP calculation, Calico/prefix modes and VPA semantics need correction; already-bound pod recovery and validation incomplete. AWS owns the 6.5/10 score; no extra Kubernetes attempt, subscore or changed average.
+
+## Five-question follow-up agreement — 2026-10-20
+
+Resume Q11–Q15, with individual feedback after every answer and a consolidated improvement/readiness/weakness-recovery review after all five. Historical baseline: 58.5/100, average 5.85/10; keep scores unchanged. Report the new five-question average separately and explain limitations when comparing different scenarios/calibration. No new scores or mastery claims arise from this planning change. EKS primary, AKS secondary; cross-topic AWS evidence guides retests without double-counting attempts. No automatic extension beyond Q15.

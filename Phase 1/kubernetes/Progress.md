@@ -1,8 +1,11 @@
 # Kubernetes Interview Progress
 
+**Active again from 2026-10-20.** AWS paused with Q11 preserved. Current agreement: exactly five follow-ups, Q11–Q15, then a consolidated review; further questions require a new request.
+
 | Metric | Current status |
 | --- | --- |
-| Questions Attempted | 10 / 10 — first cycle complete |
+| Questions Attempted | 10 initial assessments complete; follow-up cycle 0 / 5 assessed (Q11–Q15) |
+| Follow-up average | N/A; no new attempts yet |
 | Average Score | 5.85/10 — total 58.5 / 10 |
 | Average Acceptance Probability | 51.7% — total 517 / 10; subjective answer-specific estimates |
 | Topic Coverage | Q01: deployment failure, incident triage, GitOps; Q02: memory limits/OOM; Q03: request-based scheduling; autoscaling gaps identified; Q04: NetworkPolicy isolation; Q05: EBS/PVC/CSI recovery; Q06: IRSA/ServiceAccount identity; Q07: node maintenance/PDB; Q08: CoreDNS; Q09: ECR image pulls and GitOps; Q10: AKS placement constraints |
@@ -57,7 +60,7 @@ These boxes mean the activity has been completed with recorded evidence, not mer
 
 ## Current Position
 
-**Paused by user request on 2026-10-04 while Linux preparation is active. Preserve Q11 below for resumption.**
+**Resumed by user request on 2026-10-20 for five questions, Q11–Q15.** Existing Q11 is retained unchanged.
 
 First 10-question evaluation cycle complete. Further coverage and weakness-driven questioning authorized on 2026-10-04. **Q11 is pending**; do not restart numbering.
 
@@ -69,13 +72,21 @@ After a release, a Kubernetes API's p95 latency rises from 200 ms to 2 seconds. 
 
 ## Second-Stage Preparation Strategy
 
-**Objective:** close the remaining coverage gaps and demonstrate corrections in new scenarios. More questions are authorized; Q20 and Q30 are review checkpoints, not automatic graduation targets. Preserve one-question-at-a-time delivery and do not pre-create answer files.
+**Current agreement — 2026-10-20:** Five follow-up scenarios (Q11–Q15), one at a time, with individual scoring/feedback and explicit recovery comparison. This supersedes the former open-ended Q20/Q30 plan. No question files before attempts; no automatic extension after Q15.
 
-| Block | Emphasis | How questions are selected |
+| Slot | Intended focus (adapt unasked scenarios) | Evidence to revisit |
 | --- | --- | --- |
-| Q11–Q20 | Primarily uncovered aspects, with spaced high-risk retests | Aim for roughly six new-coverage scenarios and four retests, combining related aspects when realistic. Adapt after each answer. |
-| Q21–Q30 if needed | Remaining gaps, transfer of learning and integrated incidents | Increase ambiguity and trade-offs only as foundational accuracy improves. Include log/event snippets, small manifest reviews and architecture decisions. |
-| Beyond Q30 if needed | Specific unresolved gaps | Extend based on evidence, not a fixed question-count target. |
+| Q11, preserved | Latency investigation, observability and measurable recovery | Q01/Q02/Q08; recurring AWS validation gaps |
+| Q12 candidate | HPA metrics and eligible node capacity | Q02/Q03; AWS Q10 scaling/IP distinctions |
+| Q13 candidate | Stateful recovery with data and availability safeguards | Q05/Q07; AWS Q08 migration gaps |
+| Q14 candidate | Service/request-path isolation and narrow networking | Q04/Q08; readiness/EndpointSlices coverage |
+| Q15 candidate | Workload authorization and operational validation | Q06/Q09; AWS Q09 actual identity evidence |
+
+EKS is primary; AKS is secondary where comparisons are relevant. Keep each scenario manageable and avoid adding unrelated questions under subparts. Observability stays integrated; link substantive evidence to its tracking files without duplicating scores. Some uncovered aspects may remain after five: report them honestly rather than marking them complete.
+
+After each answer, map tested earlier gaps to resolved, partially improved or still unresolved with evidence. Untested gaps remain not reassessed. Preserve original scores and distinguish independent retests from answers given after coaching. Four-year baseline applies; do not import the full reference answer as a mandatory scoring checklist.
+
+After Q15, provide a consolidated report: the five individual scores and average, historical and combined averages clearly separated, demonstrated improvements, weakness-recovery matrix, remaining/unassessed aspects, and a Kubernetes-specific readiness verdict. Note that different scenarios and coaching limit score comparisons. No overall hiring-probability claim.
 
 ### Coverage Queue — Not Future Question Text
 
@@ -93,7 +104,7 @@ After a release, a Kubernetes API's p95 latency rises from 200 ms to 2 seconds. 
 - DNS evidence before scaling; NetworkPolicy directions and narrow permissions (Q04/Q08).
 - Scheduler requests, pool labels, required affinity versus toleration and node scaling (Q03/Q10).
 
-Cover each queued weakness in a fresh scenario; revisit after several different aspects rather than immediately repeating the supplied answer. Add newly observed mistakes without dropping the existing queue. No more than two consecutive questions centered on one aspect unless requested.
+Use the queue to prioritize within Q11–Q15; remaining items are not authorization to extend the cycle. Add newly observed mistakes without dropping the existing queue. No more than two consecutive questions centered on one aspect unless requested.
 
 ### Consistent Evaluation and Readiness Evidence
 
@@ -102,7 +113,7 @@ Cover each queued weakness in a fresh scenario; revisit after several different 
 - Every incident answer should explain the relevant evidence, a safe decision and observable recovery; avoid forcing a checklist into conceptual questions.
 - Working practice target (not an employer cutoff): at least 8/10 on five varied recent scenarios, no uncorrected high-risk safety misconceptions, and two independent successful retests per critical weakness.
 - Require all agreed assessment aspects covered, plus practical interpretation of commands/logs/manifests and at least one integrated incident and one architecture discussion. Checklist completion alone is not mastery.
-- Report progress at Q20 and Q30: remaining aspects, recurring errors, retest results and score movement with its limitations. Do not convert average answer-acceptance estimates into an overall hiring probability.
+- At the Q15 consolidated review, report: remaining aspects, recurring errors, retest results and score movement with its limitations. Do not convert average answer-acceptance estimates into an overall hiring probability.
 
 ### Broader Role Readiness
 
@@ -118,7 +129,7 @@ Prioritize unchecked aspects when choosing new questions. Avoid more than two co
 
 - Ask one scenario at a time; do not reveal hints or answers before an attempt.
 - Before each new question, inspect existing question files and this active-question record to avoid duplicates.
-- After each answer: evaluate, provide concise feedback, save the correct answer in questions/QNN-<topic>.md, append feedback, update progress, then ask the next question.
+- After each answer: evaluate, provide concise feedback, save the correct answer in questions/QNN-<topic>.md, append feedback, update progress, record the next pending question and wait for the user to continue.
 - Question files use: Question, 🎯 Scenario, ✅ Interview-Ready Answer, 🔍 Troubleshooting / Reasoning Flow, 🧠 Key Points, 🔄 Diagram (if useful), and 📌 Senior-Level Takeaway.
 - Preserve previous answers and scores; keep numbering sequential.
 - Derive all performance metrics from actual evaluated answers. Unassessed topics remain N/A.
@@ -149,7 +160,7 @@ Prioritize unchecked aspects when choosing new questions. Avoid more than two co
 
 ## Platform emphasis on resumption — 2026-10-19
 
-Kubernetes remains paused; preserve its existing pending question and history. On resumption, use EKS as the primary managed platform and AKS secondarily. AWS practice will integrate EKS with related cloud concepts now; later Kubernetes practice should deepen cluster behavior and revisit evidenced gaps without repeating already demonstrated basics. Link relevant AWS attempts when assessed; no automatic coverage credit or copied overall scores. This planning change does not evaluate any skill or alter historical metrics.
+Historical preference, now active from 2026-10-20: preserve question history and use EKS as the primary managed platform and AKS secondarily. AWS practice will integrate EKS with related cloud concepts now; later Kubernetes practice should deepen cluster behavior and revisit evidenced gaps without repeating already demonstrated basics. Link relevant AWS attempts when assessed; no automatic coverage credit or copied overall scores. This planning change does not evaluate any skill or alter historical metrics.
 
 ## Cross-topic EKS evidence — 2026-10-20
 
