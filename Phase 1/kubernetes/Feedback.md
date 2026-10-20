@@ -329,3 +329,7 @@ Resume Q11–Q15, with individual feedback after every answer and a consolidated
 **5.5/10; acceptance estimate 45%** (subjective, answer-specific). [Answer and deduction details](questions/Q11-latency-investigation-recovery.md). Credit workload localization, dependency consideration, logs and explicit p95 recovery observation. Deduct for incorrect p95/HPA/VPA concepts, weak evidence prioritization, missing rollback decision and incomplete recovery criteria. No extra deduction for command count or incidental syntax.
 
 Recovery versus earlier attempts: Q01/Q02/Q08 recovery observation **partially improved**; Q08 diagnosis-before-scaling **unresolved**; AWS Q10 HPA/VPA distinction **unresolved**; Q01/Q09 rollback decision **unresolved**. Storage/identity/PDB not reassessed. Follow-up 1/5; full readiness and weakness-recovery verdict after Q15.
+
+## Q11.1 coached retry — 2026-10-20
+
+**6.5/10; 55% subjective answer acceptance estimate.** [Attempt, corrections and deduction details](questions/Q11.1-latency-targeted-retry.md). Clear rollback-first mitigation improved. Percentile threshold understood but wrong population (pods instead of requests); HPA/VPA roles mostly corrected but HPA not supported as the incident fix. Pool-wait evidence and concrete recovery criteria remain gaps. RollingUpdate is not generally discouraged. Rollback gap resolved for this coached attempt only; no independent mastery claim. Original Q11 5.5 retained, primary cycle 1/5, Q12 pending.

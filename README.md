@@ -14,7 +14,7 @@ Within each topic:
 
 ## Topic roadmap
 
-- [ ] [Kubernetes](Phase%201/kubernetes/Progress.md) — active; follow-up cycle Q11–Q15, 1/5 assessed; consolidated review after five; targeted Q11.1 retry pending before Q12.
+- [ ] [Kubernetes](Phase%201/kubernetes/Progress.md) — active; follow-up cycle Q11–Q15, 1/5 assessed; consolidated review after five; Q11.1 coached retry assessed; Q12 pending.
 - [ ] Docker
 - [ ] [AWS](Phase%201/aws/Progress.md) — paused; 9/10 initial questions evaluated; up to 5 targeted follow-ups if needed; Q11 pending; Q05 (SQS/Lambda) deferred.
 - [ ] Azure

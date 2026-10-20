@@ -60,19 +60,15 @@ These boxes mean the activity has been completed with recorded evidence, not mer
 
 ## Current Position
 
-**Resumed by user request on 2026-10-20 for five questions, Q11–Q15.** Q11 has been evaluated; user-requested Q11.1 retry is pending before Q12.
+**Resumed by user request on 2026-10-20 for five questions, Q11–Q15.** Q11 has been evaluated; Q11.1 coached retry assessed; Q12 is pending.
 
-First 10-question evaluation cycle complete. Further coverage and weakness-driven questioning authorized on 2026-10-04. **Q11 assessed; Q11.1 is pending; Q12 is preserved for afterward**; do not restart numbering.
+First 10-question evaluation cycle complete. Further coverage and weakness-driven questioning authorized on 2026-10-04. **Q11 and Q11.1 assessed; Q12 is pending**; do not restart numbering.
 
 See [first-cycle consolidated feedback](Feedback.md#first-cycle-consolidated-feedback--q01q10--2026-10-04). The initial assessment is complete, but topic coverage and revision are not. Q11 sampled latency reasoning; Q12 now tests scaling and scheduling evidence. No pending-question answer file exists.
 
-### Q11.1 — Targeted latency retry (pending)
+### Q11.1 — Coached retry assessed, 2026-10-20
 
-User requested this extra retry on 2026-10-20 before Q12. It supplements Q11 rather than replacing its score or consuming a Q12–Q15 slot. Evaluate recovery explicitly; label it a coached retest, since Q11 feedback was already provided. Do not change aggregates until an answer is assessed.
-
-After a new release, an EKS API's p95 rises from 200 ms to 2 seconds. All six pods are Ready, there are no restarts or Pending pods, CPU averages 40%, and request volume and 5xx rate are unchanged. Slow-request logs show much longer database connection-pool waits in the new version; the previous version remains fast under comparable traffic. A teammate suggests adding replicas with VPA. The previous release is compatible with the current database schema.
-
-Explain what p95 means here, which evidence you would follow and what you would verify next, whether the VPA suggestion is correct and how HPA differs, your immediate mitigation/rollback decision, and how you would prove recovery. Keep the response focused; commands are optional if their purpose is clear.
+[Targeted retry](questions/Q11.1-latency-targeted-retry.md): **6.5/10; 55% subjective acceptance estimate**. Rollback decision resolved in this coached attempt; p95 population, scaling choice, pool-specific diagnosis and recovery criteria still need practice. Prior Q11 score preserved. This supplementary retry is excluded from historical/first-attempt and five-scenario averages above; follow-up completion remains 1/5. Across all 12 attempts including this retry: 70.5/12 = 5.88/10; acceptance estimates 617/12 = 51.4%. These descriptive aggregates are not hiring probabilities. Q12–Q15 remain available, with consolidated review after Q15.
 
 ### Q12 — HPA metrics and scheduling capacity (pending)
 

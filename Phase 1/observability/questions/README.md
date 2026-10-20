@@ -21,3 +21,5 @@ See [Progress](../Progress.md) for coverage and [Feedback](../Feedback.md) for g
 - [AWS Q06 — CloudFront/S3](../../aws/questions/Q06-cloudfront-private-s3-403.md): actual delivery-path verification improvement.
 
 - [Kubernetes Q11 — latency investigation](../../kubernetes/questions/Q11-latency-investigation-recovery.md): p95 misconception; dependency hypothesis and recovery observation credited; evidence correlation and sustained validation remain gaps. No separate score.
+
+- [Kubernetes Q11.1 coached retry](../../kubernetes/questions/Q11.1-latency-targeted-retry.md): percentile boundary partially corrected; request-versus-pod interpretation and specific recovery criteria remain gaps. No separate score.
