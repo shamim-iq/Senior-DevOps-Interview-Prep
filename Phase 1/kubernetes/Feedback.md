@@ -311,3 +311,7 @@ Main deductions: imprecise isolation/placement explanation and missing evidence/
 - Strongest answer: Q06 (7). Lowest: Q05 (4.5). No old scores changed.
 - Continue broad coverage before concentrated repetition: observability/SLI-SLOs, HPA metrics, CNI, scoped RBAC, Azure workload identity, deeper Service/Ingress and platform architecture.
 - Interleave fresh coverage with spaced retests of the priorities above. Follow-up explanations count as learning, not new scored attempts.
+
+## Cross-topic follow-up — AWS Q09, 2026-10-20
+
+[IRSA/Helm evidence](../aws/questions/Q09-eks-irsa-helm-access.md): configuration mapping and least-privilege reasoning reinforced. Actual pod identity, issuer/sub/aud checks and access verification remain unproven. No separate Kubernetes score; prior Q06 score retained.

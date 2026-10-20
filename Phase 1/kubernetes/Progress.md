@@ -150,3 +150,7 @@ Prioritize unchecked aspects when choosing new questions. Avoid more than two co
 ## Platform emphasis on resumption — 2026-10-19
 
 Kubernetes remains paused; preserve its existing pending question and history. On resumption, use EKS as the primary managed platform and AKS secondarily. AWS practice will integrate EKS with related cloud concepts now; later Kubernetes practice should deepen cluster behavior and revisit evidenced gaps without repeating already demonstrated basics. Link relevant AWS attempts when assessed; no automatic coverage credit or copied overall scores. This planning change does not evaluate any skill or alter historical metrics.
+
+## Cross-topic EKS evidence — 2026-10-20
+
+[AWS Q09: IRSA after Helm release](../aws/questions/Q09-eks-irsa-helm-access.md) reinforces ServiceAccount/role mapping and Helm regression diagnosis. Runtime caller proof, precise trust verification and post-fix access tests remain gaps. AWS owns the 7.5/10 overall score; no Kubernetes subscore, new standalone attempt or changed average. Existing Kubernetes question and revision history remain preserved.

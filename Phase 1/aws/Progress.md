@@ -15,20 +15,20 @@
 
 | Metric | Status |
 | --- | --- |
-| Initial cycle | 7 / 10 evaluated |
+| Initial cycle | 8 / 10 evaluated |
 | Optional follow-ups | 0 / up to 5; need determined after Q10 |
-| Latest question | Q08 evaluated; Q09 pending; Q05 deferred (unattempted) |
-| Average score | 7.14/10 (50 / 7) |
+| Latest question | Q09 evaluated; Q10 pending; Q05 deferred (unattempted) |
+| Average score | 7.19/10 (57.5 / 8) |
 | Coverage | 12 / 15 aspects sampled; subtopics and mastery remain pending |
 | Readiness | Initial evidence: sound diagnosis; restoration and recovery verification need retest |
 
 Prior AWS-related discussions in Terraform, Kubernetes and RAG are context, not automatically credited AWS scores or completed coverage.
 
-## Current position — Q09 pending
+## Current position — Q10 pending
 
-An EKS application previously read files from a private S3 bucket using IRSA. After a Helm release, new pods run normally but S3 requests return AccessDenied. Other applications still access S3. A teammate proposes adding broad S3 access to the worker-node IAM role. How would you identify the AWS identity actually used by the affected pods, restore narrowly scoped access and verify the fix without broadening permissions for other workloads?
+An EKS deployment scales from 6 to 18 replicas during a traffic spike. Most new pods are assigned to nodes but remain in ContainerCreating. Events report FailedCreatePodSandBox and failure to assign an IP address. Nodes show spare CPU and memory, while the worker subnet has almost no available IPv4 addresses. A teammate proposes raising the node group's maximum size and restarting all pods. How would you diagnose and recover safely, then prevent recurrence while balancing availability and address capacity?
 
-Q09 will be the eighth evaluated attempt. Q05 remains deferred; use evaluated counts for checkpoints. This scenario retests prior workload-identity gaps in an AWS/EKS context.
+Q10 will be the ninth evaluated attempt. Q05 stays deferred; the interim checkpoint occurs after ten actual evaluations, not at question number Q10.
 
 ## Deferred — Q05
 
@@ -43,7 +43,7 @@ Check only after substantive attempt and evaluation, with question links. A chec
 - [x] ✅ VPC routing/NAT/endpoints — [Q04](questions/Q04-s3-endpoint-nat-routing.md); traffic separation understood, route/policy implementation needs retest.
 - [x] ✅ Safe network access — [Q01](questions/Q01-alb-unhealthy-targets.md); private isolation assessed, precise SG/NACL rules need retest.
 - [x] ✅ EC2 and ALB target health — [Q01](questions/Q01-alb-unhealthy-targets.md); Auto Scaling and AZ resilience depth unassessed.
-- [x] ✅ IAM role and least-privilege access — [Q02](questions/Q02-s3-kms-access-denied.md); policy evaluation/identity verification need retest; cross-account depth unassessed.
+- [x] ✅ IAM role and least-privilege access — [Q02](questions/Q02-s3-kms-access-denied.md); Q09 also assesses IRSA/Helm mapping; runtime identity/trust proof need retest; cross-account depth unassessed.
 - [x] ✅ S3 encryption/access — [Q02](questions/Q02-s3-kms-access-denied.md); default encryption needs correction; versioning/lifecycle unassessed.
 - [x] ✅ EBS/EFS shared storage — [Q08](questions/Q08-efs-shared-uploads.md); safe migration, mounts and cross-instance verification need retest; snapshot depth remains.
 - [x] ✅ RDS Multi-AZ failover/connectivity — [Q03](questions/Q03-rds-failover-connectivity.md); same-Region topology and recovery proof need retest; Aurora depth unassessed.
@@ -73,6 +73,7 @@ After ten evaluated attempts, report measured strengths, remaining gaps and a re
 | [Q06](questions/Q06-cloudfront-private-s3-403.md) | 7.5/10 | Policy/path diagnosis; actual CloudFront test | OAC/OAI identity; error-cache invalidation; boundary checks |
 | [Q07](questions/Q07-fargate-ecr-image-pull.md) | 7.5/10 | Execution-role identity; rollback and staged rollout | Stopped reasons; exact image; network path; health gates |
 | [Q08](questions/Q08-efs-shared-uploads.md) | 7/10 | EBS AZ limit; EFS shared-filesystem selection | Safe live-data cutover; mounts/access; cross-instance tests |
+| [Q09](questions/Q09-eks-irsa-helm-access.md) | 7.5/10 | IRSA/Helm configuration diagnosis; least privilege | Runtime caller; trust conditions; allowed/denied tests |
 
 ## Revision and readiness
 
@@ -83,6 +84,7 @@ After ten evaluated attempts, report measured strengths, remaining gaps and a re
 - [ ] Q06: specify origin identity/distribution scope, distinguish error-cache expiry/invalidation and verify content plus private S3 boundary. Actual-path test selection improved.
 - [ ] Q07: inspect stopped reasons/exact image, specify pull-network path and validate new-task health/requests. Correct execution-role and mitigation selection demonstrated.
 - [ ] Q08: preserve writes during migration, configure mount targets/access and prove consistent files from both instances.
+- [ ] Q09: prove actual pod identity, verify issuer/sub/aud and test permitted/denied access after correction.
 - [ ] Complete the first ten assessments and interim review.
 - [ ] Retest demonstrated weaknesses where needed within the five-follow-up cap.
 - [ ] Demonstrate safe diagnosis, mitigation and recovery using concrete evidence.

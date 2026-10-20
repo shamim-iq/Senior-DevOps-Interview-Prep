@@ -1,6 +1,6 @@
 # AWS Interview Feedback
 
-Started 2026-10-18. Seven evaluated AWS attempts; average 7.14/10. Q05 remains deferred. Readiness evidence is preliminary.
+Started 2026-10-18. Eight evaluated AWS attempts; average 7.19/10. Q05 remains deferred. Readiness evidence is preliminary.
 
 Evaluate at the four-year DevOps / Platform baseline. Credit correct reasoning; separate material errors, omissions, minor slips and optional advanced coaching. Do not penalize concise answers for irrelevant command omissions.
 
@@ -51,3 +51,9 @@ Recovery: responsible-identity selection and explicit mitigation resolved in thi
 [Canonical answer](questions/Q08-efs-shared-uploads.md). **7/10; subjective acceptance estimate 65%, not hiring probability.** Credit AZ limitation, EFS choice, copying intent and monitoring. Deductions: 1.5 combined safe-copy/cutover safeguards; 0.75 mount-target/access details; 0.75 cross-instance verification. ALB explanation excluded from score at user request and corrected separately.
 
 Recovery: storage migration concept partially improved relative to Kubernetes discussion; concrete consistency and network checks remain. Dashboard-only verification gap persists here, without undoing Q06's historical improvement. Q09 uses EKS/IRSA to retest identity boundaries.
+
+## Q09 — EKS IRSA/Helm — 2026-10-20
+
+[Canonical answer](questions/Q09-eks-irsa-helm-access.md). **7.5/10; subjective estimate 70%, not hiring probability.** Credit SA/role/Helm diagnosis, OIDC temporary credentials and least privilege. Deductions: 1 runtime identity proof; 0.75 concrete trust verification/failure-stage distinction; 0.75 rollout/access validation. No syntax or node-inheritance wording penalty.
+
+Recovery: configuration-level identity understanding reinforced; AWS Q02 runtime identity gap and verification remain unresolved. Policy specificity partially improved. Q10 covers EKS VPC CNI/IP capacity. Eighth actual evaluation; Q05 deferred.
