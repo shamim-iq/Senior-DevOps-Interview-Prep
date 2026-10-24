@@ -14,7 +14,7 @@ Within each topic:
 
 ## Topic roadmap
 
-- [ ] [Kubernetes](Phase%201/kubernetes/Progress.md) — active; follow-up cycle Q11–Q15, 1/5 assessed; consolidated review after five; Q11.1 coached retry assessed; Q12 pending.
+- [ ] [Kubernetes](Phase%201/kubernetes/Progress.md) — active; follow-up cycle Q11–Q15, 2/5 assessed; consolidated review after five; Q11.1 coached retry assessed; Q13 pending.
 - [ ] Docker
 - [ ] [AWS](Phase%201/aws/Progress.md) — paused; 9/10 initial questions evaluated; up to 5 targeted follow-ups if needed; Q11 pending; Q05 (SQS/Lambda) deferred.
 - [ ] Azure
@@ -22,7 +22,7 @@ Within each topic:
 - [ ] [Terraform](Phase%201/terraform/Progress.md) — paused; 11 evaluated; 1 of up to 5 focused follow-ups assessed; Q12 pending.
 - [Observability](Phase%201/observability/Progress.md) — integrated into other topics; linked evidence, no standalone assessment cycle.
 - [ ] [Linux / Networking](Phase%201/linux/Progress.md) — paused; Q11 pending.
-- [ ] [Python](Phase%201/python/Progress.md) — active daily coding warm-up; Q01–Q03 assessed; daily practice complete on 2026-10-24; resume Kubernetes Q12.
+- [ ] [Python](Phase%201/python/Progress.md) — active daily coding warm-up; Q01–Q03 assessed; daily practice complete on 2026-10-24; resume Kubernetes Q13.
 - [ ] [RAG](Phase%201/rag/Progress.md) — paused; Q03 preserved.
 - [ ] [MCP](Phase%201/mcp/Progress.md) — cross-topic assessment through RAG; standalone practice later.
 - [ ] [Amazon Bedrock](Phase%201/bedrock/Progress.md) — assessed alongside RAG; standalone practice later.
@@ -39,4 +39,4 @@ CI/CD questions prioritize GitHub Actions, with Jenkins secondary. Cover workflo
 
 The local `Interviews/` directory is the repository root. Keep commits on `main`; push only when explicitly requested.
 
-Before other-topic practice each day, complete one Python coding attempt and review (Asia/Calcutta date). This is once per day across all topics, with code and any execution output recorded in Python progress. Then resume the existing topic question; Kubernetes Q12 remains pending.
+Before other-topic practice each day, complete one Python coding attempt and review (Asia/Calcutta date). This is once per day across all topics, with code and any execution output recorded in Python progress. Then resume the existing topic question; Kubernetes Q13 remains pending.

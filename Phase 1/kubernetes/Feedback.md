@@ -333,3 +333,7 @@ Recovery versus earlier attempts: Q01/Q02/Q08 recovery observation **partially i
 ## Q11.1 coached retry — 2026-10-20
 
 **6.5/10; 55% subjective answer acceptance estimate.** [Attempt, corrections and deduction details](questions/Q11.1-latency-targeted-retry.md). Clear rollback-first mitigation improved. Percentile threshold understood but wrong population (pods instead of requests); HPA/VPA roles mostly corrected but HPA not supported as the incident fix. Pool-wait evidence and concrete recovery criteria remain gaps. RollingUpdate is not generally discouraged. Rollback gap resolved for this coached attempt only; no independent mastery claim. Original Q11 5.5 retained, primary cycle 1/5, Q12 pending.
+
+## Q12 — 2026-10-24
+
+**7/10; 65% subjective estimate.** [Evaluation](questions/Q12-hpa-requests-scheduling.md). HPA/VPA misconception resolved in this attempt. Right-sizing and node scaling reasoning partially improved; HPA uses requests, not limits. Low node usage does not show unallocated requested capacity. Autoscaler readiness/eligibility and measurable recovery remain gaps. Question's missing whole-pod request context acknowledged without penalty. Follow-up 2/5; Q13 pending.
