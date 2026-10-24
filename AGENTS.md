@@ -25,6 +25,15 @@
 
 Never use `git reset --hard`, `git clean -fd`, or force-push unless the user explicitly authorizes it.
 
+## Daily Python warm-up — effective 2026-10-24
+
+- Before starting or resuming another topic's interview question, check the synchronized `Phase 1/python/Progress.md` daily ledger using the user's Asia/Calcutta calendar date. Ask one Python coding exercise first if no substantive Python coding attempt has been evaluated for that day. Once per day across all topics/systems, not once per topic or chat; an explicit user override takes precedence.
+- The user writes the solution before seeing reference code. Ask them to share code and, if run, output. Running is encouraged, not mandatory; distinguish reviewed code from verified execution. A genuine attempted solution counts toward the daily habit even if imperfect; discussion alone, an unanswered prompt or copied reference solution does not. Record score and weaknesses separately from daily completion.
+- Resume an unanswered Python exercise across days rather than creating duplicates. Record actual completion date, question ID, evidence link and execution status. Do not infer a completed exercise from an earlier date. Check dates against the client timezone, not the shell clock.
+- Python runs in parallel and does not replace, renumber or consume the current topic's question quota. Preserve its pending question and return to it after evaluating the warm-up. Current return point is Kubernetes Q12 until that changes.
+- Maintain Python questions, user code (when supplied), feedback, coverage and daily ledger. Create a canonical QNN answer file only after an attempt. Evaluate correctness, edge cases, readability and practical safety at the existing four-year baseline; include concise feedback, score and subjective answer-acceptance estimate. Adapt breadth and retest weaknesses. Do not execute scripts that modify external/production systems merely to grade them.
+- Commit records locally following the usual synchronization workflow; push only when explicitly requested. No automatic daily reminders are implied.
+
 ## Interview practice
 
 - Observability is integrated into other topic scenarios, not a standalone assessment cycle or roadmap completion checkbox. Maintain `Phase 1/observability/Progress.md`, `Feedback.md` and `questions/README.md` with links to canonical answers and evidence-based coverage. Do not duplicate questions or reuse overall topic scores as observability subscores; leave unassessed metrics N/A. Preserve current topic limits and pending questions.

@@ -22,7 +22,7 @@ Within each topic:
 - [ ] [Terraform](Phase%201/terraform/Progress.md) — paused; 11 evaluated; 1 of up to 5 focused follow-ups assessed; Q12 pending.
 - [Observability](Phase%201/observability/Progress.md) — integrated into other topics; linked evidence, no standalone assessment cycle.
 - [ ] [Linux / Networking](Phase%201/linux/Progress.md) — paused; Q11 pending.
-- [ ] Python
+- [ ] [Python](Phase%201/python/Progress.md) — active daily coding warm-up; Q01 pending.
 - [ ] [RAG](Phase%201/rag/Progress.md) — paused; Q03 preserved.
 - [ ] [MCP](Phase%201/mcp/Progress.md) — cross-topic assessment through RAG; standalone practice later.
 - [ ] [Amazon Bedrock](Phase%201/bedrock/Progress.md) — assessed alongside RAG; standalone practice later.
@@ -38,3 +38,5 @@ AWS scenarios emphasize EKS alongside related cloud services. When Kubernetes re
 CI/CD questions prioritize GitHub Actions, with Jenkins secondary. Cover workflows, triggers, jobs and runners, build/test stages, artifacts, secrets and OIDC, reusable workflows, security checks, environment approvals, deployment, rollback and troubleshooting. Evaluate answers using the same four-year baseline, topic-specific scores, feedback, coverage checklist and retests as other topics.
 
 The local `Interviews/` directory is the repository root. Keep commits on `main`; push only when explicitly requested.
+
+Before other-topic practice each day, complete one Python coding attempt and review (Asia/Calcutta date). This is once per day across all topics, with code and any execution output recorded in Python progress. Then resume the existing topic question; Kubernetes Q12 remains pending.
