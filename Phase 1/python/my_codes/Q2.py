@@ -22,26 +22,36 @@
 
 from pathlib import Path
 
-file_path = Path("var/logs/server.log")
+def count_server_errors(path):
+    file_path = Path(path)
 
-services = {}
+    services = {}
 
-if file_path.exists():
-    with open(file_path, "r", encoding="utf-8") as file:
-        for line in file:
-            line = line.strip().split(" ")
-            if len(line) == 2:
-                service, status_code = line
-                try:
-                    status_code = int(status_code)
-                    if 500 <= status_code < 600:
-                        if service not in services:
-                            services[service] = 0
-                        services[service] += 1
-                except ValueError:
-                    continue
-else:
-    raise FileNotFoundError(f"The file {file_path} does not exist.")
+    if file_path.exists():
+        with open(file_path, "r", encoding="utf-8") as file:
+            for line in file:
+                line = line.strip().split()
+                if len(line) == 2:
+                    service, status_code = line
+                    try:
+                        status_code = int(status_code)
+                        if 500 <= status_code < 600:
+                            if service not in services:
+                                services[service] = 0
+                            services[service] += 1
+                    except ValueError:
+                        continue
+    else:
+        raise FileNotFoundError(f"The file {file_path} does not exist.")
 
 
-print(services)
+    return services
+
+if __name__ == "__main__":
+    # Example usage
+    log_file_path = "log.txt"  # Replace with your log file path
+    try:
+        result = count_server_errors(log_file_path)
+        print(result)
+    except FileNotFoundError as e:
+        print(e)
