@@ -34,6 +34,14 @@ Never use `git reset --hard`, `git clean -fd`, or force-push unless the user exp
 - Maintain Python questions, user code (when supplied), feedback, coverage and daily ledger. Create a canonical QNN answer file only after an attempt. Evaluate correctness, edge cases, readability and practical safety at the existing four-year baseline; include concise feedback, score and subjective answer-acceptance estimate. Adapt breadth and retest weaknesses. Do not execute scripts that modify external/production systems merely to grade them.
 - Commit records locally following the usual synchronization workflow; push only when explicitly requested. No automatic daily reminders are implied.
 
+## Python user-code files
+
+- Use `Phase 1/python/my_codes/` (the user's My Code directory), preserving its existing spelling. Before evaluating Python, read the corresponding on-disk file and relevant files the user identifies; do not rely solely on chat code or an earlier snapshot.
+- Follow existing names: `Q1.py`, `Q2.py`, etc. Map canonical question Q01 to `my_codes/Q1.py`. For a newly asked exercise, create its file only if absent using exclusive creation; include at most prompt comments, never a prefilled solution. Resume an existing file without truncating or replacing it. For retries, reuse the mapped file unless the user chooses a separate file.
+- Never edit, format, fix, rename or overwrite user-written Python code. Provide suggestions so the user can make changes. Testing must preserve source files and avoid generated artifacts in the user's code directory; execute only after inspecting safety and use an isolated copy when necessary.
+- Save evaluation and corrected reference solution separately in `questions/QNN-<topic>.md` after an attempt. Link the exact `../my_codes/QN.py` file, cite relevant lines/snippets, and map each demonstrated mistake to its explanation and correction. Preserve the original attempt evidence (relevant snippets and commit reference), score and dated reassessments as the user revises code; a mutable link alone is not historical evidence. If correct, say so rather than inventing gaps.
+- Track the code path, evaluation status and execution evidence in Python Progress.md. Finding a file does not by itself mean it has been evaluated or that the daily warm-up is complete. A workflow-only request does not automatically request grading.
+
 ## Interview practice
 
 - Observability is integrated into other topic scenarios, not a standalone assessment cycle or roadmap completion checkbox. Maintain `Phase 1/observability/Progress.md`, `Feedback.md` and `questions/README.md` with links to canonical answers and evidence-based coverage. Do not duplicate questions or reuse overall topic scores as observability subscores; leave unassessed metrics N/A. Preserve current topic limits and pending questions.

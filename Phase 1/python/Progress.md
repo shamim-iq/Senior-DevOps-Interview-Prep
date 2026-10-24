@@ -15,7 +15,7 @@
 
 | Date (Asia/Calcutta) | Exercise | Status | Code / execution evidence |
 | --- | --- | --- | --- |
-| 2026-10-24 | Q01 | Pending; daily requirement not completed | No code supplied |
+| 2026-10-24 | Q01 | Pending; daily requirement not completed | [Q1.py](my_codes/Q1.py) present; not yet evaluated or executed |
 
 Use the actual attempt date when completed. Retain an unanswered exercise across days. A pending prompt or explanation does not complete the day. Keep execution status explicit: user-reported run, independently tested, or code review only.
 
@@ -41,7 +41,7 @@ Write a Python function `summarize_status_codes(codes)` that accepts a list of i
 Example input: `[200, 201, 404, 500, 200, 503, 301]`
 Expected result: `{"success": 3, "client_error": 1, "server_error": 2}`.
 
-Share your code and, if you run it, the output for this example and an empty list. No solution supplied before the attempt.
+Write your solution in [my_codes/Q1.py](my_codes/Q1.py). The evaluator reads this file without changing it; feedback and reference solutions belong in questions/. If you run it, share output for this example and an empty list. New exercises use Q2.py, Q3.py, etc., created only when absent.
 
 ## Revision
 
