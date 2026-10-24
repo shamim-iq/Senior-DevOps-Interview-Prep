@@ -8,7 +8,7 @@
 | Average score / acceptance estimate | First attempts: 8.75/10 / 82.5%; latest per exercise: 10/10 / 95% (includes coached Q02 revision; not hiring probability) |
 | Coverage | 4 / 10 aspects |
 | Interview readiness | Foundation demonstrated; broader coding readiness not yet assessed |
-| Pending exercise | None; Q02 evaluated. Next daily exercise Q03, not yet asked |
+| Pending exercise | Q03 — unhealthy services from JSON; extra requested on 2026-10-24 |
 | Return to after warm-up | Kubernetes Q12 — HPA metrics and scheduling capacity |
 
 ## Daily ledger
@@ -17,6 +17,8 @@
 | --- | --- | --- | --- |
 | 2026-10-24 | Q01 | Complete — evaluated 10/10 | [Q1.py](my_codes/Q1.py); five independent tests passed; [evaluation](questions/Q01-http-status-summary.md) |
 | 2026-10-24 | Q02 | Complete — original 7.5/10; coached revision 10/10 | [Q2.py](my_codes/Q2.py); isolated tests; [evaluation](questions/Q02-log-server-errors.md) |
+
+Q03 is pending as an extra exercise requested on 2026-10-24; no completed attempt recorded yet.
 
 Use the actual attempt date when completed. Retain an unanswered exercise across days. A pending prompt or explanation does not complete the day. Keep execution status explicit: user-reported run, independently tested, or code review only.
 
@@ -37,7 +39,27 @@ Only mark assessed aspects with [x] ✅ and an evidence link after evaluation. C
 
 ## Current position
 
-Q01 and user-requested extra Q02 evaluated. Daily Python requirement completed on 2026-10-24. Resume Kubernetes Q12 now. No Q03 file or prompt yet; start the next daily warm-up on the next practice day, unless explicitly requested earlier. Q02 corrections now pass all checks; original evaluation preserved. Resume Kubernetes without another Python task today.
+Q01 and Q02 evaluated; daily requirement already complete. User explicitly requested one more Python exercise on 2026-10-24. Q03 is now pending in [my_codes/Q3.py](my_codes/Q3.py). After its evaluation return to the preserved Kubernetes Q12. No new scores or coverage credit until an attempt is assessed.
+
+## Pending Q03
+
+Q03 — Find unhealthy services in JSON
+
+Write find_unhealthy_services(json_text). The input is a JSON string containing
+an object with a services list. Each entry is an object with a string name
+and a string status. Assume this structure is valid when the JSON parses.
+Return names whose status is not exactly "healthy", in input order.
+An empty services list returns []. Invalid JSON must raise ValueError
+(or a subclass), not silently return []. Use only the standard library.
+Do not read files, make network calls, or change the input.
+
+Example input:
+{"services": [{"name": "api", "status": "healthy"}, {"name": "worker", "status": "degraded"}, {"name": "scheduler", "status": "down"}]}
+Expected result: ["worker", "scheduler"]
+
+Write your function here. Add checks for the example, all-healthy services,
+an empty services list, and invalid JSON. Keep any demonstration under the
+main guard so importing the module does not run it. No solution supplied.
 
 ## Revision
 
