@@ -337,3 +337,7 @@ Recovery versus earlier attempts: Q01/Q02/Q08 recovery observation **partially i
 ## Q12 — 2026-10-24
 
 **7/10; 65% subjective estimate.** [Evaluation](questions/Q12-hpa-requests-scheduling.md). HPA/VPA misconception resolved in this attempt. Right-sizing and node scaling reasoning partially improved; HPA uses requests, not limits. Low node usage does not show unallocated requested capacity. Autoscaler readiness/eligibility and measurable recovery remain gaps. Question's missing whole-pod request context acknowledged without penalty. Follow-up 2/5; Q13 pending.
+
+## Q13 — 2026-10-24
+
+**8/10; 75% subjective estimate.** [Evaluation](questions/Q13-stateful-ebs-recovery.md). Credit safe intent, supported out-of-service recovery, CSI and attachment checks. Deduct shutdown-versus-NotReady condition (1), data/single-writer validation before writes (0.75), safe rejoin/taint cleanup (0.25). Q05 storage gaps significantly but partially improved; Q11/Q12 verification partially improved. PDB/cross-AZ migration not tested. Clarified question history preserved; no penalty for user challenging its premise. Three of five follow-ups assessed; Q14 pending.

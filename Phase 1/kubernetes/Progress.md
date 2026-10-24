@@ -4,10 +4,10 @@
 
 | Metric | Current status |
 | --- | --- |
-| Questions Attempted | 10 initial assessments complete; follow-up cycle 2 / 5 assessed (Q11–Q15) |
-| Follow-up average | 6.25/10 — Q11 5.5, Q12 7; three remain; coached Q11.1 excluded |
-| Average Score | Historical Q01–Q10: 5.85/10; combined Q01–Q12: 5.92/10 (71 / 12); Q11.1 excluded |
-| Average Acceptance Probability | Historical: 51.7%; combined: 52.25% (627 / 12); Q11.1 excluded; subjective answer-specific estimates |
+| Questions Attempted | 10 initial assessments complete; follow-up cycle 3 / 5 assessed (Q11–Q15) |
+| Follow-up average | 6.83/10 — Q11 5.5, Q12 7, Q13 8; two remain; coached Q11.1 excluded |
+| Average Score | Historical Q01–Q10: 5.85/10; combined Q01–Q13: 6.08/10 (79 / 13); Q11.1 excluded |
+| Average Acceptance Probability | Historical: 51.7%; combined: 54% (702 / 13); Q11.1 excluded; subjective answer-specific estimates |
 | Topic Coverage | Q01: deployment failure, incident triage, GitOps; Q02: memory limits/OOM; Q03: request-based scheduling; autoscaling gaps identified; Q04: NetworkPolicy isolation; Q05: EBS/PVC/CSI recovery; Q06: IRSA/ServiceAccount identity; Q07: node maintenance/PDB; Q08: CoreDNS; Q09: ECR image pulls and GitOps; Q10: AKS placement constraints |
 | Current Strengths | Incident ownership, previous logs, measuring usage, distinguishing larger nodes from container limits, Helm identity-regression hypothesis and permission restraint |
 | Current Weaknesses | Alternative causes, request/limit precision, capacity-aware mitigation, IRSA distinction, storage attachment/migration safety, recovery validation and conciseness |
@@ -60,9 +60,9 @@ These boxes mean the activity has been completed with recorded evidence, not mer
 
 ## Current Position
 
-**Resumed by user request on 2026-10-20 for five questions, Q11–Q15.** Q11 has been evaluated; Q11.1 coached retry and Q12 assessed; Q13 is pending.
+**Resumed by user request on 2026-10-20 for five questions, Q11–Q15.** Q11 has been evaluated; Q11.1 coached retry and Q12 assessed; Q14 is pending.
 
-First 10-question evaluation cycle complete. Further coverage and weakness-driven questioning authorized on 2026-10-04. **Q11, Q11.1 and Q12 assessed; Q13 is pending**; do not restart numbering.
+First 10-question evaluation cycle complete. Further coverage and weakness-driven questioning authorized on 2026-10-04. **Q11, Q11.1 and Q12 assessed; Q14 is pending**; do not restart numbering.
 
 See [first-cycle consolidated feedback](Feedback.md#first-cycle-consolidated-feedback--q01q10--2026-10-04). The initial assessment is complete, but topic coverage and revision are not. Q11 sampled latency reasoning; Q12 now tests scaling and scheduling evidence. No pending-question answer file exists.
 
@@ -70,9 +70,9 @@ See [first-cycle consolidated feedback](Feedback.md#first-cycle-consolidated-fee
 
 [Targeted retry](questions/Q11.1-latency-targeted-retry.md): **6.5/10; 55% subjective acceptance estimate**. Rollback decision resolved in this coached attempt; p95 population, scaling choice, pool-specific diagnosis and recovery criteria still need practice. Prior Q11 score preserved. This supplementary retry is excluded from historical/first-attempt and five-scenario averages above; follow-up completion remains 1/5. Across all 12 attempts including this retry: 70.5/12 = 5.88/10; acceptance estimates 617/12 = 51.4%. These descriptive aggregates are not hiring probabilities. Q12–Q15 remain available, with consolidated review after Q15.
 
-### Q13 — Stateful recovery and maintenance (pending)
+### Q14 — Service request-path isolation (pending)
 
-An EKS StatefulSet pod uses a ReadWriteOnce EBS volume. Its old node becomes unreachable, and a replacement pod on another node in the same AZ reports Multi-Attach. The old node may still be running the application. A teammate proposes force-detaching the disk and force-deleting the old pod immediately. How would you restore service while protecting data, and what would you verify before allowing writes again?
+In EKS, frontend pods in namespace web time out calling `http://orders.backend.svc.cluster.local:8080`. DNS returns the expected ClusterIP. The orders pods are Ready and their IPs appear as ready endpoints. The Service exposes port 8080 but targetPort is 8081; the application listens on 8080. After correcting that mapping, calls from a diagnostic pod in backend work, but frontend calls still time out. Both namespaces use default-deny NetworkPolicies. A teammate proposes deleting all policies. How would you isolate and fix both failures with narrow access, and prove recovery?
 
 ## Second-Stage Preparation Strategy
 
@@ -181,3 +181,7 @@ Historical preference, now active from 2026-10-20: preserve question history and
 ## Q12 — 2026-10-24
 
 [HPA requests and capacity](questions/Q12-hpa-requests-scheduling.md): **7/10, 65% subjective acceptance estimate**. HPA/VPA distinction corrected; request/limit denominator, reserved capacity and verification remain gaps. Follow-up 2/5; Q13 pending. Whole-pod request premise clarification recorded without penalty. Initial 10 average remains 5.85; main 12 average 5.92; including coached Q11.1, 13 attempts total 77.5/13 = 5.96 (acceptance 682/13 = 52.46%). Historical snapshots above remain dated history, not current totals.
+
+## Q13 — 2026-10-24
+
+[Stateful EBS recovery](questions/Q13-stateful-ebs-recovery.md): **8/10; 75% subjective estimate**. Storage recovery significantly improved; verify shutdown (not merely NotReady) and data/single-writer safety before writes. Concrete attachment/events improve verification. Coverage unchanged at 14/22; no new aspect inferred. Follow-up 3/5; Q14 pending. Main follow-up average 6.83; main 13-question average 6.08. Including coached Q11.1: 85.5/14 = 6.11; acceptance estimates 757/14 = 54.07%. Older totals are historical snapshots. Full readiness review after Q15.
