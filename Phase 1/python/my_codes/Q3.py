@@ -23,7 +23,7 @@ def find_unhealthy_services(json_text):
     except json.JSONDecodeError:
         raise ValueError("Invalid JSON input")
 
-    unhealthy_services = [i["name"] for i in services if i["status"] != "healthy"]
+    unhealthy_services = [service["name"] for service in services["services"] if service["status"] != "healthy"]
     return unhealthy_services
 
 if __name__ == "__main__":
