@@ -5,7 +5,7 @@
 | Metric | Status |
 | --- | --- |
 | Evaluated exercises | 2 |
-| Average score / acceptance estimate | 8.75/10 / 82.5% (two tasks; subjective, not hiring probability) |
+| Average score / acceptance estimate | First attempts: 8.75/10 / 82.5%; latest per exercise: 10/10 / 95% (includes coached Q02 revision; not hiring probability) |
 | Coverage | 4 / 10 aspects |
 | Interview readiness | Foundation demonstrated; broader coding readiness not yet assessed |
 | Pending exercise | None; Q02 evaluated. Next daily exercise Q03, not yet asked |
@@ -16,7 +16,7 @@
 | Date (Asia/Calcutta) | Exercise | Status | Code / execution evidence |
 | --- | --- | --- | --- |
 | 2026-10-24 | Q01 | Complete — evaluated 10/10 | [Q1.py](my_codes/Q1.py); five independent tests passed; [evaluation](questions/Q01-http-status-summary.md) |
-| 2026-10-24 | Q02 | Complete — evaluated 7.5/10 | [Q2.py](my_codes/Q2.py); isolated tests; [evaluation](questions/Q02-log-server-errors.md) |
+| 2026-10-24 | Q02 | Complete — original 7.5/10; coached revision 10/10 | [Q2.py](my_codes/Q2.py); isolated tests; [evaluation](questions/Q02-log-server-errors.md) |
 
 Use the actual attempt date when completed. Retain an unanswered exercise across days. A pending prompt or explanation does not complete the day. Keep execution status explicit: user-reported run, independently tested, or code review only.
 
@@ -25,7 +25,7 @@ Use the actual attempt date when completed. Retain an unanswered exercise across
 - [x] ✅ Core syntax, loops and conditions — Q01.
 - [x] ✅ Lists/dictionaries and basic aggregation — Q01; sets and nested structures remain for later practice.
 - [ ] Functions and input validation.
-- [x] ✅ Files and log processing — Q02; whitespace handling needs revision.
+- [x] ✅ Files and log processing — Q02; whitespace fixed in coached revision; independent retention pending.
 - [ ] JSON/YAML and configuration handling.
 - [ ] HTTP APIs, timeouts and pagination.
 - [ ] Subprocesses and exit codes.
@@ -37,12 +37,14 @@ Only mark assessed aspects with [x] ✅ and an evidence link after evaluation. C
 
 ## Current position
 
-Q01 and user-requested extra Q02 evaluated. Daily Python requirement completed on 2026-10-24. Resume Kubernetes Q12 now. No Q03 file or prompt yet; start the next daily warm-up on the next practice day, unless explicitly requested earlier. Q02 corrections remain suggestions for the user, not a barrier to resuming Kubernetes.
+Q01 and user-requested extra Q02 evaluated. Daily Python requirement completed on 2026-10-24. Resume Kubernetes Q12 now. No Q03 file or prompt yet; start the next daily warm-up on the next practice day, unless explicitly requested earlier. Q02 corrections now pass all checks; original evaluation preserved. Resume Kubernetes without another Python task today.
 
 ## Revision
 
-- [ ] Retest reusable function parameters and return contract — Q02.
-- [ ] Retest whitespace parsing (tabs/repeated spaces) — Q02.
+- [x] ✅ Correct function parameter/return contract in Q02 coached revision, 2026-10-24.
+- [ ] Confirm function-contract understanding in a fresh exercise.
+- [x] ✅ Correct whitespace parsing in Q02 coached revision, 2026-10-24.
+- [ ] Confirm whitespace parsing independently in a fresh exercise.
 - [ ] Demonstrate user-authored tests; evaluator checks alone do not count.
 
 No fixed question quota or readiness percentage is inferred from daily attendance.

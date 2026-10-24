@@ -11,3 +11,7 @@ Next: user-requested extra Q02 today; return to Kubernetes Q12 after its evaluat
 ## Q02 — 2026-10-24
 
 **7.5/10; 70% subjective acceptance estimate.** [Evaluation and separate reference solution](questions/Q02-log-server-errors.md) · [unchanged code](my_codes/Q2.py). Correct streaming UTF-8 file handling, counting and malformed-input exception handling. Missing callable/return contract (1.5 deduction); literal-space splitting skips valid whitespace records (1.0). Four runtime cases passed, whitespace case failed, required-function check failed. Revise independently; no source correction performed. First-two average 8.75/10, descriptive only; practical breadth still unassessed. Return to Kubernetes Q12 now.
+
+## Q02 coached revision — 2026-10-24
+
+Reassessed **10/10; 95% subjective estimate**, original 7.5/10 retained. [Evidence](questions/Q02-log-server-errors.md#reassessment--2026-10-24-after-feedback). Function interface and whitespace handling both corrected; all seven test categories passed. No source edits by evaluator. Both flaws resolved in this revision; independent retention remains to be tested. First-attempt average remains 8.75/10; latest-per-exercise average 10/10 includes coaching and is not overall readiness.

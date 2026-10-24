@@ -57,3 +57,15 @@ def count_server_errors(path):
 ## Follow-up
 
 You can revise Q2.py yourself using these suggestions. Preserve this first score when reassessing. File handling, exception boundaries and dictionary aggregation demonstrated; reusable function contracts and whitespace parsing need retesting. Evaluator tests do not prove user-authored testing skills. Daily Python practice is complete; resume Kubernetes Q12 as requested, with no extra Python question today unless requested.
+
+## Reassessment — 2026-10-24, after feedback
+
+**10/10; subjective answer-specific acceptance estimate 95%.** Original score **7.5/10 (70%)** is preserved. This is a coached revision, not a new exercise or independent retest.
+
+Revised [Q2.py](../my_codes/Q2.py) preserved in commit `7fa249a`; SHA256 `0a2a873f906152bc1f25190fb59295d994c90ed293a3b77f118ea80829fe699a`.
+
+- Function now accepts `path` and returns its dictionary: interface gap resolved in this revision.
+- `line.strip().split()` handles tabs and repeated spaces: parsing gap resolved in this revision. `strip()` is redundant but harmless; no deduction.
+- Independently tested example, empty, whitespace, boundary/invalid, no-error and Unicode fixtures with both string and Path arguments; all passed. Repeated calls did not share counts. Missing path raised FileNotFoundError from the function as required.
+- The main guard catches and prints the exception only for the demonstration; the function itself still raises correctly. The exists precheck remains optional, not an error here.
+- User source unchanged during evaluation; temporary fixtures only. No additional fix required. Confirm retained understanding through a later fresh exercise. Return to Kubernetes Q12.
