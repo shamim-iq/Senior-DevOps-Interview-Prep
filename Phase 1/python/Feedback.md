@@ -19,3 +19,7 @@ Reassessed **10/10; 95% subjective estimate**, original 7.5/10 retained. [Eviden
 ## Q03 — 2026-10-24
 
 **6.5/10; 55% subjective estimate.** [Evaluation](questions/Q03-unhealthy-services-json.md). Correct function/JSON parsing/error handling, but outer-dictionary iteration crashes all valid cases (−3); requested edge-case checks absent (−0.5). Q02 function contract improved in a fresh task. Nested JSON/list access and self-testing need revision. Source preserved; return to Kubernetes Q12.
+
+## Q03 coached revision — 2026-10-24
+
+**9.5/10; 90% subjective estimate**, original 6.5 preserved. [Details](questions/Q03-unhealthy-services-json.md). Corrected nested-list iteration; five evaluator test categories pass. Missing requested user checks retain a 0.5 deduction. Independent nested-structure retention remains pending. Code unchanged by evaluator.

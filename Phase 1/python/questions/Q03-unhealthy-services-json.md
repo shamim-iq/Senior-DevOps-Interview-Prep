@@ -29,3 +29,12 @@ def find_unhealthy_services(json_text):
 - JSONDecodeError already inherits ValueError, so your conversion is valid but optional.
 
 O(input length + service count) time; parsed input and result use proportional memory. No schema-validation requirement beyond the stated assumptions. Add the requested checks yourself; evaluator tests do not count as your tests.
+
+## Coached revision — 2026-10-24
+
+**9.5/10 · Acceptance estimate 90%** (subjective). Original **6.5/10, 55%** retained; revision saved in `de6f94c`.
+
+- ✅ `for service in services["services"]` fixes nested-list iteration. Example, healthy, empty, order/exact-match and invalid JSON tests now pass; source unchanged.
+- Remaining **−0.5**: requested healthy/empty/invalid checks are still absent from your submission. Evaluator tests do not replace user-authored checks.
+- Comment clarification only: `json.load()` reads a file-like object; no additional deduction.
+- Bug resolved after coaching; independently retest nested structures later. Kubernetes Q12 remains next.
