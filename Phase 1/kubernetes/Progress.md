@@ -10,12 +10,12 @@
 | Average Acceptance Probability | Historical: 51.7%; latest main: 55.13% (827 / 15); original 54.8% preserved; Q11.1 excluded; subjective answer-specific estimates |
 | Topic Coverage | Q01: deployment failure, incident triage, GitOps; Q02: memory limits/OOM; Q03: request-based scheduling; autoscaling gaps identified; Q04: NetworkPolicy isolation; Q05: EBS/PVC/CSI recovery; Q06: IRSA/ServiceAccount identity; Q07: node maintenance/PDB; Q08: CoreDNS; Q09: ECR image pulls and GitOps; Q10: AKS placement constraints |
 | Current Strengths | Incident ownership, previous logs, measuring usage, distinguishing larger nodes from container limits, Helm identity-regression hypothesis and permission restraint |
-| Current Weaknesses | Alternative causes, request/limit precision, capacity-aware mitigation, IRSA distinction, storage attachment/migration safety, recovery validation and conciseness |
-| Readiness Trend | First five: 5.7; last five: 6.0. Slight improvement across different topics; senior readiness not yet consistent |
+| Current Weaknesses | Alternative causes, request/limit precision, capacity-aware mitigation, runtime identity/image-pull distinction, storage shutdown/data-integrity safeguards, recovery validation and conciseness |
+| Readiness Trend | Initial ten: 5.85; latest five follow-ups: 6.8 (includes Q15 clarification). Improvement across different scenarios/coaching; readiness not yet consistent |
 
 ## ☑️ Kubernetes Coverage Checklist
 
-**Assessment coverage: 16 / 22 aspects (72.7%). Questions completed: 10 / 10 (100% of the first cycle).** These measure different things: one question can assess multiple aspects, and neither percentage is a readiness score.
+**Assessment coverage: 16 / 22 aspects (72.7%). Questions completed: initial 10/10; follow-ups 5/5, plus Q11.1 coached retry.** These measure different things: one question can assess multiple aspects, and neither percentage is a readiness score.
 
 `[x] ✅` = substantively attempted and evaluated at least once, with question evidence. `[ ]` = not yet assessed sufficiently, including pending questions and concepts only discussed in follow-ups. Checked aspects can still require revision. The overall topic roadmap lives in the [root README](../../README.md).
 
@@ -27,13 +27,13 @@
 - [x] ✅ Taints, tolerations and affinity — Q10; required placement versus permission, label drift and isolation need revision.
 - [x] ✅ Service mapping/readiness/reachability — Q14; Ingress-specific depth still unassessed, recovery test needs revision.
 - [x] ✅ CoreDNS and service discovery — Q08; confirm saturation versus configuration/API issues and validate recovery.
-- [x] ✅ NetworkPolicy isolation — Q04; egress, narrow permissions and validation need revision.
+- [x] ✅ NetworkPolicy isolation — Q04/Q14; egress, narrow permissions and validation need revision.
 - [ ] CNI networking and enforcement troubleshooting — not assessed.
 - [x] ✅ HPA behavior and metrics — Q11 substantively attempted scaling behavior but HPA/VPA distinction was incorrect; Q12 distinguishes HPA/VPA; request denominator still needs revision.
 - [x] ✅ Cluster Autoscaler and node capacity — Q12 attempted; matching capacity, configured status and expansion constraints need retest.
-- [x] ✅ PV/PVC and CSI storage troubleshooting — Q05; attachment versus AZ constraints, fencing and migration need revision.
+- [x] ✅ PV/PVC and CSI storage troubleshooting — Q05/Q13; supported recovery improved; verified shutdown, data integrity and cross-AZ migration still need revision.
 - [x] ✅ RBAC and ServiceAccounts — Q15; target-namespace scope/runtime identity and negative verification need revision.
-- [x] ✅ IRSA/OIDC — Q06; exact trust conditions and validation need revision.
+- [x] ✅ IRSA/OIDC — Q06/Q15; exact trust conditions and validation need revision.
 - [ ] Azure workload identity — not assessed.
 - [x] ✅ Node maintenance, upgrades and PDBs — Q07; budget arithmetic, unhealthy replica diagnosis and safe maintenance need revision.
 - [x] ✅ Helm and Argo CD release management — Q01/Q09; Git correction/sync assessed, safe rollout and health validation need revision.
@@ -55,8 +55,11 @@ These boxes mean the activity has been completed with recorded evidence, not mer
 - [ ] Correct workload-identity misconceptions in a fresh scenario.
 - [ ] Deliver concise answers with realistic stakeholder updates.
 - [x] ✅ Complete the first 10 evaluated questions and consolidated feedback — Q01–Q10, 2026-10-04.
-- [ ] Retest outstanding weak areas and record results.
-- [x] ✅ Review overall Kubernetes readiness against coverage and retest evidence — cycle-one review completed; readiness not yet established.
+- [x] ✅ Complete the agreed five targeted assessments and record recovery results — Q11–Q15, 2026-10-24; unresolved gaps remain below.
+- [x] ✅ Correct HPA versus VPA distinction — Q12.
+- [x] ✅ Clarify Kubernetes RBAC versus AWS IAM — Q15 clarification, 2026-10-24; runtime identity/binding scope still need practice.
+- [ ] Independently demonstrate remaining gaps: request denominator, reserved capacity, exact policy/binding scope, runtime identity and actual-operation verification.
+- [x] ✅ Review overall Kubernetes readiness against coverage and retest evidence — initial and five-follow-up reviews completed; latest evidence in Feedback.md, 2026-10-24; consistent readiness not yet established.
 
 ## Current Position
 
