@@ -19,3 +19,29 @@
 #
 # Expected: {"api": 2, "worker": 1}
 # Share or save your code here, plus any test output. No solution supplied.
+
+from pathlib import Path
+
+file_path = Path("var/logs/server.log")
+
+services = {}
+
+if file_path.exists():
+    with open(file_path, "r", encoding="utf-8") as file:
+        for line in file:
+            line = line.strip().split(" ")
+            if len(line) == 2:
+                service, status_code = line
+                try:
+                    status_code = int(status_code)
+                    if 500 <= status_code < 600:
+                        if service not in services:
+                            services[service] = 0
+                        services[service] += 1
+                except ValueError:
+                    continue
+else:
+    raise FileNotFoundError(f"The file {file_path} does not exist.")
+
+
+print(services)
