@@ -34,6 +34,11 @@ Never use `git reset --hard`, `git clean -fd`, or force-push unless the user exp
 - Maintain Python questions, user code (when supplied), feedback, coverage and daily ledger. Create a canonical QNN answer file only after an attempt. Evaluate correctness, edge cases, readability and practical safety at the existing four-year baseline; include concise feedback, score and subjective answer-acceptance estimate. Adapt breadth and retest weaknesses. Do not execute scripts that modify external/production systems merely to grade them.
 - Commit records locally following the usual synchronization workflow; push only when explicitly requested. No automatic daily reminders are implied.
 
+## Python explanation format
+
+- Keep Python answer/explanation files very concise and directly useful: brief task, linked user code, compact dated score/attempt history, actual mistakes with fixes, minimal reference code and one-line test summary. Preserve technical requirements, material deductions and original/revised scores; remove repetitive prose and stale next-step instructions.
+- Add at most a few short relevant theory Q&As or library notes when useful (for example split semantics, context managers, json or pathlib). Avoid general tutorials, unnecessary diagrams and repeating correct user code when a link or focused excerpt is enough. Do not reveal pending-question solutions. This Python-specific compact format takes precedence over the generic answer layout.
+
 ## Python user-code files
 
 - Use `Phase 1/python/my_codes/` (the user's My Code directory), preserving its existing spelling. Before evaluating Python, read the corresponding on-disk file and relevant files the user identifies; do not rely solely on chat code or an earlier snapshot.

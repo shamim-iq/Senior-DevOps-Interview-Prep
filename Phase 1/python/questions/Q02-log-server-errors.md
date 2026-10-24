@@ -1,37 +1,25 @@
 # Q02 — Count server errors from logs
 
-## Scenario
+**Task:** `count_server_errors(path)` reads UTF-8 lines containing service + integer status. Return per-service 5xx counts; skip blank/malformed/non-5xx lines. Empty file → `{}`; missing file → `FileNotFoundError`. Stream lines; standard library only.
 
-Implement `count_server_errors(path)` reading a UTF-8 log line by line. Valid lines have two whitespace-separated fields: service and integer HTTP code (100–599). Count only 500–599 per service; omit zero-count services. Ignore malformed/blank/non-5xx lines. Return a dictionary, including `{}` for an empty file. Missing files must raise FileNotFoundError. Standard library only.
+[Your code](../my_codes/Q2.py) — unchanged by evaluator.
 
-## Evaluation — 2026-10-24
+| Attempt (2026-10-24) | Score | Acceptance estimate* | Saved version |
+| --- | --- | --- | --- |
+| Original | 7.5/10 | 70% | `7bbebc9` |
+| Coached revision | 10/10 | 95% | `7fa249a` |
 
-**7.5/10; answer-specific acceptance estimate 70%** (subjective, not a hiring probability). [Your unchanged code](../my_codes/Q2.py), original attempt preserved in commit `7bbebc9`; SHA256 `9efcd30ea3d1f7d9ade6cdd150d45185f63cb81ee6ccfde054a05a2ef0ec421c`.
+*Subjective answer-specific estimates, not hiring probabilities. Original score retained; revision is not an independent retest.*
 
-**Correct:** UTF-8 context-managed file reading, streaming iteration, dictionary counting, 5xx boundaries, ignoring noninteger/malformed input and explicitly raising FileNotFoundError. Invalid numeric codes are also ignored because none pass the 5xx condition; no extra validation branch is needed for this output contract.
+**Mistakes → fixes**
 
-| Your code | Finding and correction |
-| --- | --- |
-| `file_path = Path("var/logs/server.log")` and `print(services)` | Script is tied to a path instead of accepting `path` in the requested function and returning the dictionary. Deduction 1.5 for the combined interface gap. |
-| `line.strip().split(" ")` | Tabs remain unsplit and repeated spaces create empty fields, so valid records are skipped. Use `line.split()` for whitespace-separated fields. Deduction 1.0. |
-| `if file_path.exists()` then `open(...)` | Correct missing-file outcome; precheck is optional and can race with file removal. Let open raise naturally. No deduction. |
+- Fixed path + `print(services)` → accept `path` and return the dictionary (**−1.5 originally; fixed**).
+- `split(" ")` → `split()` handles tabs/repeated spaces (**−1 originally; fixed**).
+- Correct throughout: UTF-8 streaming, counting, invalid-number handling and missing-file exception. `strip()` before `split()` and the exists precheck are optional; no deduction.
 
-The path without a leading slash is relative; that is not independently penalized because the requested function should accept its caller's path. No type hints, classes or extra libraries required.
+**Tests:** Original passed example/empty/invalid-boundaries/missing-file; failed whitespace and callable contract. Revision passed all seven categories (including no-errors and Unicode), string/Path arguments and repeated calls. Source unchanged; tests used temporary files. Independent retention and user-authored tests remain to assess.
 
-## Verification
-
-Executed the inspected source unchanged using temporary log files and an isolated working directory; no production log access or source edits. No bytecode artifacts created.
-
-| Test | Actual outcome |
-| --- | --- |
-| Given example | PASS: `{'api': 2, 'worker': 1}` |
-| Empty file | PASS: `{}` |
-| Blank/malformed, invalid numeric codes and 499/500/599/600 boundaries | PASS |
-| Missing file | PASS: FileNotFoundError |
-| `api\t500`, `api    502`, `worker 503` | FAIL: only `{'worker': 1}` instead of `{'api': 2, 'worker': 1}` |
-| Required callable/return contract | FAIL: no `count_server_errors(path)` function |
-
-## Reference solution — separate from your file
+**Reference solution**
 
 ```python
 def count_server_errors(path):
@@ -49,23 +37,13 @@ def count_server_errors(path):
             if 500 <= code <= 599:
                 services[service] = services.get(service, 0) + 1
     return services
-
 ```
 
-`split()` handles whitespace; `open` naturally raises for missing files; the local dictionary is returned. Time O(number of characters read); auxiliary memory O(distinct error-producing services + longest line). Streaming avoids loading the whole log.
+**Quick theory / library notes**
 
-## Follow-up
+- **`split()` vs `split(" ")`?** The former groups whitespace; the latter splits literal spaces and can produce empty fields.
+- **Why `with open(...)`?** Closes the file even if an error occurs; `open` raises naturally when the file is missing.
+- **`Path`?** Standard-library `pathlib` represents filesystem paths; `open` accepts strings or Path objects.
+- **`return` vs `print`?** Return supplies data to the caller; print only displays it.
 
-You can revise Q2.py yourself using these suggestions. Preserve this first score when reassessing. File handling, exception boundaries and dictionary aggregation demonstrated; reusable function contracts and whitespace parsing need retesting. Evaluator tests do not prove user-authored testing skills. Daily Python practice is complete; resume Kubernetes Q12 as requested, with no extra Python question today unless requested.
-
-## Reassessment — 2026-10-24, after feedback
-
-**10/10; subjective answer-specific acceptance estimate 95%.** Original score **7.5/10 (70%)** is preserved. This is a coached revision, not a new exercise or independent retest.
-
-Revised [Q2.py](../my_codes/Q2.py) preserved in commit `7fa249a`; SHA256 `0a2a873f906152bc1f25190fb59295d994c90ed293a3b77f118ea80829fe699a`.
-
-- Function now accepts `path` and returns its dictionary: interface gap resolved in this revision.
-- `line.strip().split()` handles tabs and repeated spaces: parsing gap resolved in this revision. `strip()` is redundant but harmless; no deduction.
-- Independently tested example, empty, whitespace, boundary/invalid, no-error and Unicode fixtures with both string and Path arguments; all passed. Repeated calls did not share counts. Missing path raised FileNotFoundError from the function as required.
-- The main guard catches and prints the exception only for the demonstration; the function itself still raises correctly. The exists precheck remains optional, not an error here.
-- User source unchanged during evaluation; temporary fixtures only. No additional fix required. Confirm retained understanding through a later fresh exercise. Return to Kubernetes Q12.
+**Cost:** O(characters read) time; O(distinct error services + longest line) extra memory.
