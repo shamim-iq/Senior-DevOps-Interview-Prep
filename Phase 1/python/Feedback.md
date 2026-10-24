@@ -15,3 +15,7 @@ Next: user-requested extra Q02 today; return to Kubernetes Q12 after its evaluat
 ## Q02 coached revision — 2026-10-24
 
 Reassessed **10/10; 95% subjective estimate**, original 7.5/10 retained. [Evidence](questions/Q02-log-server-errors.md#reassessment--2026-10-24-after-feedback). Function interface and whitespace handling both corrected; all seven test categories passed. No source edits by evaluator. Both flaws resolved in this revision; independent retention remains to be tested. First-attempt average remains 8.75/10; latest-per-exercise average 10/10 includes coaching and is not overall readiness.
+
+## Q03 — 2026-10-24
+
+**6.5/10; 55% subjective estimate.** [Evaluation](questions/Q03-unhealthy-services-json.md). Correct function/JSON parsing/error handling, but outer-dictionary iteration crashes all valid cases (−3); requested edge-case checks absent (−0.5). Q02 function contract improved in a fresh task. Nested JSON/list access and self-testing need revision. Source preserved; return to Kubernetes Q12.

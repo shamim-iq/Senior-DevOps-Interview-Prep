@@ -4,11 +4,11 @@
 
 | Metric | Status |
 | --- | --- |
-| Evaluated exercises | 2 |
-| Average score / acceptance estimate | First attempts: 8.75/10 / 82.5%; latest per exercise: 10/10 / 95% (includes coached Q02 revision; not hiring probability) |
-| Coverage | 4 / 10 aspects |
+| Evaluated exercises | 3 |
+| Average score / acceptance estimate | First attempts: 8/10 / 73.3%; latest per exercise: 8.83/10 / 81.7% (includes coached Q02 revision; not hiring probability) |
+| Coverage | 6 / 10 aspects |
 | Interview readiness | Foundation demonstrated; broader coding readiness not yet assessed |
-| Pending exercise | Q03 — unhealthy services from JSON; extra requested on 2026-10-24 |
+| Pending exercise | None; Q03 evaluated, return to Kubernetes Q12 |
 | Return to after warm-up | Kubernetes Q12 — HPA metrics and scheduling capacity |
 
 ## Daily ledger
@@ -18,7 +18,7 @@
 | 2026-10-24 | Q01 | Complete — evaluated 10/10 | [Q1.py](my_codes/Q1.py); five independent tests passed; [evaluation](questions/Q01-http-status-summary.md) |
 | 2026-10-24 | Q02 | Complete — original 7.5/10; coached revision 10/10 | [Q2.py](my_codes/Q2.py); isolated tests; [evaluation](questions/Q02-log-server-errors.md) |
 
-Q03 is pending as an extra exercise requested on 2026-10-24; no completed attempt recorded yet.
+Q03 evaluated on 2026-10-24: 6.5/10, [code](my_codes/Q3.py), [evaluation](questions/Q03-unhealthy-services-json.md). Three valid-input tests failed; invalid JSON passed. Daily practice remains complete.
 
 Use the actual attempt date when completed. Retain an unanswered exercise across days. A pending prompt or explanation does not complete the day. Keep execution status explicit: user-reported run, independently tested, or code review only.
 
@@ -26,9 +26,9 @@ Use the actual attempt date when completed. Retain an unanswered exercise across
 
 - [x] ✅ Core syntax, loops and conditions — Q01.
 - [x] ✅ Lists/dictionaries and basic aggregation — Q01; sets and nested structures remain for later practice.
-- [ ] Functions and input validation.
+- [x] ✅ Functions and input validation — Q03 function contract and malformed JSON handling; broader validation remains.
 - [x] ✅ Files and log processing — Q02; whitespace fixed in coached revision; independent retention pending.
-- [ ] JSON/YAML and configuration handling.
+- [x] ✅ JSON parsing — Q03; nested dictionary/list navigation needs revision. YAML/configuration-specific work remains.
 - [ ] HTTP APIs, timeouts and pagination.
 - [ ] Subprocesses and exit codes.
 - [x] ✅ Exception handling and file-failure propagation — Q02; structured logging and broader safe failure handling remain to assess.
@@ -39,32 +39,14 @@ Only mark assessed aspects with [x] ✅ and an evidence link after evaluation. C
 
 ## Current position
 
-Q01 and Q02 evaluated; daily requirement already complete. User explicitly requested one more Python exercise on 2026-10-24. Q03 is now pending in [my_codes/Q3.py](my_codes/Q3.py). After its evaluation return to the preserved Kubernetes Q12. No new scores or coverage credit until an attempt is assessed.
-
-## Pending Q03
-
-Q03 — Find unhealthy services in JSON
-
-Write find_unhealthy_services(json_text). The input is a JSON string containing
-an object with a services list. Each entry is an object with a string name
-and a string status. Assume this structure is valid when the JSON parses.
-Return names whose status is not exactly "healthy", in input order.
-An empty services list returns []. Invalid JSON must raise ValueError
-(or a subclass), not silently return []. Use only the standard library.
-Do not read files, make network calls, or change the input.
-
-Example input:
-{"services": [{"name": "api", "status": "healthy"}, {"name": "worker", "status": "degraded"}, {"name": "scheduler", "status": "down"}]}
-Expected result: ["worker", "scheduler"]
-
-Write your function here. Add checks for the example, all-healthy services,
-an empty services list, and invalid JSON. Keep any demonstration under the
-main guard so importing the module does not run it. No solution supplied.
+Q01–Q03 evaluated; Q02 includes a preserved coached reassessment. User-requested extra Python exercise is complete. Resume Kubernetes Q12; do not ask another Python exercise today unless requested. Q03 correction is for the user to make; no source edits by evaluator.
 
 ## Revision
 
+- [ ] Distinguish outer JSON object from nested service list — Q03.
+
 - [x] ✅ Correct function parameter/return contract in Q02 coached revision, 2026-10-24.
-- [ ] Confirm function-contract understanding in a fresh exercise.
+- [x] ✅ Function parameter/return contract demonstrated in fresh Q03; internal logic still needs correction.
 - [x] ✅ Correct whitespace parsing in Q02 coached revision, 2026-10-24.
 - [ ] Confirm whitespace parsing independently in a fresh exercise.
 - [ ] Demonstrate user-authored tests; evaluator checks alone do not count.
