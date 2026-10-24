@@ -9,7 +9,7 @@
 | Coverage | 6 / 10 aspects |
 | Interview readiness | Foundation demonstrated; broader coding readiness not yet assessed |
 | Pending exercise | None; Q03 evaluated, return to Kubernetes Q12 |
-| Return to after warm-up | Kubernetes Q15 — Kubernetes/AWS authorization |
+| Return to after warm-up | Kubernetes follow-up cycle complete; next topic awaits user choice |
 
 ## Daily ledger
 
@@ -39,7 +39,7 @@ Only mark assessed aspects with [x] ✅ and an evidence link after evaluation. C
 
 ## Current position
 
-Q01–Q03 evaluated; Q02 includes a preserved coached reassessment. User-requested extra Python exercise is complete. Resume Kubernetes Q15; do not ask another Python exercise today unless requested. Q03 correction is for the user to make; no source edits by evaluator.
+Q01–Q03 evaluated; Q02 includes a preserved coached reassessment. User-requested extra Python exercise is complete. Kubernetes follow-up cycle is complete; do not ask another Python exercise today unless requested. Q03 correction is for the user to make; no source edits by evaluator.
 
 ## Revision
 

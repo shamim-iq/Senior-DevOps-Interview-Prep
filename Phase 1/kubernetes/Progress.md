@@ -1,13 +1,13 @@
 # Kubernetes Interview Progress
 
-**Active again from 2026-10-20.** AWS paused with Q11 preserved. Current agreement: exactly five follow-ups, Q11–Q15, then a consolidated review; further questions require a new request.
+**Five-follow-up cycle completed 2026-10-24.** Q11–Q15 and requested Q11.1 retry assessed; consolidated review recorded in Feedback.md. No next Kubernetes question scheduled; further practice requires a new request. AWS remains paused with Q11 preserved.
 
 | Metric | Current status |
 | --- | --- |
-| Questions Attempted | 10 initial assessments complete; follow-up cycle 4 / 5 assessed (Q11–Q15) |
-| Follow-up average | 6.75/10 — Q11 5.5, Q12 7, Q13 8, Q14 6.5; one remains; Q11.1 excluded |
-| Average Score | Historical Q01–Q10: 5.85/10; combined Q01–Q14: 6.11/10 (85.5 / 14); Q11.1 excluded |
-| Average Acceptance Probability | Historical: 51.7%; combined: 54.43% (762 / 14); Q11.1 excluded; subjective answer-specific estimates |
+| Questions Attempted | 10 initial assessments complete; follow-up cycle 5 / 5 assessed (Q11–Q15) |
+| Follow-up average | 6.7/10 — total 33.5/5; coached Q11.1 excluded |
+| Average Score | Historical Q01–Q10: 5.85/10; combined Q01–Q15: 6.13/10 (92 / 15); Q11.1 excluded |
+| Average Acceptance Probability | Historical: 51.7%; combined: 54.8% (822 / 15); Q11.1 excluded; subjective answer-specific estimates |
 | Topic Coverage | Q01: deployment failure, incident triage, GitOps; Q02: memory limits/OOM; Q03: request-based scheduling; autoscaling gaps identified; Q04: NetworkPolicy isolation; Q05: EBS/PVC/CSI recovery; Q06: IRSA/ServiceAccount identity; Q07: node maintenance/PDB; Q08: CoreDNS; Q09: ECR image pulls and GitOps; Q10: AKS placement constraints |
 | Current Strengths | Incident ownership, previous logs, measuring usage, distinguishing larger nodes from container limits, Helm identity-regression hypothesis and permission restraint |
 | Current Weaknesses | Alternative causes, request/limit precision, capacity-aware mitigation, IRSA distinction, storage attachment/migration safety, recovery validation and conciseness |
@@ -15,7 +15,7 @@
 
 ## ☑️ Kubernetes Coverage Checklist
 
-**Assessment coverage: 15 / 22 aspects (68.2%). Questions completed: 10 / 10 (100% of the first cycle).** These measure different things: one question can assess multiple aspects, and neither percentage is a readiness score.
+**Assessment coverage: 16 / 22 aspects (72.7%). Questions completed: 10 / 10 (100% of the first cycle).** These measure different things: one question can assess multiple aspects, and neither percentage is a readiness score.
 
 `[x] ✅` = substantively attempted and evaluated at least once, with question evidence. `[ ]` = not yet assessed sufficiently, including pending questions and concepts only discussed in follow-ups. Checked aspects can still require revision. The overall topic roadmap lives in the [root README](../../README.md).
 
@@ -32,7 +32,7 @@
 - [x] ✅ HPA behavior and metrics — Q11 substantively attempted scaling behavior but HPA/VPA distinction was incorrect; Q12 distinguishes HPA/VPA; request denominator still needs revision.
 - [x] ✅ Cluster Autoscaler and node capacity — Q12 attempted; matching capacity, configured status and expansion constraints need retest.
 - [x] ✅ PV/PVC and CSI storage troubleshooting — Q05; attachment versus AZ constraints, fencing and migration need revision.
-- [ ] RBAC and ServiceAccounts — ServiceAccount linkage sampled in Q06; Kubernetes authorization still needs assessment.
+- [x] ✅ RBAC and ServiceAccounts — Q15; target-namespace scope/runtime identity and negative verification need revision.
 - [x] ✅ IRSA/OIDC — Q06; exact trust conditions and validation need revision.
 - [ ] Azure workload identity — not assessed.
 - [x] ✅ Node maintenance, upgrades and PDBs — Q07; budget arithmetic, unhealthy replica diagnosis and safe maintenance need revision.
@@ -60,19 +60,7 @@ These boxes mean the activity has been completed with recorded evidence, not mer
 
 ## Current Position
 
-**Resumed by user request on 2026-10-20 for five questions, Q11–Q15.** Q11 has been evaluated; Q11.1 coached retry and Q12 assessed; Q15 is pending.
-
-First 10-question evaluation cycle complete. Further coverage and weakness-driven questioning authorized on 2026-10-04. **Q11, Q11.1 and Q12 assessed; Q15 is pending**; do not restart numbering.
-
-See [first-cycle consolidated feedback](Feedback.md#first-cycle-consolidated-feedback--q01q10--2026-10-04). The initial assessment is complete, but topic coverage and revision are not. Q11 sampled latency reasoning; Q12 now tests scaling and scheduling evidence. No pending-question answer file exists.
-
-### Q11.1 — Coached retry assessed, 2026-10-20
-
-[Targeted retry](questions/Q11.1-latency-targeted-retry.md): **6.5/10; 55% subjective acceptance estimate**. Rollback decision resolved in this coached attempt; p95 population, scaling choice, pool-specific diagnosis and recovery criteria still need practice. Prior Q11 score preserved. This supplementary retry is excluded from historical/first-attempt and five-scenario averages above; follow-up completion remains 1/5. Across all 12 attempts including this retry: 70.5/12 = 5.88/10; acceptance estimates 617/12 = 51.4%. These descriptive aggregates are not hiring probabilities. Q12–Q15 remain available, with consolidated review after Q15.
-
-### Q15 — Separate Kubernetes and AWS authorization (pending)
-
-An EKS reporting pod uses ServiceAccount reporter in namespace analytics. After a Helm release it gets Kubernetes `Forbidden` when reading ConfigMaps in namespace shared, and AWS `AccessDenied` when reading one S3 prefix. Image pulling works. A teammate suggests binding cluster-admin to reporter and adding S3 permissions to every worker node role. The workload uses IRSA. How would you identify its actual identities, restore only the required permissions in both systems, and verify permitted and denied access from the workload?
+Q11–Q15 complete, plus Q11.1 coached retry. [Consolidated improvement and readiness review](Feedback.md#five-follow-up-consolidated-review--2026-10-24). No Q16 or other new Kubernetes question pending. Older plans and metrics below are historical; this completion status supersedes them. Other-topic pending questions remain intact.
 
 ## Second-Stage Preparation Strategy
 
@@ -189,3 +177,7 @@ Historical preference, now active from 2026-10-20: preserve question history and
 ## Q14 — 2026-10-24
 
 [Service/NetworkPolicy](questions/Q14-service-networkpolicy.md): **6.5/10; 60% subjective estimate**. Q04 security intent and both-side awareness partly improved; narrow rules, same-namespace semantics and application-level verification remain gaps. Main follow-up 4/5 average 6.75; main 14 average 6.11. Including coached Q11.1: 92/15 = 6.13; acceptance 817/15 = 54.47%. Coverage 15/22; Ingress not inferred. Q15 pending. Previous totals are historical snapshots.
+
+## Completed cycle metrics — 2026-10-24
+
+Main follow-ups 6.7/10; original ten 5.85; main fifteen 6.13. Including Q11.1: 6.16 across sixteen attempts. Scores preserved. Coverage 16/22 is not readiness; full evidence/recovery matrix in Feedback.md. Further questions require a new request.

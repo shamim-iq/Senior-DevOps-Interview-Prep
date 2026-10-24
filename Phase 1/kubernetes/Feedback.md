@@ -345,3 +345,37 @@ Recovery versus earlier attempts: Q01/Q02/Q08 recovery observation **partially i
 ## Q14 — 2026-10-24
 
 **6.5/10; 60% subjective estimate.** [Details](questions/Q14-service-networkpolicy.md). Credit security restraint, working-DNS recognition and both-side policy awareness. Gaps: exact narrow ingress/egress rules, same-namespace exemption misconception, DNS-only recovery test, port mapping explanation. Q04/Q08 partially improved; customer-operation verification unresolved. Latest complete answer supersedes interrupted partial submission. Four of five follow-ups complete, Q15 pending.
+
+## Q15 — 2026-10-24
+
+**6.5/10; 60% subjective estimate.** [Evaluation](questions/Q15-rbac-irsa-boundaries.md). Credit least privilege and Helm/SA checks. Scope, runtime identity/image-pull inference and actual allowed/denied verification remain gaps. Ambiguous role wording not treated as an explicit IAM-for-ConfigMaps claim. Five follow-ups complete.
+
+## Five-follow-up consolidated review — 2026-10-24
+
+| Question | Score | Main finding |
+| --- | --- | --- |
+| Q11 latency | 5.5 | Broad hypotheses; percentile/scaling errors and missing rollback |
+| Q12 autoscaling | 7 | HPA/VPA corrected; requests/limits/capacity precision incomplete |
+| Q13 storage | 8 | Strong recovery mechanism; shutdown and data-safety prerequisites need precision |
+| Q14 networking | 6.5 | Security intent correct; policy scope and HTTP verification gaps |
+| Q15 authorization | 6.5 | Configuration checks useful; runtime identity and authorization boundaries incomplete |
+
+**Initial Q01–Q10 average: 5.85/10. Follow-ups Q11–Q15: 6.7/10 (33.5/5). Combined 15 main questions: 6.13/10 (92/15).** Q11.1 coached retry 6.5 is separate; including it gives 98.5/16 = 6.16. Different scenarios and intervening coaching limit direct comparison; movement is descriptive, not proof of a fixed skill gain. Subjective acceptance averages: follow-ups 61%, combined main 54.8%, all attempts 54.81%; none are hiring probabilities.
+
+| Gap | Recovery evidence | Current status |
+| --- | --- | --- |
+| HPA versus VPA | Q12 correctly separates replicas and resources | Corrected in this attempt; not all autoscaling mastered |
+| Safe rollback | Q11.1 chooses known-good rollback | Improved after coaching; independent retention not established |
+| Storage recovery | Q13 rejects reckless detach; names supported mechanism and attachment checks | Significant partial improvement; strict shutdown/data gate remains |
+| Requests versus limits and scheduling | Q12 right-sizing intent, but denominator/allocated capacity omitted | Partially recovered |
+| NetworkPolicy | Q14 preserves isolation, considers both sides | Partially recovered; exact peer/port scope and same-namespace reasoning need work |
+| Workload authorization | Q15 ServiceAccount/Helm/annotation checks | Partially recovered; runtime caller, cross-namespace RBAC, image-pull distinction unresolved |
+| Evidence-led latency investigation | Q11/Q11.1 general causes versus supplied pool evidence | Unresolved; p95 request population needs fresh proof |
+| Recovery validation | Q13 attachment checks; Q14 DNS-only; Q15 vague in-container checks | Recurring unresolved gap: test the actual operation plus forbidden access where relevant |
+| PDB arithmetic, cross-AZ recovery, other uncovered areas | Not independently revisited in this cycle | Not reassessed; preserve earlier gaps |
+
+**Readiness verdict:** Better production-safety judgment and troubleshooting vocabulary; not yet consistently interview-ready for deep Kubernetes production scenarios at the four-year baseline. Can explain common approaches, but follow-up questions expose control-boundary and verification gaps. Highest-value revision: request-based capacity, identity/authorization boundaries, actual-path tests, shutdown/single-writer guarantees. A concise evidence → decision → operation test answer is more valuable than extra component names. No claim about overall role or company-specific hiring odds.
+
+**Coverage:** 16/22 aspects sampled, not mastered. Six unchecked broad aspects: CNI troubleshooting, Azure workload identity, tool-specific Prometheus/log investigation, EKS architecture trade-offs, deeper AKS operations, complete recovery/SLI-SLO reasoning. Ingress, PDB and selected subskills also remain incomplete despite checked parent areas. AWS-linked work is evidence, not a duplicate Kubernetes score. Prioritize important remaining weaknesses; do not chase obscure commands to fill checkboxes.
+
+**Agreement fulfilled:** Five main follow-ups plus requested Q11.1 retry complete. No Q16 scheduled or automatically authorized. Further targeted retests/practice only on user request; keep pending questions in other topics intact.
