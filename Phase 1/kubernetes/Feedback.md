@@ -379,3 +379,19 @@ Recovery versus earlier attempts: Q01/Q02/Q08 recovery observation **partially i
 **Coverage:** 16/22 aspects sampled, not mastered. Six unchecked broad aspects: CNI troubleshooting, Azure workload identity, tool-specific Prometheus/log investigation, EKS architecture trade-offs, deeper AKS operations, complete recovery/SLI-SLO reasoning. Ingress, PDB and selected subskills also remain incomplete despite checked parent areas. AWS-linked work is evidence, not a duplicate Kubernetes score. Prioritize important remaining weaknesses; do not chase obscure commands to fill checkboxes.
 
 **Agreement fulfilled:** Five main follow-ups plus requested Q11.1 retry complete. No Q16 scheduled or automatically authorized. Further targeted retests/practice only on user request; keep pending questions in other topics intact.
+
+## Clarification reassessment — 2026-10-24
+
+**Revised Q15: 7/10; subjective acceptance estimate 65%. Original 6.5/10 (60%) preserved.** This records a clarification, not a new question or independent retest.
+
+The candidate explicitly distinguishes Kubernetes Role/RoleBinding/ServiceAccount authorization from IAM for AWS APIs. Credit correct API-group/verb scoping and intent to restrict access to the required ConfigMap. The original answer already mentioned RoleBinding; do not characterize the candidate as claiming IAM grants ConfigMap access. Remove 0.5 of the original combined 1-point deduction for boundary ambiguity.
+
+Remaining deductions: exact target-namespace binding placement/subject not stated (0.5); image-pull inference/runtime identity proof (1); S3 prefix/action scope (0.75); concrete allowed/denied operation verification (0.75). Role and RoleBinding should be in shared, with subject reporter in analytics; for a named ConfigMap read, use the core API group, configmaps resource, get verb and resourceNames as appropriate. This precision is separate from knowing RBAC versus IAM.
+
+Recovery remarks updated: **conceptual RBAC/IAM distinction demonstrated in clarification**; exact cross-namespace binding and runtime proof remain incomplete. IAM can govern application calls to ECR APIs, but successful image pulling still does not establish runtime IRSA identity. Other gaps are unchanged.
+
+### Revised consolidated metrics
+
+Latest Q11–Q15 scores: 5.5, 7, 8, 6.5, **7** → **6.8/10** (34/5). Original-assessment average remains 6.7. Latest-per-main-question average: 92.5/15 = **6.17/10**; original 92/15 = 6.13 preserved. Q11.1 remains separate; using latest Q15 plus Q11.1 gives 99/16 = 6.19 (not an extra Q15 attempt). Latest acceptance estimates: follow-ups 62%, main 827/15 = 55.13%, including Q11.1 882/16 = 55.13%; subjective, not hiring probabilities.
+
+Readiness review adjustment: credit RBAC versus IAM conceptual understanding; do not list it as an unresolved misconception. Runtime identity, image-pull distinction, binding placement, S3 scope and real-operation verification remain revision priorities. No new question authorized.

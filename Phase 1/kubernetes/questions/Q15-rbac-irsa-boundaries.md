@@ -55,3 +55,13 @@ flowchart TD
 **Recovery:** Q06/AWS Q09 configuration mapping reinforced, runtime identity/trust still unproven; Q09 image-pull/runtime distinction unresolved; exact RBAC/IAM scope partly understood; verification still lacks explicit allowed/denied tests. Least-privilege restraint remains a strength, not proof of complete authorization diagnosis.
 
 Sources: [Kubernetes RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/), [EKS ECR pulls](https://docs.aws.amazon.com/AmazonECR/latest/userguide/ECR_on_EKS.html).
+
+## Clarification reassessment — 2026-10-24
+
+**Revised Q15: 7/10; subjective acceptance estimate 65%. Original 6.5/10 (60%) preserved.** This records a clarification, not a new question or independent retest.
+
+The candidate explicitly distinguishes Kubernetes Role/RoleBinding/ServiceAccount authorization from IAM for AWS APIs. Credit correct API-group/verb scoping and intent to restrict access to the required ConfigMap. The original answer already mentioned RoleBinding; do not characterize the candidate as claiming IAM grants ConfigMap access. Remove 0.5 of the original combined 1-point deduction for boundary ambiguity.
+
+Remaining deductions: exact target-namespace binding placement/subject not stated (0.5); image-pull inference/runtime identity proof (1); S3 prefix/action scope (0.75); concrete allowed/denied operation verification (0.75). Role and RoleBinding should be in shared, with subject reporter in analytics; for a named ConfigMap read, use the core API group, configmaps resource, get verb and resourceNames as appropriate. This precision is separate from knowing RBAC versus IAM.
+
+Recovery remarks updated: **conceptual RBAC/IAM distinction demonstrated in clarification**; exact cross-namespace binding and runtime proof remain incomplete. IAM can govern application calls to ECR APIs, but successful image pulling still does not establish runtime IRSA identity. Other gaps are unchanged.

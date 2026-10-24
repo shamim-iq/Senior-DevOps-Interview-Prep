@@ -5,9 +5,9 @@
 | Metric | Current status |
 | --- | --- |
 | Questions Attempted | 10 initial assessments complete; follow-up cycle 5 / 5 assessed (Q11–Q15) |
-| Follow-up average | 6.7/10 — total 33.5/5; coached Q11.1 excluded |
-| Average Score | Historical Q01–Q10: 5.85/10; combined Q01–Q15: 6.13/10 (92 / 15); Q11.1 excluded |
-| Average Acceptance Probability | Historical: 51.7%; combined: 54.8% (822 / 15); Q11.1 excluded; subjective answer-specific estimates |
+| Follow-up average | 6.8/10 — latest Q15 clarification score 7; total 34/5. Original 6.7 preserved; Q11.1 excluded |
+| Average Score | Historical Q01–Q10: 5.85/10; latest Q01–Q15: 6.17/10 (92.5 / 15); original 6.13 preserved; Q11.1 excluded |
+| Average Acceptance Probability | Historical: 51.7%; latest main: 55.13% (827 / 15); original 54.8% preserved; Q11.1 excluded; subjective answer-specific estimates |
 | Topic Coverage | Q01: deployment failure, incident triage, GitOps; Q02: memory limits/OOM; Q03: request-based scheduling; autoscaling gaps identified; Q04: NetworkPolicy isolation; Q05: EBS/PVC/CSI recovery; Q06: IRSA/ServiceAccount identity; Q07: node maintenance/PDB; Q08: CoreDNS; Q09: ECR image pulls and GitOps; Q10: AKS placement constraints |
 | Current Strengths | Incident ownership, previous logs, measuring usage, distinguishing larger nodes from container limits, Helm identity-regression hypothesis and permission restraint |
 | Current Weaknesses | Alternative causes, request/limit precision, capacity-aware mitigation, IRSA distinction, storage attachment/migration safety, recovery validation and conciseness |
@@ -181,3 +181,7 @@ Historical preference, now active from 2026-10-20: preserve question history and
 ## Completed cycle metrics — 2026-10-24
 
 Main follow-ups 6.7/10; original ten 5.85; main fifteen 6.13. Including Q11.1: 6.16 across sixteen attempts. Scores preserved. Coverage 16/22 is not readiness; full evidence/recovery matrix in Feedback.md. Further questions require a new request.
+
+## Q15 clarification — 2026-10-24
+
+[Reassessment](questions/Q15-rbac-irsa-boundaries.md#clarification-reassessment--2026-10-24): 6.5 → **7/10**, acceptance estimate 60 → 65%. Explicit RBAC/IAM separation credited; original score/history retained. Latest five-question average 6.8; original 6.7. Runtime verification and exact scoped binding still need work; conceptual boundary is no longer an unresolved gap. No new attempt or question counted. See Feedback.md for revised aggregates; earlier review totals remain historical.
