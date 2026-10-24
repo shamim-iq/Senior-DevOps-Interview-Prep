@@ -341,3 +341,7 @@ Recovery versus earlier attempts: Q01/Q02/Q08 recovery observation **partially i
 ## Q13 — 2026-10-24
 
 **8/10; 75% subjective estimate.** [Evaluation](questions/Q13-stateful-ebs-recovery.md). Credit safe intent, supported out-of-service recovery, CSI and attachment checks. Deduct shutdown-versus-NotReady condition (1), data/single-writer validation before writes (0.75), safe rejoin/taint cleanup (0.25). Q05 storage gaps significantly but partially improved; Q11/Q12 verification partially improved. PDB/cross-AZ migration not tested. Clarified question history preserved; no penalty for user challenging its premise. Three of five follow-ups assessed; Q14 pending.
+
+## Q14 — 2026-10-24
+
+**6.5/10; 60% subjective estimate.** [Details](questions/Q14-service-networkpolicy.md). Credit security restraint, working-DNS recognition and both-side policy awareness. Gaps: exact narrow ingress/egress rules, same-namespace exemption misconception, DNS-only recovery test, port mapping explanation. Q04/Q08 partially improved; customer-operation verification unresolved. Latest complete answer supersedes interrupted partial submission. Four of five follow-ups complete, Q15 pending.

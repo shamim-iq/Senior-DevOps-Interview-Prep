@@ -4,10 +4,10 @@
 
 | Metric | Current status |
 | --- | --- |
-| Questions Attempted | 10 initial assessments complete; follow-up cycle 3 / 5 assessed (Q11–Q15) |
-| Follow-up average | 6.83/10 — Q11 5.5, Q12 7, Q13 8; two remain; coached Q11.1 excluded |
-| Average Score | Historical Q01–Q10: 5.85/10; combined Q01–Q13: 6.08/10 (79 / 13); Q11.1 excluded |
-| Average Acceptance Probability | Historical: 51.7%; combined: 54% (702 / 13); Q11.1 excluded; subjective answer-specific estimates |
+| Questions Attempted | 10 initial assessments complete; follow-up cycle 4 / 5 assessed (Q11–Q15) |
+| Follow-up average | 6.75/10 — Q11 5.5, Q12 7, Q13 8, Q14 6.5; one remains; Q11.1 excluded |
+| Average Score | Historical Q01–Q10: 5.85/10; combined Q01–Q14: 6.11/10 (85.5 / 14); Q11.1 excluded |
+| Average Acceptance Probability | Historical: 51.7%; combined: 54.43% (762 / 14); Q11.1 excluded; subjective answer-specific estimates |
 | Topic Coverage | Q01: deployment failure, incident triage, GitOps; Q02: memory limits/OOM; Q03: request-based scheduling; autoscaling gaps identified; Q04: NetworkPolicy isolation; Q05: EBS/PVC/CSI recovery; Q06: IRSA/ServiceAccount identity; Q07: node maintenance/PDB; Q08: CoreDNS; Q09: ECR image pulls and GitOps; Q10: AKS placement constraints |
 | Current Strengths | Incident ownership, previous logs, measuring usage, distinguishing larger nodes from container limits, Helm identity-regression hypothesis and permission restraint |
 | Current Weaknesses | Alternative causes, request/limit precision, capacity-aware mitigation, IRSA distinction, storage attachment/migration safety, recovery validation and conciseness |
@@ -15,7 +15,7 @@
 
 ## ☑️ Kubernetes Coverage Checklist
 
-**Assessment coverage: 14 / 22 aspects (63.6%). Questions completed: 10 / 10 (100% of the first cycle).** These measure different things: one question can assess multiple aspects, and neither percentage is a readiness score.
+**Assessment coverage: 15 / 22 aspects (68.2%). Questions completed: 10 / 10 (100% of the first cycle).** These measure different things: one question can assess multiple aspects, and neither percentage is a readiness score.
 
 `[x] ✅` = substantively attempted and evaluated at least once, with question evidence. `[ ]` = not yet assessed sufficiently, including pending questions and concepts only discussed in follow-ups. Checked aspects can still require revision. The overall topic roadmap lives in the [root README](../../README.md).
 
@@ -25,7 +25,7 @@
 - [x] ✅ ImagePullBackOff — Q09; actual pull identity and event-driven diagnosis need revision.
 - [x] ✅ Pending pods and scheduling resources — Q03; per-node allocatable precision needs revision.
 - [x] ✅ Taints, tolerations and affinity — Q10; required placement versus permission, label drift and isolation need revision.
-- [ ] Services, Ingress, EndpointSlices and readiness — follow-up explanations given; independent scenario assessment pending.
+- [x] ✅ Service mapping/readiness/reachability — Q14; Ingress-specific depth still unassessed, recovery test needs revision.
 - [x] ✅ CoreDNS and service discovery — Q08; confirm saturation versus configuration/API issues and validate recovery.
 - [x] ✅ NetworkPolicy isolation — Q04; egress, narrow permissions and validation need revision.
 - [ ] CNI networking and enforcement troubleshooting — not assessed.
@@ -60,9 +60,9 @@ These boxes mean the activity has been completed with recorded evidence, not mer
 
 ## Current Position
 
-**Resumed by user request on 2026-10-20 for five questions, Q11–Q15.** Q11 has been evaluated; Q11.1 coached retry and Q12 assessed; Q14 is pending.
+**Resumed by user request on 2026-10-20 for five questions, Q11–Q15.** Q11 has been evaluated; Q11.1 coached retry and Q12 assessed; Q15 is pending.
 
-First 10-question evaluation cycle complete. Further coverage and weakness-driven questioning authorized on 2026-10-04. **Q11, Q11.1 and Q12 assessed; Q14 is pending**; do not restart numbering.
+First 10-question evaluation cycle complete. Further coverage and weakness-driven questioning authorized on 2026-10-04. **Q11, Q11.1 and Q12 assessed; Q15 is pending**; do not restart numbering.
 
 See [first-cycle consolidated feedback](Feedback.md#first-cycle-consolidated-feedback--q01q10--2026-10-04). The initial assessment is complete, but topic coverage and revision are not. Q11 sampled latency reasoning; Q12 now tests scaling and scheduling evidence. No pending-question answer file exists.
 
@@ -70,9 +70,9 @@ See [first-cycle consolidated feedback](Feedback.md#first-cycle-consolidated-fee
 
 [Targeted retry](questions/Q11.1-latency-targeted-retry.md): **6.5/10; 55% subjective acceptance estimate**. Rollback decision resolved in this coached attempt; p95 population, scaling choice, pool-specific diagnosis and recovery criteria still need practice. Prior Q11 score preserved. This supplementary retry is excluded from historical/first-attempt and five-scenario averages above; follow-up completion remains 1/5. Across all 12 attempts including this retry: 70.5/12 = 5.88/10; acceptance estimates 617/12 = 51.4%. These descriptive aggregates are not hiring probabilities. Q12–Q15 remain available, with consolidated review after Q15.
 
-### Q14 — Service request-path isolation (pending)
+### Q15 — Separate Kubernetes and AWS authorization (pending)
 
-In EKS, frontend pods in namespace web time out calling `http://orders.backend.svc.cluster.local:8080`. DNS returns the expected ClusterIP. The orders pods are Ready and their IPs appear as ready endpoints. The Service exposes port 8080 but targetPort is 8081; the application listens on 8080. After correcting that mapping, calls from a diagnostic pod in backend work, but frontend calls still time out. Both namespaces use default-deny NetworkPolicies. A teammate proposes deleting all policies. How would you isolate and fix both failures with narrow access, and prove recovery?
+An EKS reporting pod uses ServiceAccount reporter in namespace analytics. After a Helm release it gets Kubernetes `Forbidden` when reading ConfigMaps in namespace shared, and AWS `AccessDenied` when reading one S3 prefix. Image pulling works. A teammate suggests binding cluster-admin to reporter and adding S3 permissions to every worker node role. The workload uses IRSA. How would you identify its actual identities, restore only the required permissions in both systems, and verify permitted and denied access from the workload?
 
 ## Second-Stage Preparation Strategy
 
@@ -185,3 +185,7 @@ Historical preference, now active from 2026-10-20: preserve question history and
 ## Q13 — 2026-10-24
 
 [Stateful EBS recovery](questions/Q13-stateful-ebs-recovery.md): **8/10; 75% subjective estimate**. Storage recovery significantly improved; verify shutdown (not merely NotReady) and data/single-writer safety before writes. Concrete attachment/events improve verification. Coverage unchanged at 14/22; no new aspect inferred. Follow-up 3/5; Q14 pending. Main follow-up average 6.83; main 13-question average 6.08. Including coached Q11.1: 85.5/14 = 6.11; acceptance estimates 757/14 = 54.07%. Older totals are historical snapshots. Full readiness review after Q15.
+
+## Q14 — 2026-10-24
+
+[Service/NetworkPolicy](questions/Q14-service-networkpolicy.md): **6.5/10; 60% subjective estimate**. Q04 security intent and both-side awareness partly improved; narrow rules, same-namespace semantics and application-level verification remain gaps. Main follow-up 4/5 average 6.75; main 14 average 6.11. Including coached Q11.1: 92/15 = 6.13; acceptance 817/15 = 54.47%. Coverage 15/22; Ingress not inferred. Q15 pending. Previous totals are historical snapshots.
