@@ -4,19 +4,19 @@
 
 | Metric | Status |
 | --- | --- |
-| Evaluated questions | 0 |
-| Average score / acceptance estimate | N/A / N/A |
-| Coverage | 0/10 |
-| Readiness | Not assessed |
-| Pending | Q01 — production deployment bypasses checks |
+| Evaluated questions | 1 |
+| Average score / acceptance estimate | 8.5/10 / 80% (subjective, not hiring probability) |
+| Coverage | 2/10 |
+| Readiness | Strong first answer; broader CI/CD readiness unassessed |
+| Pending | Q02 — promote the tested artifact |
 
 ## Coverage
 
-- [ ] Triggers, job dependencies and conditional gates.
+- [x] ✅ Dependencies and conditional gates — Q01; event-trigger breadth remains unassessed.
 - [ ] Build/test/security scanning and trustworthy results.
 - [ ] Artifact integrity, image tags/digests and promotion.
 - [ ] Secrets, OIDC and least-privilege workflow permissions.
-- [ ] Environment protections, approvals and deployment access.
+- [x] ✅ Environment approvals — Q01; deployment-access security depth remains unassessed.
 - [ ] Deployment strategies, rollback and recovery checks.
 - [ ] Runners, isolation, supply-chain and untrusted PR security.
 - [ ] Concurrency, cancellation, caches and reliable execution.
@@ -25,12 +25,17 @@
 
 Check aspects only after substantive evaluation; coverage is not mastery. Integrate observability into relevant scenarios and link actual evidence. Start with broad high-value coverage; review after ten evaluated questions, adapt to demonstrated gaps. No automatic total question quota or readiness guarantee.
 
-## Pending Q01
+## Pending Q02 — Tested artifact differs from production
 
-A GitHub Actions workflow runs on pushes to main. It has separate build, test, scan and deploy jobs. The deploy job depends only on build. In one run, build succeeds, tests fail and scan is still running when deploy starts updating production. A teammate suggests adding a manual approval as the only fix.
-
-How would you diagnose why deployment started, change the workflow so all required checks must succeed before production deployment, and verify that failed or skipped checks cannot bypass the gate? Explain where approval belongs. A small YAML excerpt is optional; no full workflow required.
+GitHub Actions builds an image from commit A, pushes it as latest and tests it successfully in staging. Before production approval, commit B overwrites latest. Production then deploys latest and behaves differently, although every check for A passed. A teammate suggests rebuilding A during the production job. How would you prove what was tested versus deployed, promote the exact approved artifact and make rollback reliable?
 
 ## Revision
 
-No evaluated weaknesses yet. Preserve scores/reassessments; use compact answers, focused YAML only when useful, essential commands and actual operation checks. Create canonical question/answer files after attempts only. Commit locally; push only when asked.
+- [ ] Prove deployment gating with failed/skipped and approval-path tests — Q01.
+- [ ] Precisely distinguish dependencies from conditional expressions — Q01.
+
+ Preserve scores/reassessments; use compact answers, focused YAML only when useful, essential commands and actual operation checks. Create canonical question/answer files after attempts only. Commit locally; push only when asked.
+
+## Attempt record
+
+2026-10-25 Q01: 8.5/10, 80% subjective estimate; [evidence](questions/Q01-deployment-check-gates.md). Q02 pending; no future answer revealed.
