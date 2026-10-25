@@ -39,3 +39,7 @@ Reassessed **10/10; 95% subjective estimate**, original 7.5/10 retained. [Eviden
 ## Q05 coached revision 2 — 2026-10-25
 
 **7/10; 55% subjective estimate.** Filtering, failure rejection and duplicate ordering improved. Missing final return yields None for success/missing-job paths (−2.5); requested checks absent (−0.5). Prior scores preserved; [details](questions/Q05-deployment-gate.md).
+
+## Q05 coached revision 3 — 2026-10-25
+
+**9.5/10; 90% subjective estimate.** Core logic now passes 4,681 two-field combinations and invalid JSON. Original and intermediate scores preserved. Missing requested user checks retain 0.5 deduction. [Evidence](questions/Q05-deployment-gate.md). Proceed to CI/CD next; no source edits by evaluator.

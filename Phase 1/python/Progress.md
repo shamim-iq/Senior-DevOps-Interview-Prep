@@ -5,10 +5,10 @@
 | Metric | Status |
 | --- | --- |
 | Evaluated exercises | 5 |
-| Average score / acceptance estimate | First attempts: 7.4/10 / 67%; latest per exercise: 8.9/10 / 82% (includes coached Q02/Q03/Q05 revisions; not hiring probability) |
+| Average score / acceptance estimate | First attempts: 7.4/10 / 67%; latest per exercise: 9.4/10 / 89% (includes coached Q02/Q03/Q05 revisions; not hiring probability) |
 | Coverage | 7 / 10 aspects |
 | Interview readiness | Foundation demonstrated; broader coding readiness not yet assessed |
-| Pending exercise | Q05 revision pending — original 5/10, latest coached revision 7/10; resolve before CI/CD |
+| Pending exercise | None; Q05 core logic resolved, latest coached score 9.5/10; CI/CD next |
 | Return to after warm-up | CI/CD — GitHub Actions primary, Jenkins secondary; after Q05 is resolved |
 
 ## Daily ledger
@@ -41,11 +41,12 @@ Only mark assessed aspects with [x] ✅ and an evidence link after evaluation. C
 
 ## Current position
 
-Q05 assessed on 2026-10-25: 5/10, [code](my_codes/Q5.py), [evaluation](questions/Q05-deployment-gate.md). Success/empty inputs raised AttributeError; invalid JSON passed. User to correct dictionary access, duplicate/completeness handling and Boolean return paths. CI/CD (GitHub Actions primary, Jenkins secondary) follows resolution, as requested. Daily practice already complete; this revision is not a new exercise.
+Q05 core logic resolved on 2026-10-25 after coaching: latest 9.5/10, original 5/10 and intermediate 6/7 retained. 4,681 two-field cases plus malformed JSON passed. Requested user-authored checks remain absent. Daily practice complete. Next: CI/CD, GitHub Actions primary and Jenkins secondary, per user request; no new Python task unless requested today.
 
 ## Revision
 
-- [ ] Correct dictionary access, uniqueness checks and complete Boolean return paths — Q05.
+- [x] ✅ Correct dictionary access, uniqueness and Boolean returns in coached Q05 revision.
+- [ ] Confirm these skills independently in a fresh task.
 
 - [ ] Catch specific exceptions and preserve exact failure output — Q04.
 

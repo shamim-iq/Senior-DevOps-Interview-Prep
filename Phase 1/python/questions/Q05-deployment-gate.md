@@ -52,3 +52,12 @@ def can_deploy(report_json):
 - **−2.5:** No final completeness check/return. All-success, unrelated-extra and missing-job tests return None. Empty, duplicate, failed and invalid-JSON cases pass.
 - **−0.5:** Requested user-authored edge checks still absent.
 - Add a final return after the loop to confirm exactly the three required unique names. With current successful-duplicate rejection and specified two-field records, `return len(valid_jobs) == 3` completes the basic contract; name-based tracking is clearer and remains correct if extra metadata differs. Source unchanged; still awaiting correction before CI/CD.
+
+## Coached revision 3 — 2026-10-25
+
+**9.5/10; acceptance estimate 90%** (subjective). Earlier 5/6/7 scores retained; source `79d7c1e`.
+
+- ✅ Final Boolean return fixes completion. Independently tested 4,681 ordered combinations of 0–4 two-field jobs (required/unrelated names and success/failed statuses); all matched the specification. Invalid JSON raised ValueError. Source unchanged.
+- **−0.5 remains:** requested user-authored edge-case checks absent; example print only. Evaluator checks do not replace these.
+- Whole-dictionary comparison works for the illustrated two-field schema. Tracking names is clearer and robust if reports later include varying metadata; extra metadata was not imposed as a new scoring requirement.
+- Core exercise resolved after coaching; independent retention not yet demonstrated. CI/CD is next, GitHub Actions primary and Jenkins secondary. No more Python question today unless requested.
