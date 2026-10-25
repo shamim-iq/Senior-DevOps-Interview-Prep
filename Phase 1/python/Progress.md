@@ -9,7 +9,7 @@
 | Coverage | 7 / 10 aspects |
 | Interview readiness | Foundation demonstrated; broader coding readiness not yet assessed |
 | Pending exercise | None; Q05 core logic resolved, latest coached score 9.5/10; CI/CD next |
-| Return to after warm-up | CI/CD Q03 — OIDC identity; GitHub Actions primary, Jenkins secondary |
+| Return to after warm-up | CI/CD Q02.1 targeted retry, then Q03 — OIDC identity; GitHub Actions primary, Jenkins secondary |
 
 ## Daily ledger
 

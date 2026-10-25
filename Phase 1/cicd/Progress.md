@@ -8,7 +8,7 @@
 | Average score / acceptance estimate | 7.5/10 / 70% (subjective, not hiring probability) |
 | Coverage | 4/10 |
 | Readiness | Strong first answer; broader CI/CD readiness unassessed |
-| Pending | Q03 — GitHub Actions OIDC and deployment identity |
+| Pending | Q02.1 — targeted artifact/release retry; Q03 preserved afterward |
 
 ## Coverage
 
@@ -24,6 +24,14 @@
 - [ ] Jenkins fundamentals, credentials, agents and pipeline troubleshooting.
 
 Check aspects only after substantive evaluation; coverage is not mastery. Integrate observability into relevant scenarios and link actual evidence. Start with broad high-value coverage; review after ten evaluated questions, adapt to demonstrated gaps. No automatic total question quota or readiness guarantee.
+
+## Pending Q02.1 — Targeted retry (2026-10-25)
+
+User requested an extra coached retry after Q02; preserve Q02 score and keep Q03 afterward. Evaluate demonstrated recovery separately, not as independent mastery or a new main-numbered question. No retry score until attempted.
+
+Staging tested image tag v2.4.0, recorded digest sha256:AAA (illustrative), from Git commit A. Before production approval, someone repushed v2.4.0 and it now resolves to sha256:BBB. The tested AAA image still exists. Production uses Argo CD plus Argo Rollouts. A teammate says the semantic version and approval are sufficient, and suggests rebuilding A if needed. The previous stable image is sha256:OLD (illustrative).
+
+Explain exactly which artifact production should run, what evidence/configuration would ensure that identity survives approval, which Argo component handles Git synchronization versus traffic promotion, and what you would do and verify if the new release increases errors. Treat digests as placeholders, not valid real hashes. No answer supplied before the attempt.
 
 ## Pending Q03 — OIDC deployment identity
 
