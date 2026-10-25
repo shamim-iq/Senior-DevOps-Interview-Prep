@@ -26,14 +26,15 @@ def can_deploy(report_json):
         if len(report["jobs"]) == 0:
             return False
         for job in report["jobs"]:
-            if job["name"] in ["build", "test", "scan"] and job["status"] == "success" and job["name"] not in valid_jobs:
-                valid_jobs.append(job["name"])
-            if job["name"] in ["build", "test", "scan"] and job["name"] in valid_jobs:
-                return False
-        if len(valid_jobs) == 3:
-            return True
-        elif len(valid_jobs) < 3:
-            return False
+            if job["name"] not in ["build", "test", "scan"]:
+                continue
+            else:
+                if job["status"] == "success":
+                    if job in valid_jobs:
+                        return False
+                    valid_jobs.append(job)
+                else:
+                    return False
 
     except json.JSONDecodeError:
         raise ValueError
