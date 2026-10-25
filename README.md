@@ -22,7 +22,7 @@ Within each topic:
 - [ ] [Terraform](Phase%201/terraform/Progress.md) — paused; 11 evaluated; 1 of up to 5 focused follow-ups assessed; Q12 pending.
 - [Observability](Phase%201/observability/Progress.md) — integrated into other topics; linked evidence, no standalone assessment cycle.
 - [ ] [Linux / Networking](Phase%201/linux/Progress.md) — paused; Q11 pending.
-- [ ] [Python](Phase%201/python/Progress.md) — Q01–Q04 assessed; extra Q05 pending, then CI/CD.
+- [ ] [Python](Phase%201/python/Progress.md) — Q01–Q05 assessed; Q05 revision pending, then CI/CD.
 - [ ] [RAG](Phase%201/rag/Progress.md) — paused; Q03 preserved.
 - [ ] [MCP](Phase%201/mcp/Progress.md) — cross-topic assessment through RAG; standalone practice later.
 - [ ] [Amazon Bedrock](Phase%201/bedrock/Progress.md) — assessed alongside RAG; standalone practice later.

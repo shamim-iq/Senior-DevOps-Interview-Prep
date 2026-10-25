@@ -27,3 +27,7 @@ Reassessed **10/10; 95% subjective estimate**, original 7.5/10 retained. [Eviden
 ## Q04 — 2026-10-25
 
 **8/10; 75% subjective estimate.** [Evaluation](questions/Q04-safe-subprocess.md). Correct subprocess capture, timeout and exit handling. Broad exception catch swallows unrelated failures (−1), missing-file output differs (−0.5), requested checks absent (−0.5). Three runtime outcomes passed; missing-output and exception-propagation checks failed. Tests-writing gap persists. Source unchanged. Daily practice complete; next topic awaits user choice.
+
+## Q05 — 2026-10-25
+
+**5/10; 40% subjective estimate.** [Details](questions/Q05-deployment-gate.md). Dict attribute access blocks valid inputs; duplicate/order handling and list-length completeness reasoning are incorrect; some paths return None. Invalid JSON passes. Requested tests missing. Q03 dictionary navigation remains an independent-retest weakness. Preserve source; resolve Q05 before CI/CD as requested.

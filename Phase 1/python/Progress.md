@@ -4,11 +4,11 @@
 
 | Metric | Status |
 | --- | --- |
-| Evaluated exercises | 4 |
-| Average score / acceptance estimate | First attempts: 8/10 / 73.75%; latest per exercise: 9.375/10 / 88.75% (includes coached Q02/Q03 revisions; not hiring probability) |
+| Evaluated exercises | 5 |
+| Average score / acceptance estimate | First attempts: 7.4/10 / 67%; latest per exercise: 8.5/10 / 79% (includes coached Q02/Q03 revisions; not hiring probability) |
 | Coverage | 7 / 10 aspects |
 | Interview readiness | Foundation demonstrated; broader coding readiness not yet assessed |
-| Pending exercise | Q05 — CI/CD deployment gate; user-requested extra |
+| Pending exercise | Q05 revision pending — evaluated 5/10; resolve before CI/CD |
 | Return to after warm-up | CI/CD — GitHub Actions primary, Jenkins secondary; after Q05 is resolved |
 
 ## Daily ledger
@@ -41,32 +41,11 @@ Only mark assessed aspects with [x] ✅ and an evidence link after evaluation. C
 
 ## Current position
 
-2026-10-25: daily warm-up completed through Q04. User requested extra Q05, then CI/CD preparation (GitHub Actions primary; Jenkins secondary). Q05 is pending, not evaluated. Preserve this transition rather than resuming Kubernetes or creating Q06 automatically. Q04 user exception fix was saved after its first assessment; no reassessment score yet.
-
-## Pending Q05
-
-Q05 — Decide whether a CI/CD pipeline can deploy
-
-Write can_deploy(report_json). Input is a JSON string containing a jobs list.
-Each job has string fields name and status. Required jobs: build, test, scan.
-Return True only when each required job appears exactly once and its status
-is exactly "success". Return False if a required job is missing, duplicated,
-or has any other status. Ignore jobs with other names.
-An empty jobs list returns False. Invalid JSON must raise ValueError or a
-subclass. Assume the structure/field types are valid when JSON parses.
-Use only the standard library; do not modify files or trigger deployments.
-
-Example:
-{"jobs": [{"name": "build", "status": "success"}, {"name": "test", "status": "success"}, {"name": "scan", "status": "success"}]}
-Expected: True
-
-Add checks under the main guard for all-success, failed job, missing job,
-duplicate required job and invalid JSON. Include an extra unrelated job to
-verify it does not affect the decision. No solution supplied.
-
-Code: [my_codes/Q5.py](my_codes/Q5.py). This tests nested JSON retention, aggregation and fail-closed decisions without real deployment actions.
+Q05 assessed on 2026-10-25: 5/10, [code](my_codes/Q5.py), [evaluation](questions/Q05-deployment-gate.md). Success/empty inputs raised AttributeError; invalid JSON passed. User to correct dictionary access, duplicate/completeness handling and Boolean return paths. CI/CD (GitHub Actions primary, Jenkins secondary) follows resolution, as requested. Daily practice already complete; this revision is not a new exercise.
 
 ## Revision
+
+- [ ] Correct dictionary access, uniqueness checks and complete Boolean return paths — Q05.
 
 - [ ] Catch specific exceptions and preserve exact failure output — Q04.
 
