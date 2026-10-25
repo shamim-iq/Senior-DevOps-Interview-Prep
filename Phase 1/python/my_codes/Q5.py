@@ -36,6 +36,11 @@ def can_deploy(report_json):
                 else:
                     return False
 
+        if len(valid_jobs) == 3:
+            return True
+        else:
+            return False
+
     except json.JSONDecodeError:
         raise ValueError
 
