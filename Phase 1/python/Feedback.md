@@ -31,3 +31,7 @@ Reassessed **10/10; 95% subjective estimate**, original 7.5/10 retained. [Eviden
 ## Q05 — 2026-10-25
 
 **5/10; 40% subjective estimate.** [Details](questions/Q05-deployment-gate.md). Dict attribute access blocks valid inputs; duplicate/order handling and list-length completeness reasoning are incorrect; some paths return None. Invalid JSON passes. Requested tests missing. Q03 dictionary navigation remains an independent-retest weakness. Preserve source; resolve Q05 before CI/CD as requested.
+
+## Q05 coached revision — 2026-10-25
+
+**6/10; 45% subjective estimate.** Dictionary access fixed; two independent if blocks reject a just-appended first success. All-success fails; rejection cases alone do not validate duplicate handling. Original 5/10 retained; requested checks still missing. [Details](questions/Q05-deployment-gate.md).

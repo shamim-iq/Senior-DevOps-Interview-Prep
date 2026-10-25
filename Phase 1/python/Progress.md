@@ -5,10 +5,10 @@
 | Metric | Status |
 | --- | --- |
 | Evaluated exercises | 5 |
-| Average score / acceptance estimate | First attempts: 7.4/10 / 67%; latest per exercise: 8.5/10 / 79% (includes coached Q02/Q03 revisions; not hiring probability) |
+| Average score / acceptance estimate | First attempts: 7.4/10 / 67%; latest per exercise: 8.7/10 / 80% (includes coached Q02/Q03/Q05 revisions; not hiring probability) |
 | Coverage | 7 / 10 aspects |
 | Interview readiness | Foundation demonstrated; broader coding readiness not yet assessed |
-| Pending exercise | Q05 revision pending — evaluated 5/10; resolve before CI/CD |
+| Pending exercise | Q05 revision pending — original 5/10, coached revision 6/10; resolve before CI/CD |
 | Return to after warm-up | CI/CD — GitHub Actions primary, Jenkins secondary; after Q05 is resolved |
 
 ## Daily ledger
@@ -63,3 +63,5 @@ No fixed question quota or readiness percentage is inferred from daily attendanc
 ## Breadth strategy
 
 Start with fundamentals and file/log processing, then rotate JSON/YAML parsing, HTTP APIs (authentication, timeouts, pagination, retries/backoff), subprocess safety and exit codes, exceptions/logging, tests/mocking and edge cases. Combine these in practical health checks, inventory/reporting and safe automation (dry runs, idempotency, secrets handling). Include functions, modules, environment/CLI input, regex/datetime, sets/nested structures, basic complexity and bounded concurrency where useful. Revisit demonstrated weaknesses without repeating basics indefinitely. Separate demonstrated coverage from remaining subskills; no readiness claim from daily attendance. User-authored tests and independent problem solving must be assessed directly.
+
+Q05 revision 2026-10-25: dictionary access corrected; all-success still returns False due to checking for duplicates immediately after appending. Latest 6/10, 45% subjective estimate; original preserved. CI/CD transition remains pending.

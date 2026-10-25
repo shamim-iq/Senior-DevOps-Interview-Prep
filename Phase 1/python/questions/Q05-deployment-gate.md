@@ -32,3 +32,14 @@ def can_deploy(report_json):
 **Theory:** JSON objects become dictionaries; bracket notation accesses keys. A set tracks distinct names; duplicate detection must happen before accepting a repeated job. JSONDecodeError already subclasses ValueError. All normal paths must return a Boolean. O(input length + jobs) time; required/seen sets are bounded to three names, plus parsed input memory.
 
 **Recovery:** Q03 nested-key access is not yet retained independently. Fix source yourself, then test success, failure-before-success duplicate, successful duplicate, missing/empty, unrelated failures and invalid JSON. No real deployment executed. CI/CD begins after Q05 is resolved, per user request.
+
+## Coached revision — 2026-10-25
+
+**6/10; acceptance estimate 45%** (subjective). Original 5/10 preserved; revision commit `dca5bdd`.
+
+- ✅ Dictionary key access corrected; valid inputs no longer crash. Empty input and malformed JSON behave correctly.
+- **Remaining logic gap (−3.5):** First success is appended, then the next independent if immediately sees that same name and returns False. All valid-schema inputs therefore return False, including all-success. Reject cases passing do not demonstrate correct duplicate logic. The former >3/None issue is no longer reachable, so its original deduction does not carry forward.
+- **Checks (−0.5):** Still only one printed example, not the requested edge-case checks.
+- Tests: all-success and unrelated-failure inputs incorrectly False; missing/empty/duplicate/failed inputs False; invalid JSON raises ValueError. Source unchanged.
+
+**Trace:** first build/success → append build → build now in valid_jobs → return False. Validate duplicate/non-success required jobs before appending; ignore unrelated jobs, then verify all required names were collected. Merely switching the second if to elif would still fail to reject a failed occurrence followed by a successful duplicate. Retest both acceptance and rejection paths. CI/CD waits for resolution as requested.
