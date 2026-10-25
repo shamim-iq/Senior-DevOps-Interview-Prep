@@ -23,3 +23,7 @@ Reassessed **10/10; 95% subjective estimate**, original 7.5/10 retained. [Eviden
 ## Q03 coached revision — 2026-10-24
 
 **9.5/10; 90% subjective estimate**, original 6.5 preserved. [Details](questions/Q03-unhealthy-services-json.md). Corrected nested-list iteration; five evaluator test categories pass. Missing requested user checks retain a 0.5 deduction. Independent nested-structure retention remains pending. Code unchanged by evaluator.
+
+## Q04 — 2026-10-25
+
+**8/10; 75% subjective estimate.** [Evaluation](questions/Q04-safe-subprocess.md). Correct subprocess capture, timeout and exit handling. Broad exception catch swallows unrelated failures (−1), missing-file output differs (−0.5), requested checks absent (−0.5). Three runtime outcomes passed; missing-output and exception-propagation checks failed. Tests-writing gap persists. Source unchanged. Daily practice complete; next topic awaits user choice.

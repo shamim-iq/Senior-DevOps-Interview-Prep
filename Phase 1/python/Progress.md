@@ -4,11 +4,11 @@
 
 | Metric | Status |
 | --- | --- |
-| Evaluated exercises | 3 |
-| Average score / acceptance estimate | First attempts: 8/10 / 73.3%; latest per exercise: 9.83/10 / 93.3% (includes coached Q02/Q03 revisions; not hiring probability) |
-| Coverage | 6 / 10 aspects |
+| Evaluated exercises | 4 |
+| Average score / acceptance estimate | First attempts: 8/10 / 73.75%; latest per exercise: 9.375/10 / 88.75% (includes coached Q02/Q03 revisions; not hiring probability) |
+| Coverage | 7 / 10 aspects |
 | Interview readiness | Foundation demonstrated; broader coding readiness not yet assessed |
-| Pending exercise | Q04 — safe subprocess diagnostic wrapper; 2026-10-25 |
+| Pending exercise | None; Q04 evaluated; next topic awaits user choice |
 | Return to after warm-up | Kubernetes follow-up cycle complete; next topic awaits user choice |
 
 ## Daily ledger
@@ -20,7 +20,7 @@
 
 Q03 evaluated on 2026-10-24: 6.5/10, [code](my_codes/Q3.py), [evaluation](questions/Q03-unhealthy-services-json.md). Original: three valid-input tests failed; invalid JSON passed. Coached revision: 9.5/10, five evaluator test categories passed; user-authored checks still missing. Daily practice remains complete.
 
-**2026-10-25 — Q04 pending:** [code](my_codes/Q4.py) contains prompt comments only; daily requirement not complete.
+**2026-10-25 — Q04 complete:** [code](my_codes/Q4.py), [evaluation](questions/Q04-safe-subprocess.md), 8/10. Independently tested; daily requirement complete despite remaining corrections.
 
 Use the actual attempt date when completed. Retain an unanswered exercise across days. A pending prompt or explanation does not complete the day. Keep execution status explicit: user-reported run, independently tested, or code review only.
 
@@ -32,7 +32,7 @@ Use the actual attempt date when completed. Retain an unanswered exercise across
 - [x] ✅ Files and log processing — Q02; whitespace fixed in coached revision; independent retention pending.
 - [x] ✅ JSON parsing — Q03; nested navigation corrected after coaching; independent retention pending. YAML/configuration-specific work remains.
 - [ ] HTTP APIs, timeouts and pagination.
-- [ ] Subprocesses and exit codes.
+- [x] ✅ Subprocesses and exit codes — Q04; narrow exception handling and exact failure contract need revision.
 - [x] ✅ Exception handling and file-failure propagation — Q02; structured logging and broader safe failure handling remain to assess.
 - [ ] Tests and edge cases.
 - [ ] Practical automation combining these skills.
@@ -41,32 +41,11 @@ Only mark assessed aspects with [x] ✅ and an evidence link after evaluation. C
 
 ## Current position
 
-2026-10-25: daily warm-up Q04 pending. Q01–Q03 evaluated on the previous day; no completion recorded for today. Kubernetes five-follow-up cycle is complete. After this warm-up, ask which topic the user wants to resume rather than inventing another Kubernetes question. Existing other-topic pending questions remain preserved.
-
-## Pending Q04
-
-Q04 — Run a diagnostic command safely
-
-Write run_check(command, timeout_seconds=5). command is a nonempty list of
-strings, for example [sys.executable, "-c", "print('healthy')"].
-Use the standard library to run it without shell=True, capturing text output.
-Return a dictionary with exactly these keys: success, returncode, stdout,
-stderr. Strip leading/trailing whitespace from output strings.
-A zero exit code means success=True; a nonzero code means success=False
-and must still return the captured output and actual returncode.
-On timeout, return success=False, returncode=None, stdout="", stderr="timeout".
-If the executable does not exist, return success=False, returncode=None,
-stdout="", stderr="command not found".
-Assume valid argument types and a positive timeout. Do not swallow unrelated errors.
-
-Add checks under the main guard for success, nonzero exit, timeout and missing
-executable. Use harmless local Python commands (sys.executable) for testing;
-no production commands or network access. Share/save your code and any output.
-No implementation supplied.
-
-Code: [my_codes/Q4.py](my_codes/Q4.py).
+2026-10-25: Q04 evaluated, daily Python requirement complete. Kubernetes five-follow-up cycle is complete; next topic awaits user choice. Do not ask Q05 today unless requested. Existing other-topic pending questions remain preserved.
 
 ## Revision
+
+- [ ] Catch specific exceptions and preserve exact failure output — Q04.
 
 - [x] ✅ Fix outer-object/nested-list iteration in coached Q03 revision.
 - [ ] Retest nested structures independently.
