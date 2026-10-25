@@ -23,12 +23,12 @@ def can_deploy(report_json):
     valid_jobs = []
     try:
         report = json.loads(report_json)
-        if len(report.jobs) == 0:
+        if len(report["jobs"]) == 0:
             return False
-        for job in report.jobs:
-            if job.name in ["build", "test", "scan"] and job.status == "success":
-                valid_jobs.append(job.name)
-            elif job.name in ["build", "test", "scan"] and job.name in valid_jobs:
+        for job in report["jobs"]:
+            if job["name"] in ["build", "test", "scan"] and job["status"] == "success" and job["name"] not in valid_jobs:
+                valid_jobs.append(job["name"])
+            if job["name"] in ["build", "test", "scan"] and job["name"] in valid_jobs:
                 return False
         if len(valid_jobs) == 3:
             return True
