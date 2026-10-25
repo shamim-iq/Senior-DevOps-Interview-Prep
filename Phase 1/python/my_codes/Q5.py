@@ -16,3 +16,29 @@
 # Add checks under the main guard for all-success, failed job, missing job,
 # duplicate required job and invalid JSON. Include an extra unrelated job to
 # verify it does not affect the decision. No solution supplied.
+
+import json
+
+def can_deploy(report_json):
+    valid_jobs = []
+    try:
+        report = json.loads(report_json)
+        if len(report.jobs) == 0:
+            return False
+        for job in report.jobs:
+            if job.name in ["build", "test", "scan"] and job.status == "success":
+                valid_jobs.append(job.name)
+            elif job.name in ["build", "test", "scan"] and job.name in valid_jobs:
+                return False
+        if len(valid_jobs) == 3:
+            return True
+        elif len(valid_jobs) < 3:
+            return False
+
+    except json.JSONDecodeError:
+        raise ValueError
+
+if __name__ == "__main__":
+    # Example usage
+    report_json = '{"jobs": [{"name": "build", "status": "success"}, {"name": "test", "status": "success"}, {"name": "scan", "status": "success"}]}'
+    print(can_deploy(report_json))  # Expected: True
