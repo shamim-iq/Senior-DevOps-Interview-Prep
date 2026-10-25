@@ -27,12 +27,14 @@ def run_check(command, timeout_seconds=5):
             text=True,
             timeout=timeout_seconds
         )
+        # Nonzero exit codes (e.g. invalid arguments) are results, not exceptions.
         return {
             "success": result.returncode == 0,
             "returncode": result.returncode,
             "stdout": result.stdout.strip(),
             "stderr": result.stderr.strip()
         }
+    # The command did not finish within timeout_seconds.
     except subprocess.TimeoutExpired:
         return {
             "success": False,
@@ -40,13 +42,17 @@ def run_check(command, timeout_seconds=5):
             "stdout": "",
             "stderr": "timeout"
         }
-    except Exception as e:
+    # The executable could not be found (e.g. a misspelled command name/path).
+    # Invalid arguments to an existing executable do not trigger this handler.
+    except FileNotFoundError:
         return {
             "success": False,
             "returncode": None,
             "stdout": "",
-            "stderr": f"{str(e)}/command not found"
+            "stderr": "command not found"
         }
+
+# Other exceptions, such as PermissionError, propagate to the caller.
 
 if __name__ == "__main__":
     import sys
