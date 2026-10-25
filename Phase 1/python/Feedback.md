@@ -35,3 +35,7 @@ Reassessed **10/10; 95% subjective estimate**, original 7.5/10 retained. [Eviden
 ## Q05 coached revision — 2026-10-25
 
 **6/10; 45% subjective estimate.** Dictionary access fixed; two independent if blocks reject a just-appended first success. All-success fails; rejection cases alone do not validate duplicate handling. Original 5/10 retained; requested checks still missing. [Details](questions/Q05-deployment-gate.md).
+
+## Q05 coached revision 2 — 2026-10-25
+
+**7/10; 55% subjective estimate.** Filtering, failure rejection and duplicate ordering improved. Missing final return yields None for success/missing-job paths (−2.5); requested checks absent (−0.5). Prior scores preserved; [details](questions/Q05-deployment-gate.md).

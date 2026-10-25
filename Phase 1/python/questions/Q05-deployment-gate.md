@@ -43,3 +43,12 @@ def can_deploy(report_json):
 - Tests: all-success and unrelated-failure inputs incorrectly False; missing/empty/duplicate/failed inputs False; invalid JSON raises ValueError. Source unchanged.
 
 **Trace:** first build/success → append build → build now in valid_jobs → return False. Validate duplicate/non-success required jobs before appending; ignore unrelated jobs, then verify all required names were collected. Merely switching the second if to elif would still fail to reject a failed occurrence followed by a successful duplicate. Retest both acceptance and rejection paths. CI/CD waits for resolution as requested.
+
+## Coached revision 2 — 2026-10-25
+
+**7/10; acceptance estimate 55%** (subjective). Earlier scores 5 and 6 retained; source commit `cf0bf97`.
+
+- Improved: ignores unrelated jobs, rejects failed required jobs immediately, checks duplicates before appending.
+- **−2.5:** No final completeness check/return. All-success, unrelated-extra and missing-job tests return None. Empty, duplicate, failed and invalid-JSON cases pass.
+- **−0.5:** Requested user-authored edge checks still absent.
+- Add a final return after the loop to confirm exactly the three required unique names. With current successful-duplicate rejection and specified two-field records, `return len(valid_jobs) == 3` completes the basic contract; name-based tracking is clearer and remains correct if extra metadata differs. Source unchanged; still awaiting correction before CI/CD.
