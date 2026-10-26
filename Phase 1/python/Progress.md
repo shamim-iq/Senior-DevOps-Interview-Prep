@@ -4,14 +4,16 @@
 
 | Metric | Status |
 | --- | --- |
-| Evaluated exercises | 5 |
-| Average score / acceptance estimate | First attempts: 7.4/10 / 67%; latest per exercise: 9.4/10 / 89% (includes coached Q02/Q03/Q05 revisions; not hiring probability) |
+| Evaluated exercises | 6 |
+| Average score / acceptance estimate | First attempts: 7.25/10 / 65%; latest per exercise: 8.92/10 / 83.3% (includes coached Q02/Q03/Q05 revisions; not hiring probability) |
 | Coverage | 7 / 10 aspects |
 | Interview readiness | Foundation demonstrated; broader coding readiness not yet assessed |
-| Pending exercise | Q06 - Failed deployment summary; asked 2026-10-26; awaiting user code |
+| Pending exercise | Q06 evaluated; input-contract correction and user checks remain revision, not a block on CI/CD |
 | Return to after warm-up | CI/CD Q03 - OIDC identity; Q02.1 retry assessed on 2026-10-26 |
 
 ## Daily ledger
+
+**2026-10-26 - Q06 complete:** [code](my_codes/Q6.py), [evaluation](questions/Q06-failed-deployment-summary.md), 6.5/10. Independently tested: list contract raises TypeError; diagnostic string-input counting mostly works. User checks absent. Daily attempt complete; return to CI/CD Q03. Similar aggregation retest authorized for later.
 
 | Date (Asia/Calcutta) | Exercise | Status | Code / execution evidence |
 | --- | --- | --- | --- |
@@ -41,11 +43,14 @@ Only mark assessed aspects with [x] ✅ and an evidence link after evaluation. C
 
 ## Current position
 
-**2026-10-26: Q06 pending.** Implement `failed_deployments(records)` returning a dictionary of failed-deployment counts per service. Input: a list of dictionaries with valid string `service` and `status` fields. Count only status exactly `failed`; omit services with no failures. Empty input returns `{}`; do not mutate the input. Include user-authored checks for mixed statuses, repeated failures and empty input. Code path: [Q6.py](my_codes/Q6.py), prompt comments only at creation. No attempt, score, execution evidence or daily completion yet. After evaluation, return to CI/CD Q03; Q02.1 has been assessed. Preserve the pending exercise across days if unanswered.
+**2026-10-26: Q06 evaluated, 6.5/10.** Daily practice complete. Counting logic credited; list versus JSON-text contract and missing user checks need revision. User code preserved unchanged. Return to CI/CD Q03; Q02.1 assessed. Ask a similar aggregation exercise later, as requested, for an independent retest.
 
 Q05 core logic resolved on 2026-10-25 after coaching: latest 9.5/10, original 5/10 and intermediate 6/7 retained. 4,681 two-field cases plus malformed JSON passed. Requested user-authored checks remain absent. Daily practice complete. Next: CI/CD, GitHub Actions primary and Jenkins secondary, per user request; no new Python task unless requested today.
 
 ## Revision
+
+- [ ] Q06: accept the specified list directly; distinguish JSON text from parsed Python objects; add user-authored checks.
+- [ ] Later similar aggregation exercise: independently retest input contracts and dictionary counting, per user request on 2026-10-26.
 
 - [x] ✅ Correct dictionary access, uniqueness and Boolean returns in coached Q05 revision.
 - [ ] Confirm these skills independently in a fresh task.
