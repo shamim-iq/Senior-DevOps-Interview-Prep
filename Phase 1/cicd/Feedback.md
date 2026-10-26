@@ -1,5 +1,9 @@
 # CI/CD Feedback
 
+## Q02.1 coached retry - 2026-10-26
+
+**7/10; 65% subjective answer-specific estimate.** [Evidence](questions/Q02.1-artifact-promotion-retry.md). CD/Rollouts roles resolved in this coached attempt. Digest use and Git alignment partially improved; commit-ID tagging is not digest identity. Deductions: 1 artifact selection/commit-tag equivalence; 1 missing approval/test/manifest/runtime evidence chain; 1 missing recovery verification. Abort/undo is credited; clarify that abort does not inherently cause a GitOps redeployment loop. No wording/spelling penalties. Q02 remains 6.5/10; main-question average 7.5/10. Recovery signals unresolved; independent mastery not established. Q03 preserved.
+
 ## Q01 — 2026-10-25
 
 **8.5/10; 80% subjective answer-specific estimate.** [Evaluation](questions/Q01-deployment-check-gates.md). Strong dependency diagnosis and production approval reasoning. Clarify deploy needs all three required jobs; success() does not wait for unrelated jobs. Graph useful but deliberately test failed/skipped/all-success and approval paths. Deductions 0.5 precision and 1 verification, no syntax-volume penalty. One answer is insufficient for overall readiness. Prior Kubernetes verification gap persists here as missing negative-path evidence.
