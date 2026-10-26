@@ -9,7 +9,7 @@
 | Coverage | 7 / 10 aspects |
 | Interview readiness | Foundation demonstrated; broader coding readiness not yet assessed |
 | Pending exercise | Q06 evaluated; input-contract correction and user checks remain revision, not a block on CI/CD |
-| Return to after warm-up | CI/CD Q05 - overlapping production deployments; Q01–Q04 assessed |
+| Return to after warm-up | CI/CD Q06 - reusable workflows and matrices; Q01–Q05 assessed |
 
 ## Daily ledger
 

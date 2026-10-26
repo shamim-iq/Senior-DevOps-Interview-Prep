@@ -19,3 +19,7 @@
 ## Q04 — 2026-10-26
 
 **8/10; 75% subjective answer-specific estimate.** [Evidence](questions/Q04-untrusted-pr-runner-isolation.md). Credit rejection of privileged fork execution and shared production runner, least privilege and post-merge intent. Deductions: 0.5 execution mechanism, 1 explicit isolation boundary, 0.5 merged-event guard. No brevity penalty; frequency claim does not alter grading. Move to Q05 rather than repeat security immediately; gaps retained for spaced revision.
+
+## Q05 — 2026-10-26
+
+**8/10; 75% subjective answer-specific estimate.** [Evidence](questions/Q05-deployment-concurrency.md). Correct race diagnosis, serialization and no cancellation of live migration. Deductions: 0.5 stale-release guard, 0.5 unsafe continuation after partial migration failure, 1 omitted runtime version/health verification. For two runs with A already active, waiting B reasoning credited. No penalty for omitting optional queue feature. Verification weakness persists; Q06 recorded for breadth.

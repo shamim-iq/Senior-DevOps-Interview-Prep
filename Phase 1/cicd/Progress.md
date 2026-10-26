@@ -4,11 +4,11 @@
 
 | Metric | Status |
 | --- | --- |
-| Evaluated questions | 4 |
-| Average score / acceptance estimate | 7.875/10 / 73.75% (subjective, not hiring probability) |
-| Coverage | 6/10 |
+| Evaluated questions | 5 |
+| Average score / acceptance estimate | 7.9/10 / 74% (subjective, not hiring probability) |
+| Coverage | 7/10 |
 | Readiness | Controller roles improved in coached retry; artifact proof and recovery verification need independent retest |
-| Pending | Q05 — Overlapping production deployments |
+| Pending | Q06 — Reusable workflows and matrix failure handling |
 | Coached retry | Q02.1: 7/10, 65% subjective estimate; excluded from main-question average |
 
 ## Coverage
@@ -20,7 +20,7 @@
 - [x] ✅ Environment approvals — Q01; deployment-access security depth remains unassessed.
 - [x] ✅ Progressive rollout and rollback — Q02; Argo responsibilities, artifact identity and recovery gates need revision.
 - [x] ✅ Runners and untrusted PR security — Q04; explicit isolation needs revision; broader supply-chain controls remain unassessed.
-- [ ] Concurrency, cancellation, caches and reliable execution.
+- [x] ✅ Concurrency and cancellation — Q05; stale-run checks and migration failure recovery need revision; caches remain unassessed.
 - [ ] Reusable workflows, matrices and maintenance.
 - [ ] Jenkins fundamentals, credentials, agents and pipeline troubleshooting.
 
@@ -34,9 +34,9 @@ Staging tested image tag v2.4.0, recorded digest sha256:AAA (illustrative), from
 
 The retry assessed artifact choice, approval evidence, controller roles and recovery. Digests are illustrative placeholders. No additional main-numbered question consumed.
 
-## Pending Q05 — Overlapping production deployments
+## Pending Q06 — Reusable workflows and matrix failure handling
 
-Two approved GitHub Actions runs deploy to the same production environment. Older release A runs slowly; newer release B finishes first. A then finishes and replaces B. A teammate suggests canceling every older workflow immediately, including any active database migration. How would you prevent overlapping or stale releases, decide when cancellation is safe, and verify which version is actually serving?
+Your team copied the same GitHub Actions test workflow into twelve service repositories, and fixes now differ across copies. Tests run for Python 3.11 and 3.12 in a matrix. The 3.12 test fails, but deployment still proceeds because that failure is tolerated. A teammate suggests removing 3.12 from the matrix and maintaining the copies manually. How would you share the workflow while preserving service-specific inputs, make required matrix failures block deployment, and roll out shared workflow changes safely?
 
 ## Revision
 
@@ -68,3 +68,9 @@ Q02.1: duties correctly distinguished after coaching; independent retest and rec
 **8/10, 75% subjective estimate.** [Evidence](questions/Q04-untrusted-pr-runner-isolation.md). Sound safe design direction; clarify privileged execution mechanism, actual runner isolation and merged-only trigger. Main average 31.5/4 = 7.875/10; acceptance 295/4 = 73.75%. Including coached Q02.1: 38.5/5 = 7.7/10 and 360/5 = 72%. Earlier aggregates are historical checkpoints. Coverage 6/10; Q05 pending.
 
 - [ ] Retest isolated execution boundaries and merged-only deployment triggers — Q04.
+
+## Q05 — 2026-10-26
+
+**8/10, 75% subjective estimate.** [Evidence](questions/Q05-deployment-concurrency.md). Correct concurrency group and active-migration protection. Remaining gaps: stale candidate checks, partially failed migration handling, and actual version/health evidence. Main average 39.5/5 = 7.9/10; acceptance 370/5 = 74%. Including coached Q02.1: 46.5/6 = 7.75/10 and 435/6 = 72.5%. Prior aggregates remain historical. Coverage 7/10; Q06 pending. Queue-feature detail is coaching, not a deduction.
+
+- [ ] Retest release freshness, failed migration recovery and runtime version/health verification — Q05.
