@@ -15,3 +15,7 @@
 ## Q03 — 2026-10-26
 
 **8.5/10; 80% subjective answer-specific estimate.** [Evidence](questions/Q03-oidc-deployment-identity.md). Credit precise repository/environment intent, id-token permission, role ARN and CloudTrail. Deduct 0.75 for incomplete trust/resource boundary diagnosis and 0.75 for verification limited to retry/audit logs. No separate deduction for token terminology. Previous verification weakness partially improved through named audit evidence, not yet recovered through operation/denial tests. Main average 7.83/10; Q04 pending.
+
+## Q04 — 2026-10-26
+
+**8/10; 75% subjective answer-specific estimate.** [Evidence](questions/Q04-untrusted-pr-runner-isolation.md). Credit rejection of privileged fork execution and shared production runner, least privilege and post-merge intent. Deductions: 0.5 execution mechanism, 1 explicit isolation boundary, 0.5 merged-event guard. No brevity penalty; frequency claim does not alter grading. Move to Q05 rather than repeat security immediately; gaps retained for spaced revision.

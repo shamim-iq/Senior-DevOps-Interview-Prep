@@ -18,7 +18,7 @@ Within each topic:
 - [ ] Docker
 - [ ] [AWS](Phase%201/aws/Progress.md) — paused; 9/10 initial questions evaluated; up to 5 targeted follow-ups if needed; Q11 pending; Q05 (SQS/Lambda) deferred.
 - [ ] Azure
-- [ ] [CI/CD pipelines](Phase%201/cicd/Progress.md) — active; GitHub Actions primary, Jenkins secondary; Q01–Q03 and coached Q02.1 assessed; Q04 pending.
+- [ ] [CI/CD pipelines](Phase%201/cicd/Progress.md) — active; GitHub Actions primary, Jenkins secondary; Q01–Q04 and coached Q02.1 assessed; Q05 pending.
 - [ ] [Terraform](Phase%201/terraform/Progress.md) — paused; 11 evaluated; 1 of up to 5 focused follow-ups assessed; Q12 pending.
 - [Observability](Phase%201/observability/Progress.md) — integrated into other topics; linked evidence, no standalone assessment cycle.
 - [ ] [Linux / Networking](Phase%201/linux/Progress.md) — paused; Q11 pending.
