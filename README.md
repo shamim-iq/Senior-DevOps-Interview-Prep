@@ -18,11 +18,11 @@ Within each topic:
 - [ ] Docker
 - [ ] [AWS](Phase%201/aws/Progress.md) — paused; 9/10 initial questions evaluated; up to 5 targeted follow-ups if needed; Q11 pending; Q05 (SQS/Lambda) deferred.
 - [ ] Azure
-- [ ] [CI/CD pipelines](Phase%201/cicd/Progress.md) — active; GitHub Actions primary, Jenkins secondary; Q01–Q02 and coached Q02.1 assessed; Q03 pending.
+- [ ] [CI/CD pipelines](Phase%201/cicd/Progress.md) — active; GitHub Actions primary, Jenkins secondary; Q01–Q03 and coached Q02.1 assessed; Q04 pending.
 - [ ] [Terraform](Phase%201/terraform/Progress.md) — paused; 11 evaluated; 1 of up to 5 focused follow-ups assessed; Q12 pending.
 - [Observability](Phase%201/observability/Progress.md) — integrated into other topics; linked evidence, no standalone assessment cycle.
 - [ ] [Linux / Networking](Phase%201/linux/Progress.md) — paused; Q11 pending.
-- [ ] [Python](Phase%201/python/Progress.md) — Q01–Q05 assessed; Q05 core logic resolved; CI/CD next.
+- [ ] [Python](Phase%201/python/Progress.md) — Q01–Q06 assessed; Q06 input-contract revision remains; CI/CD active.
 - [ ] [RAG](Phase%201/rag/Progress.md) — paused; Q03 preserved.
 - [ ] [MCP](Phase%201/mcp/Progress.md) — cross-topic assessment through RAG; standalone practice later.
 - [ ] [Amazon Bedrock](Phase%201/bedrock/Progress.md) — assessed alongside RAG; standalone practice later.

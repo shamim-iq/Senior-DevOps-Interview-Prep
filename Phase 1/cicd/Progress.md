@@ -4,11 +4,11 @@
 
 | Metric | Status |
 | --- | --- |
-| Evaluated questions | 2 |
-| Average score / acceptance estimate | 7.5/10 / 70% (subjective, not hiring probability) |
-| Coverage | 4/10 |
+| Evaluated questions | 3 |
+| Average score / acceptance estimate | 7.83/10 / 73.3% (subjective, not hiring probability) |
+| Coverage | 5/10 |
 | Readiness | Controller roles improved in coached retry; artifact proof and recovery verification need independent retest |
-| Pending | Q03 — OIDC deployment identity |
+| Pending | Q04 — Untrusted pull requests and runner isolation |
 | Coached retry | Q02.1: 7/10, 65% subjective estimate; excluded from main-question average |
 
 ## Coverage
@@ -16,7 +16,7 @@
 - [x] ✅ Dependencies and conditional gates — Q01; event-trigger breadth remains unassessed.
 - [ ] Build/test/security scanning and trustworthy results.
 - [x] ✅ Artifact promotion — Q02; digest pinning/immutability and provenance need revision.
-- [ ] Secrets, OIDC and least-privilege workflow permissions.
+- [x] ✅ Secrets, OIDC and least-privilege workflow permissions — Q03; exact trust matching and allow/deny verification need revision.
 - [x] ✅ Environment approvals — Q01; deployment-access security depth remains unassessed.
 - [x] ✅ Progressive rollout and rollback — Q02; Argo responsibilities, artifact identity and recovery gates need revision.
 - [ ] Runners, isolation, supply-chain and untrusted PR security.
@@ -34,9 +34,9 @@ Staging tested image tag v2.4.0, recorded digest sha256:AAA (illustrative), from
 
 The retry assessed artifact choice, approval evidence, controller roles and recovery. Digests are illustrative placeholders. No additional main-numbered question consumed.
 
-## Pending Q03 — OIDC deployment identity
+## Pending Q04 — Untrusted pull requests and runner isolation
 
-A GitHub Actions production job used stored AWS access keys. You migrate it to OIDC, but assuming the deployment role fails with AccessDenied. The job references the production GitHub environment. A teammate suggests restoring long-lived administrator keys or allowing every GitHub repository to assume the role. How would you identify the failing trust/permission boundary, scope access to this repository and deployment context, and verify it safely?
+A public repository accepts fork pull requests. To run integration tests, a teammate proposes using pull_request_target, checking out the contributor's code and running it on the same self-hosted runner used for production deployments. That runner has access to the internal network. How would you assess this design, run useful PR checks safely and keep production deployment access protected?
 
 ## Revision
 
@@ -55,3 +55,10 @@ Q02.1: duties correctly distinguished after coaching; independent retest and rec
 2026-10-25 Q01: 8.5/10, 80% subjective estimate; [evidence](questions/Q01-deployment-check-gates.md). Q02 pending; no future answer revealed.
 
 2026-10-25 Q02: 6.5/10, 60% subjective estimate; [evidence](questions/Q02-tested-artifact-promotion.md). Q03 pending.
+
+## Q03 — 2026-10-26
+
+**8.5/10, 80% subjective estimate.** [Evidence](questions/Q03-oidc-deployment-identity.md). Strong least-privilege identity diagnosis; exact trust boundary and positive/negative verification remain revision items. Main-question average: 23.5/3 = 7.83/10; acceptance 220/3 = 73.3%. Including coached Q02.1: 30.5/4 = 7.625/10 and 285/4 = 71.25%. Earlier aggregates above describe their historical checkpoints. Coverage 5/10; Q04 pending. Python Q06 already evaluated on 2026-10-26.
+
+- [ ] Retest trust-versus-permission boundaries and actual subject/audience matching — Q03.
+- [ ] Verify runtime identity, required operation and denied contexts — Q03.
